@@ -114,7 +114,7 @@
 <li><p>hexo常规操作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">本地开启hexo</span></span><br><span class="line">hexo s          </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">重新上传</span></span><br><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">添加一个名字为xxx的文章</span></span><br><span class="line">hexo -n “xxx.md”</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="GitHub搭建博客"><a href="#GitHub搭建博客" class="headerlink" title="GitHub搭建博客"></a>GitHub搭建博客</h1><ol>
+<h1 id="GitHub搭建博客"><a href="#GitHub搭建博客" class="headerlink" title="GitHub搭建博客"></a>GitHub搭建博客</h1><h2 id="方法一：利用token上传到github"><a href="#方法一：利用token上传到github" class="headerlink" title="方法一：利用token上传到github"></a>方法一：利用token上传到github</h2><ol>
 <li><p>先在自己的github账号上新建一个仓库。仓库名为（用户名.github.io）</p>
 </li>
 <li><p>在blog文件夹下安装部署hexo-deployer-git</p>
@@ -125,17 +125,39 @@
 </li>
 <li><p>部署hexo</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p><strong>这时候提醒需要输入github的username和password，这里需要注意自2021年8月14号后github的password变为token</strong></p>
+</li>
+<li><p><strong>这时候提醒需要输入github的username和password，这里需要注意自2021年8月14号后github的password变为token</strong></p>
 </li>
 <li><p>前往github—&gt;settings—&gt;developer settings—&gt;Personal access tokens生成一个新的token(勾选repo和delete)</p>
+</li>
+</ol>
+<h2 id="方法二：利用ssh连接GitHub"><a href="#方法二：利用ssh连接GitHub" class="headerlink" title="方法二：利用ssh连接GitHub"></a>方法二：利用ssh连接GitHub</h2><ol>
+<li><ol start="2">
+<li>同方法一</li>
+</ol>
+</li>
+<li><p>改repo为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo: git@github.com:用户名/用户名.github.io.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在部署hexo前需要进行ssh配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;邮件名&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">回车 输入密码（用于防止他人往你项目里面提交内容）</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">进入生成的id_rsa.pub复制全部内容</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登陆github，点击头像位置处 Settings ——&gt; SSH and GPG keys ——&gt; New SSH key，点击新建SSH key。将4中复制的内容粘贴在key文本框里，title可以不用填（或者自己起一个名字也可以）。</p>
+</li>
+<li><p>测试设置是否成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置用户信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email  &quot;邮箱名&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署hexo</p>
 </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/mac%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="cl6vthupa0000fhi8aksb8k0p" data-title="mac系统利用hexo+github搭建博客" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/15/mac%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="cl6vu0och0000jqi8al3leo2j" data-title="mac系统利用hexo+github搭建博客" class="article-share-link">Share</a>
       
       
       
