@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Redis - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/03/14/Redis/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/cache-aside-write.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/cache-aside-read.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/write-through.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/read-through.png"><meta property="article:published_time" content="2024-03-14T13:51:05.000Z"><meta property="article:modified_time" content="2024-03-15T03:31:09.026Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="面经"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/cache-aside-write.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/03/14/Redis/"},"headline":"Redis","image":["https://jerryzhu1229.github.io/pic/cache-aside-write.png","https://jerryzhu1229.github.io/pic/cache-aside-read.png","https://jerryzhu1229.github.io/pic/write-through.png","https://jerryzhu1229.github.io/pic/read-through.png"],"datePublished":"2024-03-14T13:51:05.000Z","dateModified":"2024-03-15T03:31:09.026Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/03/14/Redis/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-03-14T13:51:05.000Z" title="2024/3/14 21:51:05">2024-03-14</time>发表</span><span class="level-item"><time dateTime="2024-03-15T03:31:09.026Z" title="2024/3/15 11:31:09">2024-03-15</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/java/">java</a></span><span class="level-item">5 分钟读完 (大约719个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Redis</h1><div class="content"><html><head></head><body><h2 id="Redis-基础"><a href="#Redis-基础" class="headerlink" title="Redis 基础"></a>Redis 基础</h2><h3 id="什么是-Redis"><a href="#什么是-Redis" class="headerlink" title="什么是 Redis"></a>什么是 Redis</h3><p>基于 c 开发</p>
+<p>NoSQL 数据库</p>
+<p>内存数据库，支持持久化</p>
+<p>KY键值对数据</p>
+<h3 id="为什么要用-Redis-为什么要用缓存？"><a href="#为什么要用-Redis-为什么要用缓存？" class="headerlink" title="为什么要用 Redis/为什么要用缓存？"></a>为什么要用 Redis/为什么要用缓存？</h3><p><strong>1、高性能</strong>：直接操作内存</p>
+<p><strong>2、高并发</strong></p>
+<h3 id="缓存读写策略有哪几种？"><a href="#缓存读写策略有哪几种？" class="headerlink" title="*缓存读写策略有哪几种？"></a>*缓存读写策略有哪几种？</h3><h4 id="Cache-Aside-Pattern（旁路缓存模式）"><a href="#Cache-Aside-Pattern（旁路缓存模式）" class="headerlink" title="**Cache Aside Pattern（旁路缓存模式）"></a>**Cache Aside Pattern（旁路缓存模式）</h4><p>写：</p>
+<ul>
+<li>先更新 db</li>
+<li>然后直接删除 cache 。</li>
+</ul>
+<p><img src="/../pic/cache-aside-write.png" alt="img"></p>
+<p>读：</p>
+<ul>
+<li>从 cache 中读取数据，读取到就直接返回</li>
+<li>cache 中读取不到的话，就从 db 中读取数据返回</li>
+<li>再把数据放到 cache 中。</li>
+</ul>
+<p><img src="/../pic/cache-aside-read.png" alt="img"></p>
+<p><strong>问题：</strong></p>
+<ol>
+<li><p><strong>在写数据的过程中，可以先删除 cache ，后更新 db 么？</strong></p>
+<p>redis 速度要比 db 快，删 cache 和更新 db 中间可能会穿插读操作</p>
+<p>假如使用了该方案可以用双删解决</p>
+</li>
+<li><p><strong>在写数据的过程中，先更新 db，后删除 cache 就没有问题了么？</strong></p>
+<p>发生情况概率很小，redis 速度要比 db 快。在缓存没有数据情况下，从 db 读数据和更新 cache 中穿插更新 db 操作</p>
+</li>
+</ol>
+<p><strong>Cache Aside Pattern 的缺陷</strong></p>
+<p><strong>缺陷 1：首次请求数据一定不在 cache 的问题</strong></p>
+<p>解决办法：可以将热点数据可以提前放入 cache 中。</p>
+<p><strong>缺陷 2：写操作比较频繁的话导致 cache 中的数据会被频繁被删除，这样会影响缓存命中率 。</strong></p>
+<p>解决办法：数据库和缓存数据强一致（加锁同步更新）</p>
+<h4 id="Read-Write-Through-Pattern（读写穿透）"><a href="#Read-Write-Through-Pattern（读写穿透）" class="headerlink" title="Read/Write Through Pattern（读写穿透）"></a>Read/Write Through Pattern（读写穿透）</h4><p><strong>写（Write Through）：</strong></p>
+<ul>
+<li>先查 cache，cache 中不存在，直接更新 db。</li>
+<li>cache 中存在，则先更新 cache，然后 cache 服务自己更新 db（<strong>同步更新 cache 和 db</strong>）。</li>
+</ul>
+<p><img src="/../pic/write-through.png" alt="img"></p>
+<p><strong>读(Read Through)：</strong></p>
+<ul>
+<li>从 cache 中读取数据，读取到就直接返回 。</li>
+<li>读取不到的话，先从 db 加载，写入到 cache 后返回响应。</li>
+</ul>
+<p><img src="/../pic/read-through.png" alt="img"></p>
+<p>问题：</p>
+<p>和 Cache Aside Pattern 一样， Read-Through Pattern 也有首次请求数据一定不再 cache 的问题，对于热点数据可以提前放入缓存中。</p>
+<h4 id="Write-Behind-Pattern（异步缓存写入）"><a href="#Write-Behind-Pattern（异步缓存写入）" class="headerlink" title="Write Behind Pattern（异步缓存写入）"></a>Write Behind Pattern（异步缓存写入）</h4><p><strong>Read/Write Through 是同步更新 cache 和 db，而 Write Behind 则是只更新缓存，不直接更新 db，而是改为异步批量的方式来更新 db。</strong></p>
+<p>问题：还没同步，缓存宕掉</p>
+<p>使用场景：消息队列中消息的异步写入磁盘、MySQL 的 Innodb Buffer Pool 机制</p>
+<p>优势：db 的写性能非常高，非常适合一些数据经常变化又对数据一致性要求没那么高的场景，比如浏览量、点赞量。</p>
+<h2 id="Redis-应用"><a href="#Redis-应用" class="headerlink" title="Redis 应用"></a>Redis 应用</h2><h3 id="基于-Redis-实现分布式锁"><a href="#基于-Redis-实现分布式锁" class="headerlink" title="基于 Redis 实现分布式锁"></a>基于 Redis 实现分布式锁</h3></body></html></div><div class="article-licensing box"><div class="licensing-title"><p>Redis</p><p><a href="https://jerryzhu1229.github.io/2024/03/14/Redis/">https://jerryzhu1229.github.io/2024/03/14/Redis/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-03-14</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-03-15</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/03/12/Spring/"><span class="level-item">Spring</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Redis-基础"><span class="level-left"><span class="level-item">1</span><span class="level-item">Redis 基础</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#什么是-Redis"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">什么是 Redis</span></span></a></li><li><a class="level is-mobile" href="#为什么要用-Redis-为什么要用缓存？"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">为什么要用 Redis/为什么要用缓存？</span></span></a></li><li><a class="level is-mobile" href="#缓存读写策略有哪几种？"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">*缓存读写策略有哪几种？</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Cache-Aside-Pattern（旁路缓存模式）"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">**Cache Aside Pattern（旁路缓存模式）</span></span></a></li><li><a class="level is-mobile" href="#Read-Write-Through-Pattern（读写穿透）"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">Read/Write Through Pattern（读写穿透）</span></span></a></li><li><a class="level is-mobile" href="#Write-Behind-Pattern（异步缓存写入）"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">Write Behind Pattern（异步缓存写入）</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#Redis-应用"><span class="level-left"><span class="level-item">2</span><span class="level-item">Redis 应用</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#基于-Redis-实现分布式锁"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">基于 Redis 实现分布式锁</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
