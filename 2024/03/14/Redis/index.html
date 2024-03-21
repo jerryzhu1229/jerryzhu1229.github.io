@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Redis - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/03/14/Redis/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/cache-aside-write.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/cache-aside-read.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/write-through.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/read-through.png"><meta property="article:published_time" content="2024-03-14T13:51:05.000Z"><meta property="article:modified_time" content="2024-03-15T03:31:09.026Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="面经"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/cache-aside-write.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/03/14/Redis/"},"headline":"Redis","image":["https://jerryzhu1229.github.io/pic/cache-aside-write.png","https://jerryzhu1229.github.io/pic/cache-aside-read.png","https://jerryzhu1229.github.io/pic/write-through.png","https://jerryzhu1229.github.io/pic/read-through.png"],"datePublished":"2024-03-14T13:51:05.000Z","dateModified":"2024-03-15T03:31:09.026Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/03/14/Redis/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Redis - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/03/14/Redis/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/9fa26a74965efbf0f56b707a03bb9b7f.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/6f0ab40396b7fc2c15e6f4487d3a0ad7-20230309232240301.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/337021a153944fd0f964ca834e34d0f2-20230309232243363.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/98987d9417b2bab43087f45fc959d32a-20230309232253633.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/723d6c580c05400b3841bc69566dd61b-20230309232257343.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0ODI3Njc0,size_16,color_FFFFFF,t_70-20230309232301042.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/c34a9d1f58d602ff1fe8601f7270baa7-20230309232304226.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/ebd620db8a1af66fbeb8f4d4ef6adc68-20230309232308604.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/2b7231b6aabb9a9a2e2390ab3a280b2d.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/26f88373d8454682b9e0c1d4fd1611b4.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/redis%E5%88%87%E7%89%87%E9%9B%86%E7%BE%A4%E6%98%A0%E5%B0%84%E5%88%86%E5%B8%83%E5%85%B3%E7%B3%BB.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4%E6%B5%81%E7%A8%8B.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/6e3db3ba2f829ddc14237f5c7c00e7ce-20230309232338149.png"><meta property="og:image" content="https://cdn.xiaolincoding.com//mysql/other/1cc7401143e79383ead96582ac11b615-20230309232407419.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/write-through.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/read-through.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/b7031182f770a7a5b3c82eaf749f53b0-20230309232834574.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/86b0046c2622b2c4bda697f9bc0f5b28.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/e2b8d2eb5536aa71664772457792ec40-20230309232851699.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/717343a0da7a1b05edab1d1cdf8f28e5.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/acb5f4e7ef24a524a53c39eb016f63d4-20230309232840753.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/1cc7401143e79383ead96582ac11b615.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/2a2ea2854bbc3ae8ae86d7da45fa32ee.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/a4440f0d572612e0832b903e4a62bd2b.png"><meta property="article:published_time" content="2024-03-14T13:51:05.000Z"><meta property="article:modified_time" content="2024-03-21T16:59:28.797Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="面经"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/03/14/Redis/"},"headline":"Redis","image":["https://jerryzhu1229.github.io/pic/%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png","https://jerryzhu1229.github.io/pic/9fa26a74965efbf0f56b707a03bb9b7f.png","https://jerryzhu1229.github.io/pic/6f0ab40396b7fc2c15e6f4487d3a0ad7-20230309232240301.png","https://jerryzhu1229.github.io/pic/337021a153944fd0f964ca834e34d0f2-20230309232243363.png","https://jerryzhu1229.github.io/pic/98987d9417b2bab43087f45fc959d32a-20230309232253633.png","https://jerryzhu1229.github.io/pic/723d6c580c05400b3841bc69566dd61b-20230309232257343.png","https://jerryzhu1229.github.io/pic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0ODI3Njc0,size_16,color_FFFFFF,t_70-20230309232301042.png","https://jerryzhu1229.github.io/pic/c34a9d1f58d602ff1fe8601f7270baa7-20230309232304226.png","https://jerryzhu1229.github.io/pic/ebd620db8a1af66fbeb8f4d4ef6adc68-20230309232308604.png","https://jerryzhu1229.github.io/pic/2b7231b6aabb9a9a2e2390ab3a280b2d.png","https://jerryzhu1229.github.io/pic/26f88373d8454682b9e0c1d4fd1611b4.png","https://jerryzhu1229.github.io/pic/redis%E5%88%87%E7%89%87%E9%9B%86%E7%BE%A4%E6%98%A0%E5%B0%84%E5%88%86%E5%B8%83%E5%85%B3%E7%B3%BB.jpg","https://jerryzhu1229.github.io/pic/%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4.jpg","https://jerryzhu1229.github.io/pic/%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4%E6%B5%81%E7%A8%8B.jpg","https://jerryzhu1229.github.io/pic/6e3db3ba2f829ddc14237f5c7c00e7ce-20230309232338149.png","https://cdn.xiaolincoding.com//mysql/other/1cc7401143e79383ead96582ac11b615-20230309232407419.png","https://jerryzhu1229.github.io/pic/write-through.png","https://jerryzhu1229.github.io/pic/read-through.png","https://jerryzhu1229.github.io/pic/b7031182f770a7a5b3c82eaf749f53b0-20230309232834574.png","https://jerryzhu1229.github.io/pic/86b0046c2622b2c4bda697f9bc0f5b28.png","https://jerryzhu1229.github.io/pic/e2b8d2eb5536aa71664772457792ec40-20230309232851699.png","https://jerryzhu1229.github.io/pic/717343a0da7a1b05edab1d1cdf8f28e5.png","https://jerryzhu1229.github.io/pic/acb5f4e7ef24a524a53c39eb016f63d4-20230309232840753.png","https://jerryzhu1229.github.io/pic/1cc7401143e79383ead96582ac11b615.png","https://jerryzhu1229.github.io/pic/2a2ea2854bbc3ae8ae86d7da45fa32ee.png","https://jerryzhu1229.github.io/pic/a4440f0d572612e0832b903e4a62bd2b.png"],"datePublished":"2024-03-14T13:51:05.000Z","dateModified":"2024-03-21T16:59:28.797Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/03/14/Redis/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -29,25 +29,297 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-03-14T13:51:05.000Z" title="2024/3/14 21:51:05">2024-03-14</time>发表</span><span class="level-item"><time dateTime="2024-03-15T03:31:09.026Z" title="2024/3/15 11:31:09">2024-03-15</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/java/">java</a></span><span class="level-item">5 分钟读完 (大约719个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Redis</h1><div class="content"><html><head></head><body><h2 id="Redis-基础"><a href="#Redis-基础" class="headerlink" title="Redis 基础"></a>Redis 基础</h2><h3 id="什么是-Redis"><a href="#什么是-Redis" class="headerlink" title="什么是 Redis"></a>什么是 Redis</h3><p>基于 c 开发</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-03-14T13:51:05.000Z" title="2024/3/14 21:51:05">2024-03-14</time>发表</span><span class="level-item"><time dateTime="2024-03-21T16:59:28.797Z" title="2024/3/22 00:59:28">2024-03-22</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/java/">java</a></span><span class="level-item">1 小时读完 (大约9386个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Redis</h1><div class="content"><html><head></head><body><h2 id="Redis-基础"><a href="#Redis-基础" class="headerlink" title="Redis 基础"></a>Redis 基础</h2><h3 id="什么是-Redis"><a href="#什么是-Redis" class="headerlink" title="什么是 Redis"></a>什么是 Redis</h3><p>基于 c 开发</p>
 <p>NoSQL 数据库</p>
 <p>内存数据库，支持持久化</p>
 <p>KY键值对数据</p>
-<h3 id="为什么要用-Redis-为什么要用缓存？"><a href="#为什么要用-Redis-为什么要用缓存？" class="headerlink" title="为什么要用 Redis/为什么要用缓存？"></a>为什么要用 Redis/为什么要用缓存？</h3><p><strong>1、高性能</strong>：直接操作内存</p>
-<p><strong>2、高并发</strong></p>
-<h3 id="缓存读写策略有哪几种？"><a href="#缓存读写策略有哪几种？" class="headerlink" title="*缓存读写策略有哪几种？"></a>*缓存读写策略有哪几种？</h3><h4 id="Cache-Aside-Pattern（旁路缓存模式）"><a href="#Cache-Aside-Pattern（旁路缓存模式）" class="headerlink" title="**Cache Aside Pattern（旁路缓存模式）"></a>**Cache Aside Pattern（旁路缓存模式）</h4><p>写：</p>
+<h3 id="为什么要用-Redis-为什么要用缓存？"><a href="#为什么要用-Redis-为什么要用缓存？" class="headerlink" title="为什么要用 Redis/为什么要用缓存？"></a>为什么要用 Redis/为什么要用缓存？</h3><p>主要是因为 <strong>Redis 具备「高性能」和「高并发」两种特性</strong>。</p>
+<p><strong>1、高性能</strong>：直接操作内存</p>
+<p><strong>2、高并发</strong>：单台设备的 Redis 的 QPS（Query Per Second，每秒钟处理完请求的次数） 是 MySQL 的 10 倍</p>
+<h3 id="Redis-单线程模式是怎样的？"><a href="#Redis-单线程模式是怎样的？" class="headerlink" title="Redis 单线程模式是怎样的？"></a>Redis 单线程模式是怎样的？</h3><h2 id="Redis-数据结构"><a href="#Redis-数据结构" class="headerlink" title="Redis 数据结构"></a>Redis 数据结构</h2><h3 id="Redis-数据类型以及使用场景分别是什么？"><a href="#Redis-数据类型以及使用场景分别是什么？" class="headerlink" title="Redis 数据类型以及使用场景分别是什么？"></a>Redis 数据类型以及使用场景分别是什么？</h3><p>常见的有五种数据类型：<strong>String（字符串），Hash（哈希），List（列表），Set（集合）、Zset（有序集合）</strong>。</p>
+<p><img src="/../pic/%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png" alt="img"></p>
+<p>Redis 五种数据类型的应用场景：</p>
+<ul>
+<li>String 类型的应用场景：缓存对象、<strong>常规计数、分布式锁</strong>、共享 session 信息等。</li>
+<li>List 类型的应用场景：<strong>消息队列</strong>（但是有两个问题：1. 生产者需要自行实现全局唯一 ID；2. 不能以消费组形式消费数据）等。</li>
+<li>Hash 类型：<strong>缓存对象</strong>、购物车等。</li>
+<li>Set 类型：聚合计算（并集、交集、差集）场景，比如点赞、<strong>共同关注</strong>、抽奖活动等。</li>
+<li>Zset 类型：排序场景，比如<strong>排行榜</strong>、电话和姓名排序等。</li>
+</ul>
+<p>特殊数据类型</p>
+<ul>
+<li>BitMap（2.2 版新增）：二值状态统计的场景，比如签到、判断用户登陆状态、连续签到用户总数等；</li>
+<li>HyperLogLog（2.8 版新增）：海量数据基数统计的场景，比如百万级网页 UV 计数等；</li>
+<li>GEO（3.2 版新增）：存储地理位置信息的场景，比如滴滴叫车；</li>
+<li>Stream（5.0 版新增）：消息队列，相比于基于 List 类型实现的消息队列，有这两个特有的特性：自动生成全局唯一消息ID，支持以消费组形式消费数据。</li>
+</ul>
+<h3 id="五种常见的-Redis-数据类型是怎么实现？"><a href="#五种常见的-Redis-数据类型是怎么实现？" class="headerlink" title="五种常见的 Redis 数据类型是怎么实现？"></a>五种常见的 Redis 数据类型是怎么实现？</h3><p><img src="/../pic/9fa26a74965efbf0f56b707a03bb9b7f.png" alt="img"></p>
+<blockquote>
+<p>String 类型内部实现</p>
+</blockquote>
+<p>String 类型的底层的数据结构实现主要是 SDS（简单动态字符串）。</p>
+<ul>
+<li><strong>SDS 不仅可以保存文本数据，还可以保存二进制数据</strong>。因为 SDS 使用 len 属性的值而不是空字符来判断字符串是否结束，并且 SDS 的所有 API 都会以处理二进制的方式来处理 SDS 存放在 buf[] 数组里的数据。所以 SDS 不光能存放文本数据，而且能保存图片、音频、视频、压缩文件这样的二进制数据。</li>
+<li>**SDS 获取字符串长度的时间复杂度是 O(1)**。因为 C 语言的字符串并不记录自身长度，所以获取长度的复杂度为 O(n)；而 SDS 结构里用 len 属性记录了字符串长度，所以复杂度为 O(1)。</li>
+<li><strong>Redis 的 SDS API 是安全的，拼接字符串不会造成缓冲区溢出</strong>。因为 SDS 在拼接字符串之前会检查 SDS 空间是否满足要求，如果空间不够会自动扩容，所以不会导致缓冲区溢出的问题。</li>
+</ul>
+<blockquote>
+<p>List 类型内部实现</p>
+</blockquote>
+<p>List 类型的底层数据结构是由<strong>双向链表或压缩列表</strong>实现的：</p>
+<ul>
+<li>如果列表的元素个数小于 512 个（默认值，可由 list-max-ziplist-entries 配置），列表每个元素的值都小于 64 字节（默认值，可由 list-max-ziplist-value 配置），Redis 会使用<strong>压缩列表</strong>作为 List 类型的底层数据结构；</li>
+<li>如果列表的元素不满足上面的条件，Redis 会使用<strong>双向链表</strong>作为 List 类型的底层数据结构；</li>
+</ul>
+<p>但是<strong>在 Redis 3.2 版本之后，List 数据类型底层数据结构就只由 quicklist 实现了，替代了双向链表和压缩列表</strong>。</p>
+<blockquote>
+<p>Hash 类型内部实现</p>
+</blockquote>
+<p>Hash 类型的底层数据结构是由<strong>压缩列表或哈希表</strong>实现的：</p>
+<ul>
+<li>如果哈希类型元素个数小于 512 个（默认值，可由 hash-max-ziplist-entries 配置），所有值小于 64 字节（默认值，可由 hash-max-ziplist-value 配置）的话，Redis 会使用<strong>压缩列表</strong>作为 Hash 类型的底层数据结构；</li>
+<li>如果哈希类型元素不满足上面条件，Redis 会使用<strong>哈希表</strong>作为 Hash 类型的底层数据结构。</li>
+</ul>
+<p><strong>在 Redis 7.0 中，压缩列表数据结构已经废弃了，交由 listpack 数据结构来实现了</strong>。</p>
+<blockquote>
+<p>Set 类型内部实现</p>
+</blockquote>
+<p>Set 类型的底层数据结构是由<strong>哈希表或整数集合</strong>实现的：</p>
+<ul>
+<li>如果集合中的元素都是整数且元素个数小于 512 （默认值，set-maxintset-entries配置）个，Redis 会使用<strong>整数集合</strong>作为 Set 类型的底层数据结构；</li>
+<li>如果集合中的元素不满足上面条件，则 Redis 使用<strong>哈希表</strong>作为 Set 类型的底层数据结构。</li>
+</ul>
+<blockquote>
+<p>ZSet 类型内部实现</p>
+</blockquote>
+<p>Zset 类型的底层数据结构是由<strong>压缩列表或跳表</strong>实现的：</p>
+<ul>
+<li>如果有序集合的元素个数小于 128 个，并且每个元素的值小于 64 字节时，Redis 会使用<strong>压缩列表</strong>作为 Zset 类型的底层数据结构；</li>
+<li>如果有序集合的元素不满足上面的条件，Redis 会使用<strong>跳表</strong>作为 Zset 类型的底层数据结构；</li>
+</ul>
+<p><strong>在 Redis 7.0 中，压缩列表数据结构已经废弃了，交由 listpack 数据结构来实现了。</strong></p>
+<h2 id="Redis-持久化"><a href="#Redis-持久化" class="headerlink" title="Redis 持久化"></a>Redis 持久化</h2><p>Redis 共有三种数据持久化的方式：</p>
+<ul>
+<li><strong>AOF 日志</strong>：每执行一条写操作命令，就把该命令以追加的方式写入到一个文件里；</li>
+<li><strong>RDB 快照</strong>：将某一时刻的内存数据，以二进制的方式写入磁盘；</li>
+<li><strong>混合持久化方式</strong>：Redis 4.0 新增的方式，集成了 AOF 和 RBD 的优点；</li>
+</ul>
+<h3 id="AOF-日志是如何实现的？"><a href="#AOF-日志是如何实现的？" class="headerlink" title="AOF 日志是如何实现的？"></a>AOF 日志是如何实现的？</h3><p>Redis 在执行完一条写操作命令后，就会把该命令以追加的方式写入到一个文件里，然后 Redis 重启时，会读取该文件记录的命令，然后逐一执行命令的方式来进行数据恢复。</p>
+<p><img src="/../pic/6f0ab40396b7fc2c15e6f4487d3a0ad7-20230309232240301.png" alt="img"></p>
+<p><img src="/../pic/337021a153944fd0f964ca834e34d0f2-20230309232243363.png" alt="img"></p>
+<p>「$3 set」表示这部分有 3 个字节，也就是「set」命令这个字符串的长度。</p>
+<blockquote>
+<p>为什么先执行命令，再把数据写入日志呢？</p>
+</blockquote>
+<p>好处：</p>
+<ol>
+<li><p><strong>避免额外的检查开销</strong>（语法检查）</p>
+</li>
+<li><p><strong>不会阻塞当前写操作命令的执行</strong></p>
+</li>
+</ol>
+<p>风险：</p>
+<ol>
+<li><strong>数据可能会丢失</strong></li>
+<li><strong>可能阻塞后续操作</strong></li>
+</ol>
+<blockquote>
+<p>AOF 写回策略有几种？</p>
+</blockquote>
+<p><img src="/../pic/98987d9417b2bab43087f45fc959d32a-20230309232253633.png" alt="img"></p>
+<blockquote>
+<p>AOF 日志过大，会触发什么机制？</p>
+</blockquote>
+<p>Redis 为了避免 AOF 文件越写越大，提供了 <strong>AOF 重写机制</strong>，当 AOF 文件的大小超过所设定的阈值后，Redis 就会启用 AOF 重写机制，来压缩 AOF 文件。</p>
+<p><img src="/../pic/723d6c580c05400b3841bc69566dd61b-20230309232257343.png" alt="在使用重写机制后，就会读取 name 最新的 value（键值对） ，然后用一条 「set name xiaolincoding」命令记录到新的 AOF 文件"></p>
+<blockquote>
+<p>重写 AOF 日志的过程是怎样的？</p>
+</blockquote>
+<p>redis 的<strong>重写 AOF 过程是由后台子进程 *bgrewriteaof* 来完成的</strong></p>
+<p>好处：</p>
+<ul>
+<li>子进程进行 AOF 重写期间，主进程可以继续处理命令请求，从而避免阻塞主进程；</li>
+<li>子进程带有主进程的数据副本，这里使用子进程而不是线程，因为如果是使用线程，多线程之间会共享内存，那么在修改共享内存数据的时候，需要通过加锁来保证数据的安全，而这样就会降低性能。而使用子进程，创建子进程时，父子进程是共享内存数据的，不过这个共享的内存只能以只读的方式，而当父子进程任意一方修改了该共享内存，就会发生「写时复制」，于是父子进程就有了独立的数据副本，就不用加锁来保证数据安全。</li>
+</ul>
+<p><strong>但是重写过程中，主进程依然可以正常处理命令</strong>，那问题来了，重写 AOF 日志过程中，如果主进程修改了已经存在 key-value，那么会发生写时复制，此时这个 key-value 数据在子进程的内存数据就跟主进程的内存数据不一致了，这时要怎么办呢？</p>
+<p>为了解决这种数据不一致问题，Redis 设置了一个 <strong>AOF 重写缓冲区</strong>，这个缓冲区在创建 bgrewriteaof 子进程之后开始使用。在重写 AOF 期间，当 Redis 执行完一个写命令之后，它会<strong>同时将这个写命令写入到 「AOF 缓冲区」和 「AOF 重写缓冲区」</strong>。</p>
+<p><img src="/../pic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0ODI3Njc0,size_16,color_FFFFFF,t_70-20230309232301042.png" alt="img"></p>
+<p>当子进程完成 AOF 重写工作（<em><strong>扫描数据库中所有数据，逐一把内存数据的键值对转换成一条命令，再将命令记录到重写日志</strong></em>）后，会向主进程发送一条信号，主进程收到该信号后，会调用一个信号处理函数，该函数主要做以下工作：</p>
+<ul>
+<li>将 AOF 重写缓冲区中的所有内容追加到新的 AOF 的文件中，使得新旧两个 AOF 文件所保存的数据库状态一致；</li>
+<li>新的 AOF 的文件进行改名，覆盖现有的 AOF 文件。</li>
+</ul>
+<h3 id="RDB-快照是如何实现的呢？"><a href="#RDB-快照是如何实现的呢？" class="headerlink" title="RDB 快照是如何实现的呢？"></a>RDB 快照是如何实现的呢？</h3><p><strong>AOF 缺点</strong>：因为 AOF 日志记录的是操作命令，不是实际的数据，所以用 AOF 方法做故障恢复时，需要全量把日志都执行一遍，一旦 AOF 日志非常多，势必会造成 Redis 的恢复操作缓慢。</p>
+<p>RDB 快照就是记录某一个瞬间的内存数据，记录的是实际数据，而 AOF 文件记录的是命令操作的日志，而不是实际的数据。</p>
+<p>因此在 Redis 恢复数据时， <strong>RDB 恢复数据的效率会比 AOF 高些</strong>，因为直接将 RDB 文件读入内存就可以，不需要像 AOF 那样还需要额外执行操作命令的步骤才能恢复数据。</p>
+<blockquote>
+<p>RDB 做快照时会阻塞线程吗？</p>
+</blockquote>
+<p>Redis 提供了两个命令来生成 RDB 文件，分别是 save 和 bgsave，他们的区别就在于是否在「主线程」里执行：</p>
+<ul>
+<li>执行了 save 命令，就会在主线程生成 RDB 文件，由于和执行操作命令在同一个线程，所以如果写入 RDB 文件的时间太长，<strong>会阻塞主线程</strong>；</li>
+<li>执行了 bgsave 命令，会创建一个子进程来生成 RDB 文件，这样可以<strong>避免主线程的阻塞</strong>；</li>
+</ul>
+<p>Redis 的快照是<strong>全量快照</strong>，也就是说每次执行快照，都是把内存中的「所有数据」都记录到磁盘中。所以执行快照是一个比较重的操作，如果频率太频繁，可能会对 Redis 性能产生影响。如果频率太低，服务器故障时，丢失的数据会更多。</p>
+<blockquote>
+<p>RDB 在执行快照的时候，数据能修改吗？</p>
+</blockquote>
+<p>可以的，执行 bgsave 过程中，Redis 依然<strong>可以继续处理操作命令</strong>的，也就是数据是能被修改的，关键的技术就在于<strong>写时复制技术（Copy-On-Write, COW）。</strong></p>
+<p>执行 bgsave 命令的时候，会通过 fork() 创建子进程，此时子进程和父进程是共享同一片内存数据的，因为创建子进程的时候，会复制父进程的页表，但是页表指向的物理内存还是一个，此时如果主线程执行读操作，则主线程和 bgsave 子进程互相不影响。</p>
+<p><img src="/../pic/c34a9d1f58d602ff1fe8601f7270baa7-20230309232304226.png" alt="img"></p>
+<p>如果主线程执行写操作，则被修改的数据会复制一份副本，然后 bgsave 子进程会把该副本数据写入 RDB 文件，在这个过程中，主线程仍然可以直接修改原来的数据。</p>
+<p><img src="/../pic/ebd620db8a1af66fbeb8f4d4ef6adc68-20230309232308604.png" alt="img"></p>
+<h3 id="为什么会有混合持久化？"><a href="#为什么会有混合持久化？" class="headerlink" title="为什么会有混合持久化？"></a>为什么会有混合持久化？</h3><p>RDB 优点是数据恢复速度快，但是快照的频率不好把握。</p>
+<p>AOF 优点是丢失数据少，但是数据恢复不快。</p>
+<p>混合持久化工作在 <strong>AOF 日志重写过程</strong>，既保证了 Redis 重启速度，又降低数据丢失风险。</p>
+<p>AOF 文件的<strong>前半部分是 RDB 格式的全量数据，后半部分是 AOF 格式的增量数据</strong>。</p>
+<p>这样的好处在于，重启 Redis 加载数据的时候，由于前半部分是 RDB 内容，这样<strong>加载的时候速度会很快</strong>。</p>
+<p>加载完 RDB 的内容后，才会加载后半部分的 AOF 内容，这里的内容是 Redis 后台子进程重写 AOF 期间，主线程处理的操作命令，可以使得<strong>数据更少的丢失</strong>。</p>
+<p><strong>混合持久化优点：</strong></p>
+<ul>
+<li>混合持久化结合了 RDB 和 AOF 持久化的优点，开头为 RDB 的格式，使得 Redis 可以更快的启动，同时结合 AOF 的优点，有减低了大量数据丢失的风险。</li>
+</ul>
+<p><strong>混合持久化缺点：</strong></p>
+<ul>
+<li>AOF 文件中添加了 RDB 格式的内容，使得 AOF 文件的可读性变得很差；</li>
+<li>兼容性差，如果开启混合持久化，那么此混合持久化 AOF 文件，就不能用在 Redis 4.0 之前版本了。</li>
+</ul>
+<h2 id="Redis-集群-高可用"><a href="#Redis-集群-高可用" class="headerlink" title="Redis 集群/高可用"></a>Redis 集群/高可用</h2><h3 id="Redis-如何实现服务高可用？"><a href="#Redis-如何实现服务高可用？" class="headerlink" title="Redis 如何实现服务高可用？"></a>Redis 如何实现服务高可用？</h3><p>要想设计一个高可用的 Redis 服务，一定要从 Redis 的多服务节点来考虑，比如 Redis 的主从复制、哨兵模式、切片集群。</p>
+<blockquote>
+<p>主从复制</p>
+</blockquote>
+<p>主从复制是 Redis 高可用服务的最基础的保证，实现方案就是将从前的一台 Redis 服务器，同步数据到多台从 Redis 服务器上，即一主多从的模式，且主从服务器之间采用的是「读写分离」的方式。</p>
+<p>主服务器可以进行读写操作，当发生写操作时自动将写操作同步给从服务器，而从服务器一般是只读，并接受主服务器同步过来写操作命令，然后执行这条命令。</p>
+<p><img src="/../pic/2b7231b6aabb9a9a2e2390ab3a280b2d.png" alt="img"></p>
+<p>也就是说，所有的数据修改只在主服务器上进行，然后将最新的数据同步给从服务器，这样就使得主从服务器的数据是一致的。</p>
+<p>注意，主从服务器之间的命令复制是<strong>异步</strong>进行的。</p>
+<p>具体来说，在主从服务器命令传播阶段，主服务器收到新的写命令后，会发送给从服务器。但是，主服务器并不会等到从服务器实际执行完命令后，再把结果返回给客户端，而是主服务器自己在本地执行完命令后，就会向客户端返回结果了。如果从服务器还没有执行主服务器同步过来的命令，主从服务器间的数据就不一致了。</p>
+<p>所以，<strong>无法实现强一致性保证</strong>（主从数据时时刻刻保持一致），数据不一致是难以避免的。</p>
+<blockquote>
+<p>哨兵模式</p>
+</blockquote>
+<p>在使用 Redis 主从服务的时候，会有一个问题，就是当 Redis 的主从服务器出现故障宕机时，需要手动进行恢复。</p>
+<p>为了解决这个问题，Redis 增加了哨兵模式（<strong>Redis Sentinel</strong>），因为哨兵模式做到了可以监控主从服务器，并且提供<strong>主从节点故障转移的功能。</strong></p>
+<p><img src="/../pic/26f88373d8454682b9e0c1d4fd1611b4.png" alt="img"></p>
+<blockquote>
+<p>切片集群模式</p>
+</blockquote>
+<p>当 Redis 缓存数据量大到一台服务器无法缓存时，就需要使用 <strong>Redis 切片集群</strong>（Redis Cluster ）方案，它将数据分布在不同的服务器上，以此来降低系统对单主节点的依赖，从而提高 Redis 服务的读写性能。</p>
+<p>Redis Cluster 方案采用哈希槽（Hash Slot），来处理数据和节点之间的映射关系。在 Redis Cluster 方案中，<strong>一个切片集群共有 16384 个哈希槽</strong>，这些哈希槽类似于数据分区，每个键值对都会根据它的 key，被映射到一个哈希槽中，具体执行过程分为两大步：</p>
+<ul>
+<li>根据键值对的 key，按照 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cyclic_redundancy_check">CRC16 算法 (opens new window)</a>计算一个 16 bit 的值。</li>
+<li>再用 16bit 值对 16384 取模，得到 0~16383 范围内的模数，每个模数代表一个相应编号的哈希槽。</li>
+</ul>
+<p>接下来的问题就是，这些哈希槽怎么被映射到具体的 Redis 节点上的呢？有两种方案：</p>
+<ul>
+<li><strong>平均分配：</strong> 在使用 cluster create 命令创建 Redis 集群时，Redis 会自动把所有哈希槽平均分布到集群节点上。比如集群中有 9 个节点，则每个节点上槽的个数为 16384/9 个。</li>
+<li><strong>手动分配：</strong> 可以使用 cluster meet 命令手动建立节点间的连接，组成集群，再使用 cluster addslots 命令，指定每个节点上的哈希槽个数。</li>
+</ul>
+<p>为了方便你的理解，我通过一张图来解释数据、哈希槽，以及节点三者的映射分布关系。</p>
+<p><img src="/../pic/redis%E5%88%87%E7%89%87%E9%9B%86%E7%BE%A4%E6%98%A0%E5%B0%84%E5%88%86%E5%B8%83%E5%85%B3%E7%B3%BB.jpg" alt="img"></p>
+<p>上图中的切片集群一共有 2 个节点，假设有 4 个哈希槽（Slot 0～Slot 3）时，我们就可以通过命令手动分配哈希槽，比如节点 1 保存哈希槽 0 和 1，节点 2 保存哈希槽 2 和 3。</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h <span class="number">192.168</span><span class="number">.1</span><span class="number">.10</span> –p <span class="number">6379</span> cluster addslots <span class="number">0</span>,<span class="number">1</span></span><br><span class="line">redis-cli -h <span class="number">192.168</span><span class="number">.1</span><span class="number">.11</span> –p <span class="number">6379</span> cluster addslots <span class="number">2</span>,<span class="number">3</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后在集群运行的过程中，key1 和 key2 计算完 CRC16 值后，对哈希槽总个数 4 进行取模，再根据各自的模数结果，就可以被映射到哈希槽 1（对应节点1） 和 哈希槽 2（对应节点2）。</p>
+<p>需要注意的是，在手动分配哈希槽时，需要把 16384 个槽都分配完，否则 Redis 集群无法正常工作。</p>
+<h3 id="集群脑裂导致数据丢失怎么办？"><a href="#集群脑裂导致数据丢失怎么办？" class="headerlink" title="集群脑裂导致数据丢失怎么办？"></a>集群脑裂导致数据丢失怎么办？</h3><blockquote>
+<p>什么是脑裂？</p>
+</blockquote>
+<p>总结：由于网络问题，集群节点之间失去联系。主从数据不同步；重新平衡选举，产生两个主服务。等网络恢复，旧主节点会降级为从节点，再与新主节点进行同步复制的时候，由于会从节点会清空自己的缓冲区，所以导致之前客户端写入的数据丢失了。</p>
+<blockquote>
+<p>解决方案</p>
+</blockquote>
+<p>当主节点发现从节点下线或者通信超时的总数量小于阈值时，那么禁止主节点进行写数据，直接把错误返回给客户端。</p>
+<p><strong>原主库就会被限制接收客户端写请求，客户端也就不能在原主库中写入新数据了</strong>。</p>
+<p><strong>等到新主库上线时，就只有新主库能接收和处理客户端请求，此时，新写的数据会被直接写到新主库中。而原主库会被哨兵降为从库，即使它的数据被清空了，也不会有新数据丢失。</strong></p>
+<h2 id="Redis-过期删除与内存淘汰"><a href="#Redis-过期删除与内存淘汰" class="headerlink" title="Redis 过期删除与内存淘汰"></a>Redis 过期删除与内存淘汰</h2><h3 id="Redis-使用的过期删除策略是什么？"><a href="#Redis-使用的过期删除策略是什么？" class="headerlink" title="Redis 使用的过期删除策略是什么？"></a>Redis 使用的过期删除策略是什么？</h3><p>Redis 是可以对 key 设置过期时间的，因此需要有相应的机制将已过期的键值对删除，而做这个工作的就是过期键值删除策略。</p>
+<p>每当我们对一个 key 设置了过期时间时，Redis 会把该 key 带上过期时间存储到一个<strong>过期字典</strong>（expires dict）中，也就是说「过期字典」保存了数据库中所有 key 的过期时间。</p>
+<p>当我们查询一个 key 时，Redis 首先检查该 key 是否存在于过期字典中：</p>
+<ul>
+<li>如果不在，则正常读取键值；</li>
+<li>如果存在，则会获取该 key 的过期时间，然后与当前系统时间进行比对，如果比系统时间大，那就没有过期，否则判定该 key 已过期。</li>
+</ul>
+<p>Redis 使用的过期删除策略是「<strong>惰性删除+定期删除</strong>」这两种策略配和使用。</p>
+<blockquote>
+<p>什么是惰性删除策略？</p>
+</blockquote>
+<p>惰性删除策略的做法是，<strong>不主动删除过期键，每次从数据库访问 key 时，都检测 key 是否过期，如果过期则删除该 key。</strong></p>
+<p>惰性删除策略的<strong>优点</strong>：</p>
+<ul>
+<li>因为每次访问时，才会检查 key 是否过期，所以此策略只会使用很少的系统资源，因此，惰性删除策略对 CPU 时间最友好。</li>
+</ul>
+<p>惰性删除策略的<strong>缺点</strong>：</p>
+<ul>
+<li>如果一个 key 已经过期，而这个 key 又仍然保留在数据库中，那么只要这个过期 key 一直没有被访问，它所占用的内存就不会释放，造成了一定的内存空间浪费。所以，惰性删除策略对内存不友好。</li>
+</ul>
+<p><img src="/../pic/%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4.jpg" alt="img"></p>
+<blockquote>
+<p>什么是定期删除策略？</p>
+</blockquote>
+<p>定期删除策略的做法是，<strong>每隔一段时间「随机」从数据库中取出一定数量的 key 进行检查，并删除其中的过期key。</strong></p>
+<p>Redis 的定期删除的流程：</p>
+<ol>
+<li>从过期字典中随机抽取 20 个 key；</li>
+<li>检查这 20 个 key 是否过期，并删除已过期的 key；</li>
+<li>如果本轮检查的已过期 key 的数量，超过 5 个（20/4），也就是「已过期 key 的数量」占比「随机抽取 key 的数量」大于 25%，则继续重复步骤 1；如果已过期的 key 比例小于 25%，则停止继续删除过期 key，然后等待下一轮再检查。</li>
+</ol>
+<p>可以看到，定期删除是一个循环的流程。那 Redis 为了保证定期删除不会出现循环过度，导致线程卡死现象，为此增加了定期删除循环流程的时间上限，默认不会超过 25ms。</p>
+<p>定期删除策略的<strong>优点</strong>：</p>
+<ul>
+<li>通过限制删除操作执行的时长和频率，来减少删除操作对 CPU 的影响，同时也能删除一部分过期的数据减少了过期键对空间的无效占用。</li>
+</ul>
+<p>定期删除策略的<strong>缺点</strong>：</p>
+<ul>
+<li>难以确定删除操作执行的时长和频率。如果执行的太频繁，就会对 CPU 不友好；如果执行的太少，那又和惰性删除一样了，过期 key 占用的内存不会及时得到释放。</li>
+</ul>
+<p><img src="/../pic/%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4%E6%B5%81%E7%A8%8B.jpg" alt="img"></p>
+<p>可以看到，惰性删除策略和定期删除策略都有各自的优点，所以 <strong>Redis 选择「惰性删除+定期删除」这两种策略配和使用</strong>，以求在合理使用 CPU 时间和避免内存浪费之间取得平衡。</p>
+<h3 id="Redis-持久化时，对过期键会如何处理的？"><a href="#Redis-持久化时，对过期键会如何处理的？" class="headerlink" title="Redis 持久化时，对过期键会如何处理的？"></a>Redis 持久化时，对过期键会如何处理的？</h3><p>Redis 持久化文件有两种格式：RDB（Redis Database）和 AOF（Append Only File），下面我们分别来看过期键在这两种格式中的呈现状态。</p>
+<p>RDB 文件分为两个阶段，RDB 文件生成阶段和加载阶段。</p>
+<ul>
+<li><strong>RDB 文件生成阶段</strong>：从内存状态持久化成 RDB（文件）的时候，会对 key 进行过期检查，<strong>过期的键「不会」被保存到新的 RDB 文件中</strong>，因此 Redis 中的过期键不会对生成新 RDB 文件产生任何影响。</li>
+<li>RDB 加载阶段：RDB 加载阶段时，要看服务器是主服务器还是从服务器，分别对应以下两种情况：<ul>
+<li><strong>如果 Redis 是「主服务器」运行模式的话，在载入 RDB 文件时，程序会对文件中保存的键进行检查，过期键「不会」被载入到数据库中</strong>。所以过期键不会对载入 RDB 文件的主服务器造成影响；</li>
+<li><strong>如果 Redis 是「从服务器」运行模式的话，在载入 RDB 文件时，不论键是否过期都会被载入到数据库中</strong>。但由于主从服务器在进行数据同步时，从服务器的数据会被清空。所以一般来说，过期键对载入 RDB 文件的从服务器也不会造成影响。</li>
+</ul>
+</li>
+</ul>
+<p>AOF 文件分为两个阶段，AOF 文件写入阶段和 AOF 重写阶段。</p>
+<ul>
+<li><strong>AOF 文件写入阶段</strong>：当 Redis 以 AOF 模式持久化时，<strong>如果数据库某个过期键还没被删除，那么 AOF 文件会保留此过期键，当此过期键被删除后，Redis 会向 AOF 文件追加一条 DEL 命令来显式地删除该键值</strong>。</li>
+<li><strong>AOF 重写阶段</strong>：执行 AOF 重写时，会对 Redis 中的键值对进行检查，<strong>已过期的键不会被保存到重写后的 AOF 文件中</strong>，因此不会对 AOF 重写造成任何影响。</li>
+</ul>
+<h3 id="Redis-主从模式中，对过期键会如何处理？"><a href="#Redis-主从模式中，对过期键会如何处理？" class="headerlink" title="Redis 主从模式中，对过期键会如何处理？"></a>Redis 主从模式中，对过期键会如何处理？</h3><p>当 Redis 运行在主从模式下时，<strong>从库不会进行过期扫描，从库对过期的处理是被动的</strong>。也就是即使从库中的 key 过期了，如果有客户端访问从库时，依然可以得到 key 对应的值，像未过期的键值对一样返回。</p>
+<p>从库的过期键处理依靠主服务器控制，<strong>主库在 key 到期时，会在 AOF 文件里增加一条 del 指令，同步到所有的从库</strong>，从库通过执行这条 del 指令来删除过期的 key。</p>
+<h3 id="Redis-内存淘汰策略有哪些？"><a href="#Redis-内存淘汰策略有哪些？" class="headerlink" title="Redis 内存淘汰策略有哪些？"></a>Redis 内存淘汰策略有哪些？</h3><p>Redis 内存淘汰策略共有八种，这八种策略大体分为「不进行数据淘汰」和「进行数据淘汰」两类策略。</p>
+<p><em><strong>1、不进行数据淘汰的策略</strong></em></p>
+<p><strong>noeviction</strong>（Redis3.0之后，默认的内存淘汰策略） ：它表示当运行内存超过最大设置内存时，不淘汰任何数据，而是不再提供服务，直接返回错误。</p>
+<p><em><strong>2、进行数据淘汰的策略</strong></em></p>
+<p>针对「进行数据淘汰」这一类策略，又可以细分为「在设置了过期时间的数据中进行淘汰」和「在所有数据范围内进行淘汰」这两类策略。 在设置了过期时间的数据中进行淘汰：</p>
+<ul>
+<li><strong>volatile-random</strong>：随机淘汰设置了过期时间的任意键值；</li>
+<li><strong>volatile-ttl</strong>：优先淘汰更早过期的键值。</li>
+<li><strong>volatile-lru</strong>（Redis3.0 之前，默认的内存淘汰策略）：淘汰所有设置了过期时间的键值中，最久未使用的键值；</li>
+<li><strong>volatile-lfu</strong>（Redis 4.0 后新增的内存淘汰策略）：淘汰所有设置了过期时间的键值中，最少使用的键值；</li>
+</ul>
+<p>在所有数据范围内进行淘汰：</p>
+<ul>
+<li><strong>allkeys-random</strong>：随机淘汰任意键值;</li>
+<li><strong>allkeys-lru</strong>：淘汰整个键值中最久未使用的键值；</li>
+<li><strong>allkeys-lfu</strong>（Redis 4.0 后新增的内存淘汰策略）：淘汰整个键值中最少使用的键值。</li>
+</ul>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="**缓存"></a>**缓存</h2><h3 id="缓存读写策略有哪几种？"><a href="#缓存读写策略有哪几种？" class="headerlink" title="*缓存读写策略有哪几种？"></a>*缓存读写策略有哪几种？</h3><h4 id="Cache-Aside-Pattern（旁路缓存模式）"><a href="#Cache-Aside-Pattern（旁路缓存模式）" class="headerlink" title="**Cache Aside Pattern（旁路缓存模式）"></a>**Cache Aside Pattern（旁路缓存模式）</h4><p>写：</p>
 <ul>
 <li>先更新 db</li>
 <li>然后直接删除 cache 。</li>
 </ul>
-<p><img src="/../pic/cache-aside-write.png" alt="img"></p>
 <p>读：</p>
 <ul>
 <li>从 cache 中读取数据，读取到就直接返回</li>
 <li>cache 中读取不到的话，就从 db 中读取数据返回</li>
 <li>再把数据放到 cache 中。</li>
 </ul>
-<p><img src="/../pic/cache-aside-read.png" alt="img"></p>
+<p><img src="/../pic/6e3db3ba2f829ddc14237f5c7c00e7ce-20230309232338149.png" alt="img"></p>
 <p><strong>问题：</strong></p>
 <ol>
 <li><p><strong>在写数据的过程中，可以先删除 cache ，后更新 db 么？</strong></p>
@@ -58,6 +330,8 @@
 <p>发生情况概率很小，redis 速度要比 db 快。在缓存没有数据情况下，从 db 读数据和更新 cache 中穿插更新 db 操作</p>
 </li>
 </ol>
+<p><img src="https://cdn.xiaolincoding.com//mysql/other/1cc7401143e79383ead96582ac11b615-20230309232407419.png" alt="img"></p>
+<p><strong>Cache Aside 策略适合读多写少的场景，不适合写多的场景</strong></p>
 <p><strong>Cache Aside Pattern 的缺陷</strong></p>
 <p><strong>缺陷 1：首次请求数据一定不在 cache 的问题</strong></p>
 <p>解决办法：可以将热点数据可以提前放入 cache 中。</p>
@@ -78,10 +352,71 @@
 <p>问题：</p>
 <p>和 Cache Aside Pattern 一样， Read-Through Pattern 也有首次请求数据一定不再 cache 的问题，对于热点数据可以提前放入缓存中。</p>
 <h4 id="Write-Behind-Pattern（异步缓存写入）"><a href="#Write-Behind-Pattern（异步缓存写入）" class="headerlink" title="Write Behind Pattern（异步缓存写入）"></a>Write Behind Pattern（异步缓存写入）</h4><p><strong>Read/Write Through 是同步更新 cache 和 db，而 Write Behind 则是只更新缓存，不直接更新 db，而是改为异步批量的方式来更新 db。</strong></p>
+<p><strong>Write Back 策略特别适合写多的场景</strong></p>
 <p>问题：还没同步，缓存宕掉</p>
 <p>使用场景：消息队列中消息的异步写入磁盘、MySQL 的 Innodb Buffer Pool 机制</p>
 <p>优势：db 的写性能非常高，非常适合一些数据经常变化又对数据一致性要求没那么高的场景，比如浏览量、点赞量。</p>
-<h2 id="Redis-应用"><a href="#Redis-应用" class="headerlink" title="Redis 应用"></a>Redis 应用</h2><h3 id="基于-Redis-实现分布式锁"><a href="#基于-Redis-实现分布式锁" class="headerlink" title="基于 Redis 实现分布式锁"></a>基于 Redis 实现分布式锁</h3></body></html></div><div class="article-licensing box"><div class="licensing-title"><p>Redis</p><p><a href="https://jerryzhu1229.github.io/2024/03/14/Redis/">https://jerryzhu1229.github.io/2024/03/14/Redis/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-03-14</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-03-15</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/03/12/Spring/"><span class="level-item">Spring</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Redis-基础"><span class="level-left"><span class="level-item">1</span><span class="level-item">Redis 基础</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#什么是-Redis"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">什么是 Redis</span></span></a></li><li><a class="level is-mobile" href="#为什么要用-Redis-为什么要用缓存？"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">为什么要用 Redis/为什么要用缓存？</span></span></a></li><li><a class="level is-mobile" href="#缓存读写策略有哪几种？"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">*缓存读写策略有哪几种？</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Cache-Aside-Pattern（旁路缓存模式）"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">**Cache Aside Pattern（旁路缓存模式）</span></span></a></li><li><a class="level is-mobile" href="#Read-Write-Through-Pattern（读写穿透）"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">Read/Write Through Pattern（读写穿透）</span></span></a></li><li><a class="level is-mobile" href="#Write-Behind-Pattern（异步缓存写入）"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">Write Behind Pattern（异步缓存写入）</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#Redis-应用"><span class="level-left"><span class="level-item">2</span><span class="level-item">Redis 应用</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#基于-Redis-实现分布式锁"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">基于 Redis 实现分布式锁</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+<h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p><strong>根本不存在于缓存中，也不存在于数据库中</strong> </p>
+<p><img src="/../pic/b7031182f770a7a5b3c82eaf749f53b0-20230309232834574.png" alt="图片"></p>
+<p>解决：</p>
+<p><strong>1）缓存空值或者默认值</strong></p>
+<p>*<strong>2）布隆过滤器</strong></p>
+<p>布隆过滤器由「初始值都为 0 的位图数组」和「 N 个哈希函数」两部分组成</p>
+<p>布隆过滤器会通过 3 个操作完成标记：</p>
+<ul>
+<li>第一步，使用 N 个哈希函数分别对数据做哈希计算，得到 N 个哈希值；</li>
+<li>第二步，将第一步得到的 N 个哈希值对位图数组的长度取模，得到每个哈希值在位图数组的对应位置。</li>
+<li>第三步，将每个哈希值在位图数组的对应位置的值设置为 1；</li>
+</ul>
+<p><img src="/../pic/86b0046c2622b2c4bda697f9bc0f5b28.png" alt="图片"></p>
+<p><strong>缺点</strong>：存在哈希冲突的可能性，判断可能存在，但是不一定存在；但判断不存在，一定不存在</p>
+<p><strong>3）非法请求限制</strong></p>
+<p>在 API 入口处我们要判断求请求参数是否合理（请求参数是否含有非法值、请求字段是否存在）</p>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p><img src="/../pic/e2b8d2eb5536aa71664772457792ec40-20230309232851699.png" alt="图片"></p>
+<p><strong>缓存在同一时间大面积的失效或者redis宕机，导致大量的请求都直接落到了数据库上，对数据库造成了巨大的压力。</strong></p>
+<p><img src="/../pic/717343a0da7a1b05edab1d1cdf8f28e5.png" alt="图片"></p>
+<p><strong>针对大量缓存失效的情况：</strong></p>
+<ol>
+<li>设置不同的失效时间比如随机设置缓存的失效时间。</li>
+<li>互斥锁，保证只有一个请求来构建缓存</li>
+<li>不给热点数据设置过期时间，由后台异步更新缓存</li>
+</ol>
+<p><strong>针对 Redis 故障宕机情况：</strong></p>
+<ol>
+<li>采用 Redis 集群。主从节点的方式，如果 Redis 缓存的主节点故障宕机，从节点可以切换成为主节点，继续提供缓存服务</li>
+<li>服务熔断。暂停业务应用对缓存服务的访问，直接返回错误</li>
+<li>请求限流机制。只将少部分请求发送到数据库进行处理，再多的请求就在入口直接拒绝服务</li>
+</ol>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>请求的 key 对应的是 <strong>热点数据</strong> ，该数据 <strong>存在于数据库中，但不存在于缓存中（通常是因为缓存中的那份数据已经过期）</strong></p>
+<p><img src="/../pic/acb5f4e7ef24a524a53c39eb016f63d4-20230309232840753.png" alt="图片"></p>
+<p>可以发现缓存击穿跟缓存雪崩很相似，你可以认为缓存击穿是缓存雪崩的一个子集。</p>
+<p>解决：</p>
+<ol>
+<li>不给热点数据设置过期时间，由后台异步更新缓存</li>
+<li>请求数据库写数据到缓存之前，先获取互斥锁，保证只有一个请求会落到数据库上，减少数据库的压力。</li>
+</ol>
+<h3 id="数据库和缓存如何保证一致性？"><a href="#数据库和缓存如何保证一致性？" class="headerlink" title="数据库和缓存如何保证一致性？"></a>数据库和缓存如何保证一致性？</h3><p>1）先更新数据库，再更新缓存；先更新缓存，再更新数据库</p>
+<p><strong>当两个请求并发更新同一条数据的时候，可能会出现缓存和数据库中的数据不一致的现象</strong></p>
+<p>2）先更新数据库，还是先删除缓存？</p>
+<p><strong>Cache Aside 策略</strong>：先更新数据库，再删除缓存</p>
+<p>当出现读-更新-删，会出现不一致。但出现不一致的概率低，<strong>因为缓存的写入通常要远远快于数据库的写入</strong>，</p>
+<p><img src="/../pic/1cc7401143e79383ead96582ac11b615.png" alt="图片"></p>
+<p>所以，<strong>「先更新数据库 + 再删除缓存」的方案，是可以保证数据一致性的</strong>。同时可以还给缓存数据加上了「<strong>过期时间</strong>」来兜底，达到最终一致。</p>
+<p>但是更新数据库和删除缓存不能保证两个操作都执行成功，也就会需要用到过期时间来兜底，这个中间会存在不一致性。</p>
+<p><img src="/../pic/2a2ea2854bbc3ae8ae86d7da45fa32ee.png" alt="图片"></p>
+<p>解决方法：</p>
+<ul>
+<li><p>重试机制。</p>
+<p>引入<strong>消息队列</strong>，将第二个操作（删除缓存）要操作的数据加入到消息队列，由消费者来操作数据。</p>
+<p><img src="/../pic/a4440f0d572612e0832b903e4a62bd2b.png" alt="图片"></p>
+</li>
+<li><p>订阅 MySQL binlog，再操作缓存</p>
+</li>
+</ul>
+<p>两种方法都是<strong>采用异步操作缓存</strong></p>
+<h3 id="为什么是删除缓存，而不是更新缓存呢？"><a href="#为什么是删除缓存，而不是更新缓存呢？" class="headerlink" title="为什么是删除缓存，而不是更新缓存呢？"></a>为什么是删除缓存，而不是更新缓存呢？</h3><p>删除一个数据，相比更新一个数据更加<strong>轻量级</strong>，出问题的概率更小。在实际业务中，缓存的数据可能不是直接来自数据库表，也许来自多张底层数据表的聚合。</p>
+<p>系统设计中有一个思想叫 <strong>Lazy Loading</strong>，适用于那些加载代价大的操作，删除缓存而不是更新缓存，就是懒加载思想的一个应用。</p>
+<h2 id="Redis-应用"><a href="#Redis-应用" class="headerlink" title="Redis 应用"></a>Redis 应用</h2><h3 id="基于-Redis-实现分布式锁"><a href="#基于-Redis-实现分布式锁" class="headerlink" title="基于 Redis 实现分布式锁"></a>基于 Redis 实现分布式锁</h3></body></html></div><div class="article-licensing box"><div class="licensing-title"><p>Redis</p><p><a href="https://jerryzhu1229.github.io/2024/03/14/Redis/">https://jerryzhu1229.github.io/2024/03/14/Redis/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-03-14</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-03-22</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/03/12/Spring/"><span class="level-item">Spring</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Redis-基础"><span class="level-left"><span class="level-item">1</span><span class="level-item">Redis 基础</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#什么是-Redis"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">什么是 Redis</span></span></a></li><li><a class="level is-mobile" href="#为什么要用-Redis-为什么要用缓存？"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">为什么要用 Redis/为什么要用缓存？</span></span></a></li><li><a class="level is-mobile" href="#Redis-单线程模式是怎样的？"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">Redis 单线程模式是怎样的？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Redis-数据结构"><span class="level-left"><span class="level-item">2</span><span class="level-item">Redis 数据结构</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Redis-数据类型以及使用场景分别是什么？"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">Redis 数据类型以及使用场景分别是什么？</span></span></a></li><li><a class="level is-mobile" href="#五种常见的-Redis-数据类型是怎么实现？"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">五种常见的 Redis 数据类型是怎么实现？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Redis-持久化"><span class="level-left"><span class="level-item">3</span><span class="level-item">Redis 持久化</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#AOF-日志是如何实现的？"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">AOF 日志是如何实现的？</span></span></a></li><li><a class="level is-mobile" href="#RDB-快照是如何实现的呢？"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">RDB 快照是如何实现的呢？</span></span></a></li><li><a class="level is-mobile" href="#为什么会有混合持久化？"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">为什么会有混合持久化？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Redis-集群-高可用"><span class="level-left"><span class="level-item">4</span><span class="level-item">Redis 集群/高可用</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Redis-如何实现服务高可用？"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">Redis 如何实现服务高可用？</span></span></a></li><li><a class="level is-mobile" href="#集群脑裂导致数据丢失怎么办？"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">集群脑裂导致数据丢失怎么办？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Redis-过期删除与内存淘汰"><span class="level-left"><span class="level-item">5</span><span class="level-item">Redis 过期删除与内存淘汰</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Redis-使用的过期删除策略是什么？"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">Redis 使用的过期删除策略是什么？</span></span></a></li><li><a class="level is-mobile" href="#Redis-持久化时，对过期键会如何处理的？"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">Redis 持久化时，对过期键会如何处理的？</span></span></a></li><li><a class="level is-mobile" href="#Redis-主从模式中，对过期键会如何处理？"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">Redis 主从模式中，对过期键会如何处理？</span></span></a></li><li><a class="level is-mobile" href="#Redis-内存淘汰策略有哪些？"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">Redis 内存淘汰策略有哪些？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#缓存"><span class="level-left"><span class="level-item">6</span><span class="level-item">**缓存</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#缓存读写策略有哪几种？"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">*缓存读写策略有哪几种？</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Cache-Aside-Pattern（旁路缓存模式）"><span class="level-left"><span class="level-item">6.1.1</span><span class="level-item">**Cache Aside Pattern（旁路缓存模式）</span></span></a></li><li><a class="level is-mobile" href="#Read-Write-Through-Pattern（读写穿透）"><span class="level-left"><span class="level-item">6.1.2</span><span class="level-item">Read/Write Through Pattern（读写穿透）</span></span></a></li><li><a class="level is-mobile" href="#Write-Behind-Pattern（异步缓存写入）"><span class="level-left"><span class="level-item">6.1.3</span><span class="level-item">Write Behind Pattern（异步缓存写入）</span></span></a></li></ul></li><li><a class="level is-mobile" href="#缓存穿透"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">缓存穿透</span></span></a></li><li><a class="level is-mobile" href="#缓存雪崩"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">缓存雪崩</span></span></a></li><li><a class="level is-mobile" href="#缓存击穿"><span class="level-left"><span class="level-item">6.4</span><span class="level-item">缓存击穿</span></span></a></li><li><a class="level is-mobile" href="#数据库和缓存如何保证一致性？"><span class="level-left"><span class="level-item">6.5</span><span class="level-item">数据库和缓存如何保证一致性？</span></span></a></li><li><a class="level is-mobile" href="#为什么是删除缓存，而不是更新缓存呢？"><span class="level-left"><span class="level-item">6.6</span><span class="level-item">为什么是删除缓存，而不是更新缓存呢？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Redis-应用"><span class="level-left"><span class="level-item">7</span><span class="level-item">Redis 应用</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#基于-Redis-实现分布式锁"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">基于 Redis 实现分布式锁</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
