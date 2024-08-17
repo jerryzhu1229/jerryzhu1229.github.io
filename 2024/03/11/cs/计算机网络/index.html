@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>计算机网络 - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/03/11/cs/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/osi-7-model.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/6.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5q2j5pyI5Y2B5YWt5bel5L2c5a6k,size_17,color_FFFFFF,t_70,g_se,x_16.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-85e9f94be74d1785c19e691d326989eb_720w.webp"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/4.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/1716787749083-7ae2de46-8e84-492e-8ba4-a1521e533e08.webp"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/https_rsa.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-3bf40bb2a0129174b33011788075deea_720w.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-bbd5783433756c20a381f85c901152c2_720w.webp"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-ab3d635cd31de6073cb5981c6a069b6f_720w.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-7df511c33a71380a891107aecc978cf8_720w.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-1664a32635c93f2dc1bd30331fc51796_720w.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-3821228fd28f7e7b5f007b91a963a746_720w.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-86bbaaa921547967e243e9d46ca22a31_720w.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/http-3-implementation.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-0250e44a4d258debd5ef46e8747ff293_1440w.webp"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230534096.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230439961.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230633447.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/826"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/tcp%E5%92%8Cudp%E6%A8%A1%E5%9D%97.jpeg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.drawio.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230500953.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230504118.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230508297.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230520683.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230622886.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/format,png-20230309230614791.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/24.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/Center-20240316124003287.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/Center-20240316124102355.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/33f3d2d54a924b0a80f565038327e0e4.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/arp_same_lan-D4FvX3An.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/arp_different_lan-C1P6UFkF.png"><meta property="article:published_time" content="2024-03-11T14:13:52.000Z"><meta property="article:modified_time" content="2024-08-17T03:29:44.390Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="面经"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/osi-7-model.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/03/11/cs/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"},"headline":"计算机网络","image":["https://jerryzhu1229.github.io/pic/osi-7-model.png","https://jerryzhu1229.github.io/pic/6.jpg","https://jerryzhu1229.github.io/pic/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5q2j5pyI5Y2B5YWt5bel5L2c5a6k,size_17,color_FFFFFF,t_70,g_se,x_16.png","https://jerryzhu1229.github.io/pic/v2-85e9f94be74d1785c19e691d326989eb_720w.webp","https://jerryzhu1229.github.io/pic/4.jpg","https://jerryzhu1229.github.io/pic/1716787749083-7ae2de46-8e84-492e-8ba4-a1521e533e08.webp","https://jerryzhu1229.github.io/pic/https_rsa.png","https://jerryzhu1229.github.io/pic/v2-3bf40bb2a0129174b33011788075deea_720w.jpg","https://jerryzhu1229.github.io/pic/v2-bbd5783433756c20a381f85c901152c2_720w.webp","https://jerryzhu1229.github.io/pic/v2-ab3d635cd31de6073cb5981c6a069b6f_720w.jpg","https://jerryzhu1229.github.io/pic/v2-7df511c33a71380a891107aecc978cf8_720w.jpg","https://jerryzhu1229.github.io/pic/v2-1664a32635c93f2dc1bd30331fc51796_720w.jpg","https://jerryzhu1229.github.io/pic/v2-3821228fd28f7e7b5f007b91a963a746_720w.jpg","https://jerryzhu1229.github.io/pic/v2-86bbaaa921547967e243e9d46ca22a31_720w.jpg","https://jerryzhu1229.github.io/pic/http-3-implementation.png","https://jerryzhu1229.github.io/pic/v2-0250e44a4d258debd5ef46e8747ff293_1440w.webp","https://jerryzhu1229.github.io/pic/format,png-20230309230534096.png","https://jerryzhu1229.github.io/pic/format,png-20230309230439961.png","https://jerryzhu1229.github.io/pic/format,png-20230309230633447.png","https://jerryzhu1229.github.io/pic/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.drawio.png","https://jerryzhu1229.github.io/pic/format,png-20230309230500953.png","https://jerryzhu1229.github.io/pic/format,png-20230309230504118.png","https://jerryzhu1229.github.io/pic/format,png-20230309230508297.png","https://jerryzhu1229.github.io/pic/format,png-20230309230520683.png","https://jerryzhu1229.github.io/pic/format,png-20230309230622886.png","https://jerryzhu1229.github.io/pic/format,png-20230309230614791.png","https://jerryzhu1229.github.io/pic/24.jpg","https://jerryzhu1229.github.io/pic/Center-20240316124003287.png","https://jerryzhu1229.github.io/pic/Center-20240316124102355.png","https://jerryzhu1229.github.io/pic/33f3d2d54a924b0a80f565038327e0e4.png","https://jerryzhu1229.github.io/pic/arp_same_lan-D4FvX3An.png","https://jerryzhu1229.github.io/pic/arp_different_lan-C1P6UFkF.png"],"datePublished":"2024-03-11T14:13:52.000Z","dateModified":"2024-08-17T03:29:44.390Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/03/11/cs/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-03-11T14:13:52.000Z" title="2024/3/11 22:13:52">2024-03-11</time>发表</span><span class="level-item"><time dateTime="2024-08-17T03:29:44.390Z" title="2024/8/17 11:29:44">2024-08-17</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/cs/">cs</a></span><span class="level-item">2 小时读完 (大约16528个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">计算机网络</h1><div class="content"><html><head></head><body><h1 id="OSI七层和作用-✨"><a href="#OSI七层和作用-✨" class="headerlink" title="OSI七层和作用 ✨"></a>OSI七层和作用 ✨</h1><p><img src="/../../pic/osi-7-model.png" alt="OSI 七层模型"></p>
+<h1 id="访问网页全过程-✨"><a href="#访问网页全过程-✨" class="headerlink" title="访问网页全过程 ✨"></a>访问网页全过程 ✨</h1><ol>
+<li>首先浏览器对 <code>URL</code> 进行解析，生成[HTTP 请求报文](##3.1 HTTP 请求报文)—包括请求行+请求头+请求体。</li>
+<li>根据 <code>URL的域名</code>通过 <code>DNS 协议</code>获取对应 <code>IP 地址</code>（DNS 查找过程：浏览器缓存、路由器缓存、DNS 缓存）</li>
+<li>根据 <code>IP 地址+端口号</code>，发送 <code>TCP 连接请求</code>建立连接。生成 TCP 报文（若HTTP 报文超出 MSS，需进行分割）</li>
+<li>生成IP报文封装源 IP、目标 IP。</li>
+<li>根据目标 IP 查找路由表（<code>路由选择协议</code>）得到下一跳 IP，再利用<code>ARP</code>获取对应 MAC 地址，生成 MAC 报文。</li>
+<li>网卡驱动程序加上<code>报头</code>和<code>帧校验序列FCS</code>将数字信号转换为电信号传输</li>
+<li>路由器对包接收，进行<code>帧校验</code>，检查 MAC 头部中的接收方 MAC 地址是否是自己，若是则查找<code>路由表</code>寻找下一跳路由器IP及其MAC 地址，封装包并转发，重复直至将数据包传输到服务器。</li>
+<li>服务器依次拆解报文，得到 HTTP 请求报文，返回封装网页的HTTP 响应报文，重复刚刚的流程发送给浏览器。</li>
+<li>浏览器根据 HTTP 响应报文，<strong>解析</strong>响应体中的 HTML 代码，<strong>渲染</strong>网页的结构和样式，根据 HTML 中的其他资源的 URL，再次发起 HTTP 请求，获取这些资源</li>
+<li>浏览器在不需要和服务器通信时，可以主动关闭 TCP 连接，或者等待服务器的关闭请求</li>
+</ol>
+<p><strong>应用层</strong></p>
+<p>DNS（Domain Name System）： 解决域名和 IP 地址的映射</p>
+<p><strong>域名解析的工作流程</strong></p>
+<p><img src="/../../pic/6.jpg" alt="域名解析的工作流程"></p>
+<p>HTTP：根据 DNS获取的目标主机的 IP 发送 HTTP 报文</p>
+<p><strong>传输层</strong></p>
+<p>HTTP 基于 TCP，数据要经过这俩个协议的封装</p>
+<p><strong>网络层</strong></p>
+<p>应用层、传输层是端到端协议；网络层是中间件协议，主机与中间系统进行交互。</p>
+<p>网络层的核心功能：<code>路由选择</code>和<code>分组转发</code></p>
+<p><code>路由选择</code>：确定分组从源到目的最优路径的过程</p>
+<p><code>分组转发</code>：将分组从路由器的输入端口转移到合适的输出端口</p>
+<p><img src="/../../pic/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5q2j5pyI5Y2B5YWt5bel5L2c5a6k,size_17,color_FFFFFF,t_70,g_se,x_16.png" alt="img"></p>
+<p><strong>往哪里传输？或者说，要把数据包发到哪个路由器上？</strong>（怎么路由）</p>
+<p><img src="/../../pic/v2-85e9f94be74d1785c19e691d326989eb_720w.webp" alt="img"></p>
+<ol>
+<li>根据报文的目标 IP 地址跟路由表每个表项的掩码字段做“与”操作，判断是否匹配该表项的目标 IP 地址。</li>
+<li>匹配完所有的表项选择<strong>掩码最长的匹配项</strong>，根据该表项的出接口和下一跳路由 IP将报文转发；若没有匹配到，则查找是否有<strong>缺省路由</strong>；若都没有，则<strong>丢弃</strong>报文</li>
+</ol>
+<p><strong>路由表项怎么来的？</strong></p>
+<p>direct：链路层发现，优点：自动发现，开销小。缺点：只发现接口所属网段</p>
+<p>static：静态路由，需要人为调整</p>
+<p>缺省路由</p>
+<p>动态路由：<code>RIP</code>（<code>Routing Information Protocol</code>使用跳数作为路径距离）、<code>OSPF</code>（<code>Open Shortest Path First</code>链路开销值判断路径长短）和 <code>BGP</code>（<code>Border Gateway Protocol</code>边界网关协议，在路由选择域之间交换网络层可达性信息）</p>
+<h1 id="应用层-HTTP"><a href="#应用层-HTTP" class="headerlink" title="应用层-HTTP"></a>应用层-HTTP</h1><h2 id="HTTP-报文格式"><a href="#HTTP-报文格式" class="headerlink" title="HTTP 报文格式"></a>HTTP 报文格式</h2><p><img src="/../../pic/4.jpg" alt="HTTP 的消息格式"></p>
+<h3 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h3><ol>
+<li>请求行：包含请求方法、请求目标（<code>URL</code> 或 <code>URI</code>）和 HTTP 协议版本</li>
+<li>请求/消息头：包含请求的附加信息，如 <code>Host</code>、<code>User-Agent</code>、<code>Content-Type</code> 等</li>
+<li>空行：用来分隔请求头和请求体</li>
+<li>请求/消息体：可选，包含请求数据（POST 请求需要传输的数据）</li>
+</ol>
+<blockquote>
+<p>URL和 URI 的区别✨</p>
+<p>URL（Uniform Resource Locator）和URI（Uniform Resource Identifier）都是用来标识资源的字符串，但它们的定义和使用场景有所不同：</p>
+<ol>
+<li><strong>URI</strong>：URI是一个更为通用的概念，它可以被用来标识任何类型的资源，不仅仅是网络上的资源。URI有两种形式：URL和URN（Uniform Resource Name）。</li>
+<li><strong>URL</strong>：URL是URI的一种特定类型，它包含了用于查找某个资源的详细地址信息。一个URL不仅告诉我们资源的标识，还告诉我们如何通过网络获取到这个资源。它通常包含协议（如http或https）、主机名、端口号（如果有）、路径和查询字符串等部分。</li>
+</ol>
+<p>总结：所有的URL都是URI，但并非所有的URI都是URL。因为URI还包括了另一种类型：URN，它只标识资源，但不指定如何定位这个资源（如 HTTP 请求报文的请求头中的请求目标）。</p>
+</blockquote>
+<h3 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h3><ol>
+<li>状态行：HTTP 版本、状态码、短语</li>
+<li>响应头：附加信息，如<code>Content-Type</code>,<code>Content-Length</code></li>
+<li>空行</li>
+<li>响应体：响应内容，<code>JSON</code>、<code>HTML</code>等</li>
+</ol>
+<h2 id="HTTP-请求类型"><a href="#HTTP-请求类型" class="headerlink" title="HTTP 请求类型"></a>HTTP 请求类型</h2><p>主要四种</p>
+<ol>
+<li>GET-查看</li>
+<li>POST-创建</li>
+<li>PUT-更新</li>
+<li>DELETE-删除</li>
+<li>HEAD-类似 GET 但只返回资源头部信息</li>
+</ol>
+<h3 id="PUT和POST区别"><a href="#PUT和POST区别" class="headerlink" title="PUT和POST区别"></a>PUT和POST区别</h3><ul>
+<li>put请求：如果两个请求相同，后一个请求会把第一个请求覆盖掉。<strong>（所以PUT用来改资源）</strong>。</li>
+<li>Post请求：后一个请求不会把第一个请求覆盖掉。<strong>（所以Post用来增资源）</strong>。</li>
+</ul>
+<h3 id="GET和POST区别"><a href="#GET和POST区别" class="headerlink" title="GET和POST区别"></a>GET和POST区别</h3><ul>
+<li>关于浏览器缓存：浏览器可以缓存 get请求的数据，也可以将 get 请求保存为书签；post 不可以</li>
+<li>关于安全性：post的安全性要相对比get的高。因为get的参数都是放在url中的，可以被缓存，截取直接就能获取数据，所以一般登录密码这些信息不会明文放在url中使用get请求发送。而post的数据都是放在RequestBody，可以进行一次加密，相对安全些。</li>
+<li>请求数据上限：get有长度限制而 post 没有。get请求的数据会放在url后面，使用<code>?A=B</code>格式（A是名称，B是参数）发送，这个url一般是有长度限制的，http协议没有对url长度进行限制，这个限定<code>主要是浏览器和服务器的限制</code>，一般是<code>1024字节</code>长度。而post可以将数据放在RequesetBody中传送，这里就没有数据量的上限了，get是无请求体的，所以RequestBody只能使用post方式提交。</li>
+<li>关于tcp数据包：对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。实际上get会产生一个tcp数据包，post会产生两个数据，这就会造成响应时间问题，但并不是所有的浏览器都是post发两次包，firefox不是。</li>
+</ul>
+<h2 id="HTTP-常见状态码-✨"><a href="#HTTP-常见状态码-✨" class="headerlink" title="HTTP 常见状态码 ✨"></a>HTTP 常见状态码 ✨</h2><p><img src="/../../pic/1716787749083-7ae2de46-8e84-492e-8ba4-a1521e533e08.webp" alt="HTTP常见状态码"></p>
+<p>2xx：</p>
+<ul>
+<li>「<strong>200 OK</strong>」请求已正常处理。</li>
+<li>「<strong>204 No Content</strong>」请求处理成功，但响应没有 body 数据，如 PUT 请求更新资源。</li>
+<li>「<strong>206 Partial Content</strong>」表示响应返回的 body 数据并不是资源的全部，而是其中的一部分</li>
+</ul>
+<p>3xx：</p>
+<ul>
+<li>「<strong>301 Moved Permanently</strong>」 永久性重定向</li>
+<li>「<strong>302 Found</strong>」临时性重定向</li>
+<li>「<strong>304 Not Modified</strong>」不具有跳转的含义，表示资源未修改</li>
+</ul>
+<p>4xx:</p>
+<ul>
+<li>「<strong>400 Bad Request</strong>」表示客户端请求的报文有错误，但只是个笼统的错误</li>
+<li>「<strong>403 Forbidden</strong>」服务器禁止访问资源。权限，未授权IP等</li>
+<li>「<strong>404 Not Found</strong>」服务器上没有请求的资源。路径错误</li>
+</ul>
+<p>5xx:</p>
+<ul>
+<li><p>「<strong>500 Internal Server Error</strong>」服务器发生错误，是个笼统通用的错误码</p>
+</li>
+<li><p>「<strong>501 Not Implemented</strong>」表示客户端请求的功能还不支持</p>
+</li>
+<li><p>「<strong>502 Bad Gateway</strong>」网关错误</p>
+</li>
+<li><p>「<strong>503 Service Unavailable</strong>」表示服务器当前很忙，暂时无法响应客户端</p>
+</li>
+<li><p>「<strong>504 Gateway timeout</strong>」 网关超时</p>
+</li>
+</ul>
+<h3 id="301和302-区别"><a href="#301和302-区别" class="headerlink" title="301和302 区别"></a>301和302 区别</h3><p>301: 旧地址A的资源不可访问了(永久移除), 重定向到网址B，搜索引擎会抓取网址B的内容，同时<strong>将旧的网址交换为重定向之后的网址</strong>。</p>
+<p>302: 旧地址A的资源仍可访问，这个重定向只是临时从旧地址A跳转到B地址，这时搜索引擎会抓取B网址内容，但是<strong>会将网址保存为A的</strong>。</p>
+<p>尽量使用301跳转，以防止网址劫持！</p>
+<h3 id="502-和-504-区别"><a href="#502-和-504-区别" class="headerlink" title="502 和 504 区别"></a>502 和 504 区别</h3><p>假如 nginx 作为网关</p>
+<ul>
+<li>当 nginx 收到无效响应，返回 502</li>
+<li>当 nginx 超过自己配置的超时时间，还没有收到请求，返回 504</li>
+</ul>
+<p>排查 502 ：</p>
+<ul>
+<li>后端服务器故障（ping、telnet、curl）</li>
+<li>nginx配置问题（nginx.conf、查看日志）</li>
+<li>高负载或者资源耗尽（top）</li>
+<li>nginx与后端服务器通信问题（查看防火墙）</li>
+</ul>
+<p>造成 504 的原因</p>
+<ul>
+<li>一般指nginx做反向代理服务器时，所连接的服务器tomcat无响应导致的。</li>
+</ul>
+<ul>
+<li><p>为了完成您的 HTTP 请求，该服务器访问一个上游服务器，但没得到及时的响应</p>
+</li>
+<li><p>nginx超过了自己设置的超时时间</p>
+</li>
+</ul>
+<h2 id="HTTP与HTTPS✨"><a href="#HTTP与HTTPS✨" class="headerlink" title="HTTP与HTTPS✨"></a>HTTP与HTTPS✨</h2><h3 id="HTTP为什么不安全"><a href="#HTTP为什么不安全" class="headerlink" title="HTTP为什么不安全"></a>HTTP为什么不安全</h3><p>HTTP 的信息是明文传输，所以存在：</p>
+<ul>
+<li>窃听风险</li>
+<li>篡改风险</li>
+<li>冒充风险</li>
+</ul>
+<p>相应 HTTPS 利用 <code>SSL/TLS</code>安全协议实现：</p>
+<ul>
+<li>信息加密</li>
+<li>校验机制</li>
+<li>身份证书</li>
+</ul>
+<h3 id="HTTP-与-HTTPS的区别✨"><a href="#HTTP-与-HTTPS的区别✨" class="headerlink" title="HTTP 与 HTTPS的区别✨"></a>HTTP 与 HTTPS的区别✨</h3><ul>
+<li>HTTP 是<code>超文本传输协议</code>，信息是明文传输，存在安全隐患。HTTPS 则解决 HTTP 不安全的缺陷，在 TCP 和 HTTP 网络层之间加入了 <code>SSL/TLS</code> 安全协议，使得报文能够加密传输。</li>
+<li>默认端口号不一样，HTTP：<code>80</code>   HTTPS：<code>443</code></li>
+<li>HTTP 连接只需要<code>TCP 三次握手</code>；HTTPS 连接还需要 <code>SSL/TLS 四次握手</code>，进入加密报文传输，<strong>传输内容对称加密</strong>，但<strong>对称加密的密钥是用服务器方的证书进行非对称加密</strong></li>
+<li>HTTPS协议需要想 <code>CA（证书权威机构）</code>申请<code>数字证书</code>，来保证服务器的身份是可信的</li>
+<li>url 前缀：http://      https//</li>
+<li><code>SEO（搜索引擎优化Search Engine Optimization）</code>：搜索引擎通常会更青睐使用 HTTPS 协议的网站</li>
+</ul>
+<h2 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h2><p>解决了 HTTP 数据透明的问题</p>
+<p>主要有两种密钥协商算法：</p>
+<ol>
+<li><code>RSA</code>：基于<code>大数因数分解的困难性</code>（大数的质因数很难计算）</li>
+<li><code>ECDHE</code>：基于椭圆曲线的密钥协商算法，基于<code>离散对数问题的困难性</code></li>
+</ol>
+<p>区别：</p>
+<p>传统的 TLS 握手基本上使用<code>RSA</code>算法作为密钥协商算法，但是存在问题：**使用 RSA 密钥协商算法的最大问题是不支持<code>前向保密</code>**（即私钥泄露，之前的所有加密信息都会被破解）。</p>
+<h3 id="基于-RSA-的握手流程-✨"><a href="#基于-RSA-的握手流程-✨" class="headerlink" title="基于 RSA 的握手流程 ✨"></a>基于 RSA 的握手流程 ✨</h3><p><img src="/../../pic/https_rsa.png" alt="TLS握手流程"></p>
+<ol>
+<li><p>TLS 第一次握手</p>
+<p>客户端发送 client hello（随机数 1、支持的 TLS 版本、支持的密码套件列表）</p>
+</li>
+<li><p>TLS 第二次握手</p>
+<p>服务端发送 server hello（随机数 2、确定 TLS 版本、确认的密码套件列表、数字证书）</p>
+</li>
+<li><p>TLS 第三次握手</p>
+<p>利用自带的 CA 公钥检验数字证书的真实性，若真实则取出服务器公钥</p>
+<p>客户端发送：</p>
+<ol>
+<li>随机数 3，并用服务器公钥加密</li>
+<li>加密通信算法改变通知，之后信息用「会话密钥」加密通信</li>
+<li>客户端握手结束通知，并把之前的数据做个摘要，供服务端校验</li>
+</ol>
+<p>会话密钥：随机数 1、2、3 生成</p>
+</li>
+<li><p>TLS 第四次握手</p>
+<p>服务端用私钥解密得到随机数 3</p>
+<p>服务端发送：</p>
+<ol>
+<li>加密通信算法改变通知，之后信息用「会话密钥」加密通信</li>
+<li>服务端握手结束通知，并把之前的数据做个摘要，供客户端校验</li>
+</ol>
+</li>
+</ol>
+<p>之后用 HTTP 进行通信，只不过用「会话密钥」加密内容</p>
+<h3 id="基于-ECDHE-的握手流程"><a href="#基于-ECDHE-的握手流程" class="headerlink" title="基于 ECDHE 的握手流程"></a>基于 ECDHE 的握手流程</h3><p>ECDHE 与 RSA 的区别在于每一次的通信的「会话密钥」是通过椭圆曲线和曲线基点算出来的，是会变化的。</p>
+<ol>
+<li><p>第二次握手</p>
+<p>返回给客户端的密码套件就和 RSA 不一样</p>
+<ul>
+<li><p>密钥协商算法使用 ECDHE；</p>
+</li>
+<li><p>签名算法使用 RSA；</p>
+</li>
+<li><p>握手后的通信使用 AES 对称算法，密钥长度 256 位，分组模式是 GCM；</p>
+</li>
+<li><p>摘要算法使用 SHA384；</p>
+</li>
+</ul>
+<p>服务端选择了 ECDHE 密钥协商算法，所以会在发送完证书后，会发送「<strong>Server Key Exchange</strong>」消息给客户端来确定椭圆曲线、曲线上的基点、私钥1（不公开的随机数）、公钥1（基点 x 私钥1）（用 rsa 加密发送）</p>
+</li>
+<li><p>第三次握手</p>
+<p>客户端收到服务端发来的曲线和基点，然后确定私钥2（不公开的随机数）、公钥2（基点 x 私钥2）（用 rsa 加密发送）发送给服务端。</p>
+</li>
+</ol>
+<p>椭圆曲线上的点符合交换律规则，满足  <code>公钥 1 * 私钥 2 == 公钥 2 * 私钥 1</code></p>
+<p><strong>最终的会话密钥，就是用「客户端随机数 + 服务端随机数 + （ECDHE 算法算出的共享密钥） 」三个材料生成的</strong>。</p>
+<h3 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h3><p><strong>非对称加密</strong></p>
+<p>SSL/TLS 的核心要素是<strong>非对称加密</strong>。非对称加密采用两个密钥——一个公钥，一个私钥。公钥加密的内容，使用私钥可以解开；而私钥加密的内容，公钥可以解开。目前使用最为广泛的非对称密钥为<code>RSA</code>算法。</p>
+<p><strong>对称加密</strong></p>
+<p>使用 SSL/TLS 进行通信的双方需要使用非对称加密方案来通信，但是非对称加密设计了较为复杂的数学算法，在实际通信过程中，计算的代价较高，效率太低，因此，SSL/TLS 实际对消息的加密使用的是对称加密。</p>
+<p><strong>hash算法加密</strong></p>
+<p>它是一种不可逆的加密方式，对一组数据使用哈希算法加密，加密后不能解密</p>
+<p><strong>保证公钥传输的信赖性（*数字签名&amp;数字证书）</strong></p>
+<ol>
+<li><p>CA 发放证书</p>
+<p><img src="/../../pic/v2-3bf40bb2a0129174b33011788075deea_720w.jpg" alt="img"></p>
+<p>服务器把证书内容给 CA，利用 hash算法 + 私钥生成签名。</p>
+<p>数字证书=证书内容+证书签名</p>
+</li>
+<li><p>服务器发送数字证书给客户端</p>
+</li>
+<li><p>客户端验证证书</p>
+<p><img src="/../../pic/v2-bbd5783433756c20a381f85c901152c2_720w.webp" alt="img"></p>
+<p>hash算法加密证书内容，CA 公钥解密证书签名，判断是否相同</p>
+</li>
+</ol>
+<h2 id="HTTP、Socket-、TCP、RPC"><a href="#HTTP、Socket-、TCP、RPC" class="headerlink" title="HTTP、Socket 、TCP、RPC"></a>HTTP、Socket 、TCP、RPC</h2><h3 id="HTTP-为什么基于-TCP-协议"><a href="#HTTP-为什么基于-TCP-协议" class="headerlink" title="HTTP 为什么基于 TCP 协议"></a>HTTP 为什么基于 TCP 协议</h3><p>HTTP协议基于TCP协议是<strong>出于对数据传输可靠性和完整性的需求</strong>，TCP协议提供了数据传输的可靠性和可控性，而HTTP协议定义了数据的格式和意义，两者协同工作来实现Web应用的各种功能。</p>
+<h3 id="HTTP-进行-TCP-连接后，在什么情况下会中断"><a href="#HTTP-进行-TCP-连接后，在什么情况下会中断" class="headerlink" title="HTTP 进行 TCP 连接后，在什么情况下会中断"></a>HTTP 进行 TCP 连接后，在什么情况下会中断</h3><ol>
+<li>服务端或客户端执行 close 系统调用，会发送 FIN 报文，进行四次挥手中断</li>
+<li>发送方发送数据，超时未收到接收方发来的 ACK 报文，发送方重传次数达到最大次数时，中断</li>
+<li>HTTP 长时间未发送请求和响应时，中断</li>
+</ol>
+<h3 id="HTTP-和-RPC-有什么区别"><a href="#HTTP-和-RPC-有什么区别" class="headerlink" title="HTTP 和 RPC 有什么区别"></a>HTTP 和 RPC 有什么区别</h3><p>RPC</p>
+<ul>
+<li>定制化程度更高：可以采用体积更小的 <code>Protobuf</code> 或其他序列化协议去保存结构体数据</li>
+<li>性能会更好：<strong>不需要像 HTTP 那样考虑各种浏览器行为</strong>（比如 302 重定向跳转啥的）</li>
+</ul>
+<p><strong>HTTP 主要用于 B/S 架构，而 RPC 更多用于 C/S 架构。但现在其实已经没分那么清了，B/S 和 C/S 在慢慢融合</strong>。很多软件同时支持多端，所以对外一般用 HTTP 协议，而内部集群的微服务之间则采用 RPC 协议进行通讯。</p>
+<h3 id="HTTP、SOCKET和TCP的区别"><a href="#HTTP、SOCKET和TCP的区别" class="headerlink" title="HTTP、SOCKET和TCP的区别"></a>HTTP、SOCKET和TCP的区别</h3><p>HTTP 是一种用于传输超文本数据的应用层协议，用于规定客户端和服务端交换的数据格式和规则</p>
+<p>socket 是计算机网络中的一种抽象，用于描述通信链路的一端</p>
+<p>TCP 是一种提供可靠的、面向连接的传输层协议，负责在通信的两端建立可靠的数据传输连接</p>
+<h2 id="HTTP1-0、1-1、2-0、3-0✨"><a href="#HTTP1-0、1-1、2-0、3-0✨" class="headerlink" title="HTTP1.0、1.1、2.0、3.0✨"></a>HTTP1.0、1.1、2.0、3.0✨</h2><h3 id="HTTP-1-1-的优化"><a href="#HTTP-1-1-的优化" class="headerlink" title="HTTP/1.1 的优化"></a>HTTP/1.1 的优化</h3><p><strong>连接方式</strong> : HTTP/1.0 为短连接，HTTP/1.1 支持长连接</p>
+<blockquote>
+<p>长短连接实际上是指 TCP 的长短连接，通过两端设置 header 中的 connection 为 keep-alive / close</p>
+<p>所以多个 http 请求的源和目标主机的 host 和 port 相同就可以复用同一个 tcp 连接</p>
+<p>缺点：可能会导致HTTP级别的头部阻塞。http 请求独占 tcp 连接， 同一时刻只能处理一个 Http 请求，当前请求未结束前（如资源创建缓慢——从数据库查询动态生成的<code>index.html</code>或资源太大），其他请求无法执行，</p>
+</blockquote>
+<p><strong>Host 头处理</strong> : HTTP/1.1 在请求头中加入了<code>Host</code>字段（域名系统（DNS）允许多个主机名绑定到同一个 IP 地址上，但是 HTTP/1.0 并没有考虑这个问题）</p>
+<blockquote>
+<p>当服务器收到一个HTTP请求时，仅通过IP地址和端口号是无法确定请求是针对哪个网站的。如果请求中没有包含<code>Host</code>头字段，服务器会返回400（Bad Request）状态码。</p>
+</blockquote>
+<p><strong>状态响应码</strong> : HTTP/1.1 中新加入了大量的状态码，光是错误响应状态码就新增了 24 种。</p>
+<p><strong>缓存处理</strong> : 在 HTTP1.0 中主要使用 header 里的 <code>If-Modified-Since</code>,<code>Expires</code> 来做为缓存判断的标准，HTTP1.1 则引入了更多的缓存控制策略，如<code>If-Unmodified-Since</code></p>
+<blockquote>
+<p>If-Modified-Since:  从字面上看, 就是说: 如果从某个时间点算起, 如果文件被修改了….</p>
+<ol>
+<li><p>如果真的被修改: 那么就开始传输, 服务器返回:200 OK</p>
+</li>
+<li><p>如果没有被修改: 那么就无需传输, 服务器返回: 304 Not Modified.</p>
+</li>
+</ol>
+<p>用途:</p>
+<p><code>缓存验证</code>: 客户端尝试下载最新版本的文件. 比如网页刷新, 加载大图的时候.很明显，如果从图片下载以后都没有再被修改, 当然就没必要重新下载了! </p>
+<p>If-Unmodified-Since: 从字面上看, 意思是: 如果从某个时间点算起, 文件没有被修改…..</p>
+<ol>
+<li>如果没有被修改: 则开始<strong>继续</strong>传送文件: 服务器返回: 200 OK</li>
+<li>如果文件被修改: 则不传输, 服务器返回: 412 Precondition failed (预处理错误)</li>
+</ol>
+<p>用途:</p>
+<ol>
+<li>常用于PUT请求，以避免“丢失更新”问题：例如，一个客户端先获取了一个资源，然后进行了一些修改，准备将修改后的资源发送回服务器。但在这个过程中，可能有其他客户端也修改了同一个资源。如果服务器接受这个请求就会覆盖之前的修改。</li>
+<li>断点续传(一般会指定Range参数). 要想断点续传, 那么文件就一定不能被修改, 否则就不是同一个文件了, 断续还有啥意义?</li>
+</ol>
+</blockquote>
+<p><strong>带宽优化及网络连接的使用</strong>：HTTP1.0 中，存在一些浪费带宽的现象，HTTP1.1 则在请求头引入了 <code>range</code> 头域，它允许只请求资源的某个部分，即返回码是 206（Partial Content）</p>
+<h3 id="HTTP-2-的优化"><a href="#HTTP-2-的优化" class="headerlink" title="HTTP/2 的优化"></a>HTTP/2 的优化</h3><p><strong>头部压缩</strong>：HTTP/1.1 支持Body压缩，Heade不支持压缩。HTTP/2.0 支持对Header压缩，使用了专门为Header压缩而设计的 <code>HPACK</code>算法，减少了网络开销。</p>
+<blockquote>
+<p>HPACK算法：在客户端和服务器同时维护一张头信息表，一个请求的 header 字段存入表中生成一个索引号，用索引号来代替字段来提高速度。</p>
+</blockquote>
+<p><strong>二进制帧</strong>：纯文本格式的报文变为二进制格式，头信息和数据体都是二进制，并统称为帧，二进制格式方便计算机直接解析，提高数据传输效率。</p>
+<blockquote>
+<p>HTTP/2 在每个块前面放置一个所谓的数据帧（DATA frame）。这些数据帧主要包含两个关键的元数据。首先：下面的块属于哪个资源。每个资源的“字节流（bytestream）”都被分配了一个唯一的数字，即<strong>流id（stream id）</strong>。第二：块的大小是多少。使用流id（stream id）来指出这些头（headers）属于哪个响应，这样甚至可以将头（headers）从它们的实际响应数据中分离出来。</p>
+<p>使用这些帧，HTTP/2 确实允许在一个连接上正确地复用多个资源</p>
+</blockquote>
+<p><img src="/../../pic/v2-ab3d635cd31de6073cb5981c6a069b6f_720w.jpg" alt="HTTP1.1"></p>
+<p><img src="/../../pic/v2-7df511c33a71380a891107aecc978cf8_720w.jpg" alt="HTTP1.1vsHTTP2"></p>
+<p><img src="/../../pic/v2-1664a32635c93f2dc1bd30331fc51796_720w.jpg" alt="HTTP2"></p>
+<p><strong>多路复用</strong>：串行方式（一个 tcp 连接同一时刻只能被一个 http 请求独占）变为同一连接上可以同时传输多个请求和响应（基于二进制帧）</p>
+<blockquote>
+<p>引入二进制分帧层，传输时数据都会经过该层处理，转化为带有请求ID的帧(Stream id)，在传输完成后会根据 ID 进行组合</p>
+<p>这解决了HTTP1.1存在的“应用层”级别的头部阻塞问题，但是仍存在TCP级别的头部阻塞问题：</p>
+<p>TCP 不知道 HTTP/2 的独立流（streams）这一事实意味着 <strong>TCP 层队头阻塞（由于丢失或延迟的数据包）也最终导致 HTTP 队头阻塞！</strong></p>
+</blockquote>
+<p><strong>服务器推送（Server Push）</strong>：HTTP/2.0 支持服务器推送，可以在客户端请求一个资源时，将其他相关资源一并推送给客户端，从而减少了客户端的请求次数和延迟。而 HTTP/1.1 需要客户端自己发送请求来获取相关资源。</p>
+<h3 id="HTTP-1-1-vs-HTTP-2"><a href="#HTTP-1-1-vs-HTTP-2" class="headerlink" title="HTTP/1.1 vs HTTP/2"></a>HTTP/1.1 vs HTTP/2</h3><p>既然HTTP2存在TCP层的队头阻塞，那么为什么还需要HTTP2。</p>
+<p>当比较单个连接上的 HTTP/2 和单个连接上的 HTTP/1.1 时，TCP 队头阻塞是真实存在的，但是它对 Web 性能的影响要比HTTP/1.1 队头阻塞小得多，HTTP/1.1 队头阻塞出现的概率要高的多。</p>
+<p>但是现在的浏览器使用 HTTP/1.1 通常会打开多个连接，这使得 HTTP/1.1 不仅在一定程度上减轻了 HTTP 级别，而且减轻了 TCP 级别的队头阻塞。因而在某些情况下，单个连接上的 HTTP/2 很难比6个连接上的 HTTP/1.1 快，甚至与 HTTP/1.1 一样快。</p>
+<p>总之，事实上，我们看到（也许出乎意料），<strong>HTTP/2 目前部署在浏览器和服务器中，在大多数情况下通常与 HTTP/1.1 一样快或略快</strong>。然而，也有一些情况（特别是在数据包丢失率较高的低速网络上），6个连接的 HTTP/1.1 仍然比一个连接的 HTTP/2 更为出色，这通常是由于 TCP 级别的队头阻塞问题造成的。正是这个事实极大地推动了新的 QUIC 传输协议的开发，以取代 TCP。</p>
+<h3 id="HTTP-3-的优化"><a href="#HTTP-3-的优化" class="headerlink" title="HTTP/3 的优化"></a>HTTP/3 的优化</h3><p><strong>传输协议</strong>：HTTP/2.0 是基于 TCP 协议实现的，HTTP/3.0 新增了 QUIC（Quick UDP Internet Connections） 协议来实现可靠的传输，提供与 TLS/SSL 相当的安全性，具有较低的连接和传输延迟。你可以将 QUIC 看作是 UDP 的升级版本，在其基础上新增了很多功能比如加密、重传等等。</p>
+<p><strong>连接建立</strong>：HTTP/2.0 需要经过经典的 TCP 三次握手过程（由于安全的 HTTPS 连接建立还需要 TLS 握手，共需要大约 3 个 RTT）。由于 QUIC 协议的特性（TLS 1.3，TLS 1.3 除了支持 1 个 RTT 的握手，还支持 0 个 RTT 的握手）连接建立仅需 0-RTT 或者 1-RTT。这意味着 QUIC 在最佳情况下不需要任何的额外往返时间就可以建立新连接。</p>
+<p><strong>队头阻塞</strong>：HTTP/2.0 多请求复用一个 TCP 连接，一旦发生丢包，就会阻塞住所有的 HTTP 请求。由于 QUIC 协议的特性，HTTP/3.0 在一定程度上解决了TCP层面的队头阻塞问题</p>
+<blockquote>
+<p>QUIC 受到 HTTP/2 帧方式（framing-approach）的启发，还添加了自己的帧（frames）。在本例中是流帧（STREAM frame）。流id（stream id）以前在 HTTP/2 的数据帧（DATA frame）中，现在被<strong>下移到传输层的 QUIC 流帧（STREAM frame）中</strong>。这也说明了如果我们想使用 QUIC，我们需要一个新版本的 HTTP 的原因之一：如果我们只在 QUIC 之上运行 HTTP/2，那么我们将有两个（可能冲突的）“流层”（stream layers）。相反，HTTP/3 从 HTTP 层删除了流的概念（它的数据帧（DATA frames）没有流id），而是重新使用底层的 QUIC 流。</p>
+</blockquote>
+<p><img src="/../../pic/v2-3821228fd28f7e7b5f007b91a963a746_720w.jpg" alt="img"></p>
+<p><img src="/../../pic/v2-86bbaaa921547967e243e9d46ca22a31_720w.jpg" alt="img"></p>
+<blockquote>
+<p>与 HTTP/2 的数据帧（DATA frames）非常相似，<strong>QUIC 的流帧（STREAM frames）分别跟踪每个流的字节范围</strong>。这与 TCP 不同，TCP 只是将所有流数据附加到一个大 blob 中。像以前一样，让我们考虑一下如果 QUIC 数据包2丢失，而 1 和 3 到达会发生什么。与 TCP 类似，数据包1中流1（stream 1）的数据可以直接传递到浏览器。然而，对于数据包3，QUIC 可以比 TCP 更聪明。它查看流1的字节范围，发现这个流帧（STREAM frame）完全遵循流id 1的第一个流帧 STREAM frame（字节 450 跟在字节 449 之后，因此数据中没有字节间隙）。它可以立即将这些数据提供给浏览器进行处理。然而，对于流id 2，QUIC确实看到了一个缺口（它还没有接收到字节0-299，这些字节在丢失的 QUIC 数据包2中）。它将保存该流帧（STREAM frame），直到 QUIC 数据包2的重传（retransmission）到达。再次将其与 TCP 进行对比，后者也将数据流1的数据保留在数据包3中！</p>
+</blockquote>
+<p><strong>错误恢复</strong>：HTTP/3.0 具有更好的错误恢复机制，当出现丢包、延迟等网络问题时，可以更快地进行恢复和重传。而 HTTP/2.0 则需要依赖于 TCP 的错误恢复机制。</p>
+<p><strong>安全性</strong>：HTTP/2.0 和 HTTP/3.0 在安全性上都有较高的要求，支持加密通信，但在实现上有所不同。HTTP/2.0 使用 TLS 协议进行加密，而 HTTP/3.0 基于 QUIC 协议，包含了内置的加密和身份验证机制，可以提供更强的安全性。</p>
+<p><img src="/../../pic/http-3-implementation.png" alt="http-3-implementation"></p>
+<p>资料：<a target="_blank" rel="noopener" href="https://blog.p2hp.com/archives/8158">关于队头阻塞（Head-of-Line blocking），看这一篇就足够了 | Lenix Blog (p2hp.com)</a></p>
+<h2 id="QUIC-协议"><a href="#QUIC-协议" class="headerlink" title="QUIC 协议"></a>QUIC 协议</h2><p>HTTP/3 就将传输层从 TCP 替换成了 UDP，并在 UDP 协议上开发了 QUIC 协议，来保证数据的可靠传输。</p>
+<p>QUIC 协议的特点：</p>
+<ul>
+<li><strong>无队头阻塞</strong>，QUIC 连接上的多个 Stream 之间并没有依赖，都是独立的，也不会有底层协议限制，某个流发生丢包了，只会影响该流，其他流不受影响；</li>
+<li><strong>建立连接速度快</strong>，因为 QUIC 内部包含 TLS 1.3，因此仅需 1 个 RTT 就可以「同时」完成建立连接与 TLS 密钥协商，甚至在第二次连接的时候，应用数据包可以和 QUIC 握手信息（连接信息 + TLS 信息）一起发送，达到 0-RTT 的效果。</li>
+<li><strong>连接迁移</strong>，QUIC 协议没有用四元组的方式来“绑定”连接，而是通过「连接 ID 」来标记通信的两个端点，客户端和服务器可以各自选择一组 ID 来标记自己，因此即使移动设备的网络变化后，导致 IP 地址变化了，只要仍保有上下文信息（比如连接 ID、TLS 密钥等），就可以“无缝”地复用原连接，消除重连的成本；</li>
+</ul>
+<h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h2><p>RPC（Remote Procedure Call，远程过程调用）是一种计算机通信协议，它允许一个程序调用另一个地址空间（通常是另一台机器上）的过程或函数，而不需要程序员显式地处理这个远程通信的细节。RPC 技术使得分布式系统中的不同计算机之间能够像调用本地函数一样进行通信，从而方便了分布式系统的开发和管理。</p>
+<p>实现流程如下：</p>
+<ol>
+<li><strong>定义接口</strong>：首先需要定义远程服务的接口，包括远程方法的参数和返回值等。</li>
+<li><strong>生成 Stub 和 Skeleton</strong>：根据定义的接口，自动生成客户端和服务器端的 Stub 和 Skeleton。Stub 是客户端的代理，用于将本地方法调用转换为网络消息传输给服务器端，Skeleton 是服务器端的代理，用于接收客户端的请求并调用相应的远程方法。</li>
+<li><strong>序列化和反序列化</strong>：客户端通过 Stub 将参数序列化成网络可传输的数据，发送给服务器端，服务器端接收数据后通过 Skeleton 进行反序列化，得到原始的参数。</li>
+<li><strong>网络通信</strong>：客户端通过网络发送请求消息给服务器端，服务器端接收到请求后进行处理，然后将处理结果返回给客户端。</li>
+<li><strong>调用远程方法</strong>：服务器端接收到请求后，根据请求调用相应的远程方法进行处理，得到结果后返回给客户端。</li>
+<li><strong>处理返回结果</strong>：客户端接收到服务器端返回的结果，通过 Stub 进行反序列化，得到原始的返回值。</li>
+</ol>
+<p>RPC 的优点包括：</p>
+<ul>
+<li><strong>简化开发</strong>：RPC 技术隐藏了分布式系统中的网络通信细节，使得开发人员可以像调用本地函数一样进行远程调用，简化了分布式系统的开发过程。</li>
+<li><strong>提高效率</strong>：RPC 技术可以实现高效的远程通信，通过对参数进行序列化和网络传输，使得分布式系统中的各个节点之间能够快速、稳定地进行通信。</li>
+<li><strong>易于维护</strong>：RPC 技术将接口定义清晰化，使得分布式系统的各个组件之间的通信更加规范和易于维护。</li>
+</ul>
+<h2 id="WebSocket-HTTP-SSE"><a href="#WebSocket-HTTP-SSE" class="headerlink" title="WebSocket&amp;HTTP&amp;SSE"></a>WebSocket&amp;HTTP&amp;SSE</h2><h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><h4 id="为什么需要WebSocket"><a href="#为什么需要WebSocket" class="headerlink" title="为什么需要WebSocket"></a>为什么需要WebSocket</h4><p>TCP 协议本身是<strong>全双工</strong>的，但我们最常用的 HTTP/1.1，虽然是基于 TCP 的协议，但它是<strong>半双工</strong>的，对于大部分需要服务器主动推送数据到客户端的场景，都不太友好，因此我们需要使用支持全双工的 WebSocket 协议。</p>
+<p>在 HTTP/1.1 里，只要客户端不问，服务端就不答。基于这样的特点，对于登录页面这样的简单场景，可以使用<strong>定时轮询或者长轮询</strong>的方式实现<strong>服务器推送</strong>(comet)的效果。</p>
+<p>对于客户端和服务端之间需要频繁交互的复杂场景，比如网页游戏，都可以考虑使用 WebSocket 协议。</p>
+<h4 id="如何建立-WebSocket"><a href="#如何建立-WebSocket" class="headerlink" title="如何建立 WebSocket"></a>如何建立 WebSocket</h4><p>正因为各个浏览器都支持 HTTP协 议，所以 WebSocket 会先利用HTTP协议加上一些特殊的 header 头进行握手升级操作，升级成功后就跟 HTTP 没有任何关系了，之后就用 WebSocket 的数据格式进行收发数据。</p>
+<h3 id="SSE"><a href="#SSE" class="headerlink" title="SSE"></a>SSE</h3><p>（Server-sent Events）</p>
+<p>sse与长轮询机制类似，区别是每个连接不只发送一个消息。客户端发送一个请求，服务端保持这个连接直到有新消息发送回客户端，<strong>仍然保持着连接，这样就可以再次发送消息</strong>，由服务器单向发送给客户端。</p>
+<p><img src="/../../pic/v2-0250e44a4d258debd5ef46e8747ff293_1440w.webp" alt="img"></p>
+<h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><h3 id="TCP-基础"><a href="#TCP-基础" class="headerlink" title="TCP 基础"></a>TCP 基础</h3><h4 id="TCP-头部格式"><a href="#TCP-头部格式" class="headerlink" title="TCP 头部格式"></a>TCP 头部格式</h4><p><img src="/../../pic/format,png-20230309230534096.png" alt="TCP 头格式"></p>
+<p><strong>序列号</strong>：在建立连接时由计算机生成的随机数作为其初始值，通过 SYN 包传给接收端主机，每发送一次数据，就「累加」一次该「数据字节数」的大小。<strong>用来解决网络包乱序问题。</strong></p>
+<p><strong>确认应答号</strong>：指下一次「期望」收到的数据的序列号，发送端收到这个确认应答以后可以认为在这个序号以前的数据都已经被正常接收。<strong>用来解决丢包的问题。</strong></p>
+<p><strong>控制位：</strong></p>
+<ul>
+<li><em>ACK</em>：该位为 <code>1</code> 时，「确认应答」的字段变为有效，TCP 规定除了最初建立连接时的 <code>SYN</code> 包之外该位必须设置为 <code>1</code> 。</li>
+<li><em>RST</em>：该位为 <code>1</code> 时，表示 TCP 连接中出现异常必须强制断开连接。</li>
+<li><em>SYN</em>：该位为 <code>1</code> 时，表示希望建立连接，并在其「序列号」的字段进行序列号初始值的设定。</li>
+<li><em>FIN</em>：该位为 <code>1</code> 时，表示今后不会再有数据发送，希望断开连接。当通信结束希望断开连接时，通信双方的主机之间就可以相互交换 <code>FIN</code> 位为 1 的 TCP 段。</li>
+</ul>
+<h4 id="为什么需要-TCP-协议？-TCP-工作在哪一层？"><a href="#为什么需要-TCP-协议？-TCP-工作在哪一层？" class="headerlink" title="为什么需要 TCP 协议？ TCP 工作在哪一层？"></a>为什么需要 TCP 协议？ TCP 工作在哪一层？</h4><p>网络层不可靠，如果需要保障网络数据包的可靠性，那么就需要由上层（传输层）的 <code>TCP</code> 协议来负责。</p>
+<h4 id="什么是-TCP-连接？"><a href="#什么是-TCP-连接？" class="headerlink" title="什么是 TCP 连接？"></a>什么是 TCP 连接？</h4><p><strong>用于保证可靠性和流量控制维护的某些状态信息，这些信息的组合，包括 Socket、序列号和窗口大小称为连接</strong></p>
+<p>建立一个 TCP 连接是需要客户端与服务端达成上述三个信息的共识。</p>
+<ul>
+<li><strong>Socket</strong>：由 IP 地址和端口号组成</li>
+<li><strong>序列号</strong>：用来解决乱序问题等</li>
+<li><strong>窗口大小</strong>：用来做流量控制</li>
+</ul>
+<h4 id="如何唯一确定一个-TCP-连接呢？"><a href="#如何唯一确定一个-TCP-连接呢？" class="headerlink" title="如何唯一确定一个 TCP 连接呢？"></a>如何唯一确定一个 TCP 连接呢？</h4><p>TCP 四元组可以唯一的确定一个连接，四元组包括如下：</p>
+<ul>
+<li>源地址</li>
+<li>源端口</li>
+<li>目的地址</li>
+<li>目的端口</li>
+</ul>
+<p>源地址和目的地址的字段（32 位）是在 IP 头部中，作用是通过 IP 协议发送报文给对方主机。</p>
+<p>源端口和目的端口的字段（16 位）是在 TCP 头部中，作用是告诉 TCP 协议应该把报文发给哪个进程。</p>
+<h4 id="UDP-包大小"><a href="#UDP-包大小" class="headerlink" title="UDP 包大小"></a>UDP 包大小</h4><p><img src="/../../pic/format,png-20230309230439961.png" alt="UDP 头部格式"></p>
+<p>原理上，UDP 包长度 16 位，UDP 包的大小为 2^16-1，即 65535 字节</p>
+<p>以太网(Ethernet)数据帧的长度必须在==46-1500==字节之间,这是由<strong>以太网的物理特性</strong>决定的.<br>这个1500字节被称为链路层的<strong>MTU(最大传输单元)</strong>. 但这并不是指链路层的长度被限制在1500字节,其实这这个MTU指的是链路层的数据区.并不包括链路层的首部和尾部的18个字节.又因为UDP数据报的首部8字节,所以UDP数据报的数据区最大长度为1472字节（1500-20-8）. </p>
+<p><strong>但在网络编程中，Internet中的路由器可能有设置成不同的值(小于默认值)，</strong>鉴于Internet上的标准MTU值为==576==字节,所以我建议在进行Internet的UDP编程时. 最好将UDP的数据长度控件在548字节(576-20-8)以内.</p>
+<h4 id="既然-IP-层会分片，为什么-TCP-层还需要-MSS-呢？"><a href="#既然-IP-层会分片，为什么-TCP-层还需要-MSS-呢？" class="headerlink" title="既然 IP 层会分片，为什么 TCP 层还需要 MSS 呢？"></a>既然 IP 层会分片，为什么 TCP 层还需要 MSS 呢？</h4><p><img src="/../../pic/format,png-20230309230633447.png" alt="MTU 与 MSS"></p>
+<ul>
+<li><code>MTU</code>：一个网络包的最大长度，以太网中一般为 <code>1500</code> 字节；</li>
+<li><code>MSS</code>：除去 IP 和 TCP 头部之后，一个网络包所能容纳的 TCP 数据的最大长度；</li>
+</ul>
+<p>因为 IP 层本身没有超时重传机制，它由传输层的 TCP 来负责超时和重传。<strong>那么当如果一个 IP 分片丢失，整个 IP 报文的所有分片都得重传。</strong>因此，可以得知由 IP 层进行分片传输，是非常没有效率的。所以，为了达到最佳的传输效能 TCP 协议在<strong>建立连接的时候通常要协商双方的 MSS 值</strong>，当 TCP 层发现数据超过 MSS 时，则就先会进行分片，当然由它形成的 IP 包的长度也就不会大于 MTU ，自然也就不用 IP 分片了。经过 TCP 层分片后，如果一个 TCP 分片丢失后，<strong>进行重发时也是以 MSS 为单位</strong>，而不用重传所有的分片，大大增加了重传的效率。</p>
+<h4 id="UDP-和-TCP-有什么区别呢？分别的应用场景是？"><a href="#UDP-和-TCP-有什么区别呢？分别的应用场景是？" class="headerlink" title="**UDP 和 TCP 有什么区别呢？分别的应用场景是？"></a>**UDP 和 TCP 有什么区别呢？分别的应用场景是？</h4><p><strong>TCP 和 UDP 区别：</strong></p>
+<p><em>1. 面向连接</em></p>
+<p><em>2. 服务对象</em>（一对一；一对一，一对多，多对多）</p>
+<p><em>3. 可靠性</em></p>
+<ul>
+<li><p>可靠交付数据，数据可以无差错、不丢失、不重复、按序到达；</p>
+</li>
+<li><p>尽最大努力交付，不保证可靠交付数据</p>
+</li>
+</ul>
+<p><em>4. 拥塞控制、流量控制</em></p>
+<p><em>5. 首部开销</em>（&gt;=20B，是否使用「选项」字段；8B）</p>
+<p><em>6. 传输方式</em>（流式传输，没有边界；一个包一个包的发送，是有边界的）</p>
+<p><em>7. 分片不同</em></p>
+<ul>
+<li>TCP 的数据大小如果大于 MSS （Maximum Segment Size）大小，则会在传输层进行分片，目标主机收到后，也同样在传输层组装 TCP 数据包，如果中途丢失了一个分片，只需要传输丢失的这个分片。</li>
+<li>UDP 的数据大小如果大于 MTU （Maximum Transmit Unit）大小，则会在 IP 层进行分片，目标主机收到后，在 IP 层组装完数据，接着再传给传输层。</li>
+</ul>
+<p><img src="/../../pic/826" alt="img"></p>
+<p><strong>TCP 和 UDP 应用场景：</strong></p>
+<p>由于 TCP 是面向连接，能保证数据的可靠性交付，因此经常用于：</p>
+<ul>
+<li><code>FTP</code> 文件传输；</li>
+<li>HTTP / HTTPS；</li>
+<li><code>ssh</code>远程登录</li>
+</ul>
+<p>由于 UDP 面向无连接，它可以随时发送数据，再加上 UDP 本身的处理既简单又高效，因此经常用于：</p>
+<ul>
+<li>包总量较少的通信，如 <code>DNS</code>  等；</li>
+<li><code>TFTP</code>简单文件传输协议</li>
+<li>语音、电话、视频；</li>
+</ul>
+<h4 id="TCP-和-UDP-可以使用同一个端口吗？"><a href="#TCP-和-UDP-可以使用同一个端口吗？" class="headerlink" title="TCP 和 UDP 可以使用同一个端口吗？"></a>TCP 和 UDP 可以使用同一个端口吗？</h4><p>答案：<strong>可以的</strong>。传输层有两个传输协议分别是 TCP 和 UDP，在内核中是两个完全独立的软件模块。当主机收到数据包后，可以在 IP 包头的「协议号」字段知道该数据包是 TCP/UDP，所以可以根据这个信息确定送给哪个模块（TCP/UDP）处理，送给 TCP/UDP 模块的报文根据「端口号」确定送给哪个应用程序处理。<strong>因此，TCP/UDP 各自的端口号也相互独立，如 TCP 有一个 80 号端口，UDP 也可以有一个 80 号端口，二者并不冲突。</strong></p>
+<p><img src="/../../pic/tcp%E5%92%8Cudp%E6%A8%A1%E5%9D%97.jpeg" alt="img"></p>
+<blockquote>
+<p>TCP 和 UDP 可以同时绑定相同的端口吗？</p>
+</blockquote>
+<p>可以的。</p>
+<p>TCP 和 UDP 传输协议，在内核中是由两个完全独立的软件模块实现的。</p>
+<p>当主机收到数据包后，可以在 IP 包头的「协议号」字段知道该数据包是 TCP/UDP，所以可以根据这个信息确定送给哪个模块（TCP/UDP）处理，送给 TCP/UDP 模块的报文根据「端口号」确定送给哪个应用程序处理。</p>
+<p>因此， TCP/UDP 各自的端口号也相互独立，互不影响。</p>
+<blockquote>
+<p>多个 TCP 服务进程可以同时绑定同一个端口吗？</p>
+</blockquote>
+<p>如果两个 TCP 服务进程同时绑定的 IP 地址和端口都相同，那么执行 bind() 时候就会出错，错误是“Address already in use”。</p>
+<p>如果两个 TCP 服务进程绑定的端口都相同，而 IP 地址不同，那么执行 bind() 不会出错。</p>
+<blockquote>
+<p>如何解决服务端重启时，报错“Address already in use”的问题？</p>
+</blockquote>
+<p>当我们重启 TCP 服务进程的时候，意味着通过服务器端发起了关闭连接操作，于是就会经过四次挥手，而对于主动关闭方，会在 TIME_WAIT 这个状态里停留一段时间，这个时间大约为 2MSL。</p>
+<p>当 TCP 服务进程重启时，服务端会出现 TIME_WAIT 状态的连接，TIME_WAIT 状态的连接使用的 IP+PORT 仍然被认为是一个有效的 IP+PORT 组合，相同机器上不能够在该 IP+PORT 组合上进行绑定，那么执行 bind() 函数的时候，就会返回了 Address already in use 的错误。</p>
+<p>要解决这个问题，我们可以对 socket 设置 ==SO_REUSEADDR== 属性。</p>
+<p>这样即使存在一个和绑定 IP+PORT 一样的 TIME_WAIT 状态的连接，依然可以正常绑定成功，因此可以正常重启成功。</p>
+<blockquote>
+<p>客户端的端口可以重复使用吗？</p>
+</blockquote>
+<p>在客户端执行 connect 函数的时候，只要客户端连接的服务器不是同一个，内核允许端口重复使用。</p>
+<p>TCP 连接是由四元组（源IP地址，源端口，目的IP地址，目的端口）唯一确认的，<strong>那么只要四元组中其中一个元素发生了变化，那么就表示不同的 TCP 连接的。</strong></p>
+<p>所以，如果客户端已使用端口 64992 与服务端 A 建立了连接，那么客户端要与服务端 B 建立连接，还是可以使用端口 64992 的，因为内核是通过四元祖信息来定位一个 TCP 连接的，并不会因为客户端的端口号相同，而导致连接冲突的问题。</p>
+<blockquote>
+<p>客户端 TCP 连接 TIME_WAIT 状态过多，会导致端口资源耗尽而无法建立新的连接吗？</p>
+</blockquote>
+<p><strong>要看客户端是否都是与同一个服务器（目标地址和目标端口一样）建立连接。</strong></p>
+<p>如果客户端都是与同一个服务器（目标地址和目标端口一样）建立连接，那么如果客户端 TIME_WAIT 状态的连接过多，当端口资源被耗尽，就无法与这个服务器再建立连接了。即使在这种状态下，还是可以与其他服务器建立连接的，只要客户端连接的服务器不是同一个，那么端口是重复使用的。</p>
+<blockquote>
+<p>如何解决客户端 TCP 连接 TIME_WAIT 过多，导致无法与同一个服务器建立连接的问题？</p>
+</blockquote>
+<p>打开 net.ipv4.tcp_tw_reuse 这个内核参数。</p>
+<p>因为开启了这个内核参数后，客户端调用 connect 函数时，如果选择到的端口，已经被相同四元组的连接占用的时候，就会判断该连接是否处于 TIME_WAIT 状态。</p>
+<p>如果该连接处于 TIME_WAIT 状态并且 TIME_WAIT 状态持续的时间超过了 1 秒，那么就会重用这个连接，然后就可以正常使用该端口了。</p>
+<h3 id="TCP连接-断开"><a href="#TCP连接-断开" class="headerlink" title="**TCP连接/断开"></a>**TCP连接/断开</h3><h4 id="TCP-三次握手过程是怎样的？"><a href="#TCP-三次握手过程是怎样的？" class="headerlink" title="TCP 三次握手过程是怎样的？"></a>TCP 三次握手过程是怎样的？</h4><p><img src="/../../pic/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.drawio.png" alt="TCP 三次握手"></p>
+<p><img src="/../../pic/format,png-20230309230500953.png" alt="第一个报文 —— SYN 报文"></p>
+<p><img src="/../../pic/format,png-20230309230504118.png" alt="第二个报文 —— SYN + ACK 报文"></p>
+<p><img src="/../../pic/format,png-20230309230508297.png" alt="第三个报文 —— ACK 报文"></p>
+<p>==第三次握手是可以携带数据的，前两次握手是不可以携带数据的==</p>
+<h4 id="如何在-Linux-系统中查看-TCP-状态？"><a href="#如何在-Linux-系统中查看-TCP-状态？" class="headerlink" title="如何在 Linux 系统中查看 TCP 状态？"></a>如何在 Linux 系统中查看 TCP 状态？</h4><p>TCP 的连接状态查看，在 Linux 可以通过 <code>netstat -napt</code>(p—pid，t—tcp，u—udp) 命令查看。</p>
+<p><img src="/../../pic/format,png-20230309230520683.png" alt="TCP 连接状态查看"></p>
+<h4 id="为什么要三次握手？不是两次或者四次"><a href="#为什么要三次握手？不是两次或者四次" class="headerlink" title="为什么要三次握手？不是两次或者四次"></a>为什么要三次握手？不是两次或者四次</h4><p>SYN 同步序列编号(Synchronize Sequence Numbers) 是 TCP/IP 建立连接时使用的握手信号。客户机首先发出一个 SYN 消息，服务器使用 SYN-ACK 应答表示接收到了这个消息，最后客户机再以 ACK(Acknowledgement）消息响应</p>
+<p>三次握手最主要的目的就是双方确认自己与对方的发送与接收是正常的。</p>
+<ul>
+<li>第一次握手：Client 什么都不能确认；Server 确认了对方发送正常，自己接收正常</li>
+<li>第二次握手：Client 确认了：自己发送、接收正常，对方发送、接收正常；Server 确认了：对方发送正常，自己接收正常</li>
+<li>第三次握手：Client 确认了：自己发送、接收正常，对方发送、接收正常；Server 确认了：自己发送、接收正常，对方发送、接收正常</li>
+</ul>
+<p><strong>TCP 连接</strong>：用于保证可靠性和流量控制维护的某些状态信息，这些信息的组合，包括 <strong>Socket、序列号和窗口大小</strong>称为连接。</p>
+<blockquote>
+<p>Socket是由IP地址和端口结合的，提供向应用层进程传送数据包的机制。</p>
+</blockquote>
+<p>不使用「两次握手」和「四次握手」的原因：</p>
+<ul>
+<li>「两次握手」：无法防止历史连接的建立（主要原因），会造成双方资源的浪费，也无法可靠的同步双方序列号；</li>
+<li>「四次握手」：三次握手就已经理论建立可靠连接，所以不需要使用更多的通信次数。</li>
+</ul>
+<h4 id="什么是-SYN-攻击？如何避免-SYN-攻击？"><a href="#什么是-SYN-攻击？如何避免-SYN-攻击？" class="headerlink" title="什么是 SYN 攻击？如何避免 SYN 攻击？"></a>什么是 SYN 攻击？如何避免 SYN 攻击？</h4><p>假设攻击者短时间伪造不同 IP 地址的 <code>SYN</code> 报文，服务端每接收到一个 <code>SYN</code> 报文，就进入<code>SYN_RCVD</code> 状态，但服务端发送出去的 <code>ACK + SYN</code> 报文，无法得到未知 IP 主机的 <code>ACK</code> 应答，久而久之就会<strong>占满服务端的半连接队列</strong>，使得服务端不能为正常用户服务。</p>
+<p><img src="/../../pic/format,png-20230309230622886.png" alt="正常流程"></p>
+<p>避免 SYN 攻击方式，可以有以下方法：</p>
+<ul>
+<li>增大 TCP 半连接队列</li>
+<li>减少 SYN+ACK 重传次数</li>
+</ul>
+<h4 id="TCP-四次挥手过程是怎样的？"><a href="#TCP-四次挥手过程是怎样的？" class="headerlink" title="TCP 四次挥手过程是怎样的？"></a>TCP 四次挥手过程是怎样的？</h4><p><img src="/../../pic/format,png-20230309230614791.png" alt="客户端主动关闭连接 —— TCP 四次挥手"></p>
+<h4 id="为什么挥手需要四次？"><a href="#为什么挥手需要四次？" class="headerlink" title="为什么挥手需要四次？"></a>为什么挥手需要四次？</h4><p>再来回顾下四次挥手双方发 <code>FIN</code> 包的过程，就能理解为什么需要四次了。</p>
+<ul>
+<li>关闭连接时，客户端向服务端发送 <code>FIN</code> 时，仅仅表示客户端不再发送数据了但是还能接收数据。</li>
+<li>服务端收到客户端的 <code>FIN</code> 报文时，先回一个 <code>ACK</code> 应答报文，而服务端可能还有数据需要处理和发送，等服务端不再发送数据时，才发送 <code>FIN</code> 报文给客户端来表示同意现在关闭连接。</li>
+</ul>
+<p>从上面过程可知，服务端通常需要等待完成数据的发送和处理，所以服务端的 <code>ACK</code> 和 <code>FIN</code> 一般都会分开发送，因此是需要四次挥手。</p>
+<h4 id="为什么第四次挥手客户端需要等待-2-MSL（报文段最长寿命）"><a href="#为什么第四次挥手客户端需要等待-2-MSL（报文段最长寿命）" class="headerlink" title="为什么第四次挥手客户端需要等待 2*MSL（报文段最长寿命）"></a>为什么第四次挥手客户端需要等待 2*MSL（报文段最长寿命）</h4><ul>
+<li>确保服务端收到客户端的 ack</li>
+<li>确保上一次的 tcp 报文信息不会影响下一次的 tcp 连接</li>
+</ul>
+<h4 id="TIME-WAIT-过多有什么危害？"><a href="#TIME-WAIT-过多有什么危害？" class="headerlink" title="TIME_WAIT 过多有什么危害？"></a>TIME_WAIT 过多有什么危害？</h4><ul>
+<li>占用系统资源，比如文件描述符、内存资源、CPU 资源、线程资源等；</li>
+<li>占用端口资源，端口资源也是有限的</li>
+</ul>
+<h4 id="服务器出现大量-TIME-WAIT-状态的原因有哪些？"><a href="#服务器出现大量-TIME-WAIT-状态的原因有哪些？" class="headerlink" title="服务器出现大量 TIME_WAIT 状态的原因有哪些？"></a>服务器出现大量 TIME_WAIT 状态的原因有哪些？</h4><ul>
+<li>第一个场景：HTTP 没有使用长连接</li>
+<li>第二个场景：HTTP 长连接超时</li>
+<li>第三个场景：HTTP 长连接的请求数量达到上限</li>
+</ul>
+<h4 id="服务器出现大量-CLOSE-WAIT-状态的原因有哪些？"><a href="#服务器出现大量-CLOSE-WAIT-状态的原因有哪些？" class="headerlink" title="服务器出现大量 CLOSE_WAIT 状态的原因有哪些？"></a>服务器出现大量 CLOSE_WAIT 状态的原因有哪些？</h4><p>当服务端出现大量 CLOSE_WAIT 状态的连接的时候，通常都是代码的问题，这时候我们需要针对具体的代码一步一步的进行排查和定位，主要分析的方向就是服务端为什么没有调用 close。</p>
+<h3 id="TCP-如何保证传输的可靠性？"><a href="#TCP-如何保证传输的可靠性？" class="headerlink" title="**TCP 如何保证传输的可靠性？"></a>**TCP 如何保证传输的可靠性？</h3><ul>
+<li>序列号（对失序数据包重排以及去重）</li>
+<li>校验和</li>
+<li>重传机制（超时重传；快速重传）</li>
+<li>流量控制</li>
+<li>拥塞控制</li>
+</ul>
+<h4 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h4><p>假如发送一个数据包，要等待 ack 才发送下一个，效率太低。</p>
+<p>引入窗口，指定窗口大小，指<strong>无需等待确认应答，而可以继续发送数据的最大值</strong>。</p>
+<h4 id="TCP-如何实现流量控制？"><a href="#TCP-如何实现流量控制？" class="headerlink" title="TCP 如何实现流量控制？"></a>TCP 如何实现流量控制？</h4><p><strong>TCP 利用滑动窗口实现流量控制。流量控制是为了控制发送方发送速率，保证接收方来得及接收。</strong> 接收方发送的确认报文中的窗口字段可以用来控制发送方窗口大小，从而影响发送方的发送速率。将窗口字段设置为 0，则发送方不能发送数据。</p>
+<p>TCP 为全双工(Full-Duplex, FDX)通信，双方可以进行双向通信，客户端和服务端既可能是发送端又可能是服务端。因此，两端各有一个发送缓冲区与接收缓冲区，两端都各自维护一个发送窗口和一个接收窗口。</p>
+<p><strong>TCP 发送窗口可以划分成四个部分</strong>：</p>
+<ol>
+<li>已经发送并且确认的 TCP 段（已经发送并确认）；</li>
+<li>已经发送但是没有确认的 TCP 段（已经发送未确认）；</li>
+<li>未发送但是接收方准备接收的 TCP 段（可以发送）；</li>
+<li>未发送并且接收方也并未准备接受的 TCP 段（不可发送）</li>
+</ol>
+<p><strong>TCP 接收窗口可以划分成三个部分</strong>：</p>
+<ol>
+<li>已经接收并且已经确认的 TCP 段（已经接收并确认）；</li>
+<li>等待接收且允许发送方发送 TCP 段（可以接收未确认）；</li>
+<li>不可接收且不允许发送方发送 TCP 段（不可接收）。</li>
+</ol>
+<h4 id="窗口关闭"><a href="#窗口关闭" class="headerlink" title="窗口关闭"></a>窗口关闭</h4><p><strong>如果窗口大小为 0 时，就会阻止发送方给接收方传递数据，直到窗口变为非 0 为止，这就是窗口关闭。</strong></p>
+<p><img src="/../../pic/24.jpg" alt="窗口关闭潜在的危险"></p>
+<p><strong>只要 TCP 连接一方收到对方的零窗口通知，就启动持续计时器。</strong></p>
+<p>如果持续计时器超时，就会发送<strong>窗口探测 ( Window probe ) 报文</strong>，而对方在确认这个探测报文时，给出自己现在的接收窗口大小。</p>
+<h4 id="TCP-的拥塞控制是怎么实现的？"><a href="#TCP-的拥塞控制是怎么实现的？" class="headerlink" title="TCP 的拥塞控制是怎么实现的？"></a>TCP 的拥塞控制是怎么实现的？</h4><p><strong>拥塞控制</strong>，控制的目的就是<strong>避免「发送方」的数据填满整个网络。</strong></p>
+<p>为了在「发送方」调节所要发送数据的量，定义了一个叫做「<strong>拥塞窗口</strong>」的概念。</p>
+<p>拥塞控制主要是四个算法:</p>
+<ul>
+<li>慢启动：<strong>当发送方每收到一个 ACK，拥塞窗口 cwnd 的大小就会加 1。</strong>指数性的增长</li>
+<li>拥塞避免：<strong>每当收到一个 ACK 时，cwnd 增加 1/cwnd。</strong>线性增长</li>
+<li>快速重传：当接收方发现丢了一个中间包的时候，重复3 次发送前一个包的 ACK，于是发送端就会快速地重传，不必等待超时再重传。这种情况下网络阻塞不严重，将ssthresh慢开始门限<code>设为</code>cwnd/2，cwnd<code> 重置为</code>ssthresh，进入快速恢复算法。</li>
+<li>快速恢复：由于发送方现在认为网络很可能没有发生拥塞（如果网络发生了严重拥塞，就不会一连有好几个报文段连续到达接收方，也就不会导致接收方连续发送重复确认）。将 cwnd 变为 ssthresh，开始拥塞避免</li>
+</ul>
+<p><img src="/../../pic/Center-20240316124003287.png" alt="img"></p>
+<p><img src="/../../pic/Center-20240316124102355.png" alt="img"></p>
+<h3 id="如何理解是-TCP-面向字节流协议？"><a href="#如何理解是-TCP-面向字节流协议？" class="headerlink" title="如何理解是 TCP 面向字节流协议？"></a>如何理解是 TCP 面向字节流协议？</h3><h4 id="如何理解字节流？"><a href="#如何理解字节流？" class="headerlink" title="如何理解字节流？"></a>如何理解字节流？</h4><blockquote>
+<p>先来说说为什么 UDP 是面向报文的协议？</p>
+</blockquote>
+<p>当用户消息通过 UDP 协议传输时，<strong>操作系统不会对消息进行拆分</strong>，也就是<strong>每个 UDP 报文就是一个用户消息的边界</strong></p>
+<blockquote>
+<p>再来说说为什么 TCP 是面向字节流的协议？</p>
+</blockquote>
+<p>当用户消息通过 TCP 协议传输时，<strong>消息可能会被操作系统分组成多个的 TCP 报文</strong>，也就是一个完整的用户消息被拆分成多个 TCP 报文进行传输。<strong>我们不能认为一个用户消息对应一个 TCP 报文，正因为这样，所以 TCP 是面向字节流的协议</strong>。</p>
+<h4 id="粘包-拆包"><a href="#粘包-拆包" class="headerlink" title="粘包/拆包"></a>粘包/拆包</h4><p>因为TCP是面向流，没有边界，而操作系统在发送TCP数据时，会通过缓冲区来进行优化，例如缓冲区为1024个字节大小。</p>
+<p>如果一次请求发送的数据量比较小，没达到缓冲区大小，TCP则会将多个请求合并为同一个请求进行发送，这就形成了粘包问题。</p>
+<p>如果一次请求发送的数据量比较大，超过了缓冲区大小，TCP就会将其拆分为多次发送，这就是拆包。</p>
+<p>解决：</p>
+<ol>
+<li>粘包：固定包的长度，不足用 0 填充</li>
+<li>拆包：特殊字符作为边界（FTP 协议）</li>
+</ol>
+<h3 id="TCP-协议有什么缺陷？"><a href="#TCP-协议有什么缺陷？" class="headerlink" title="TCP 协议有什么缺陷？"></a>TCP 协议有什么缺陷？</h3><ul>
+<li><p>升级 TCP 的工作很困难；</p>
+<p>TCP 协议是在内核中实现的，应用程序只能使用不能修改，如果要想升级 TCP 协议，那么只能升级内核。内核升级困难。</p>
+</li>
+<li><p>TCP 建立连接的延迟；</p>
+<p>现在大多数网站都是使用 HTTPS 的，这意味着在 TCP 三次握手之后，还需要经过 TLS 四次握手后，才能进行 HTTP 数据的传输，这在一定程序上增加了数据传输的延迟。</p>
+</li>
+<li><p>TCP 存在队头阻塞问题；</p>
+<p>TCP 是字节流协议，<strong>TCP 层必须保证收到的字节数据是完整且有序的</strong>，如果序列号较低的 TCP 段在网络传输中丢失了，即使序列号较高的 TCP 段已经被接收了，<strong>应用层也无法从内核中读取到这部分数据</strong>。</p>
+</li>
+<li><p>网络迁移需要重新建立 TCP 连接；</p>
+<p>基于 TCP 传输协议的 HTTP 协议，由于是通过四元组（源 IP、源端口、目的 IP、目的端口）确定一条 TCP 连接。那么<strong>当移动设备的网络从 4G 切换到 WIFI 时，意味着 IP 地址变化了，那么就必须要断开连接，然后重新建立 TCP 连接</strong>。</p>
+</li>
+</ul>
+<h3 id="如何基于-UDP-协议实现可靠传输？"><a href="#如何基于-UDP-协议实现可靠传输？" class="headerlink" title="如何基于 UDP 协议实现可靠传输？"></a>如何基于 UDP 协议实现可靠传输？</h3><p>市面上已经有基于 UDP 协议实现的可靠传输协议的成熟方案了，那就是 QUIC 协议，已经应用在了 HTTP/3。</p>
+<h3 id="TCP-四次挥手，可以变成三次吗？"><a href="#TCP-四次挥手，可以变成三次吗？" class="headerlink" title="TCP 四次挥手，可以变成三次吗？"></a>TCP 四次挥手，可以变成三次吗？</h3><p>当被动关闭方（上图的服务端）在 TCP 挥手过程中，「<strong>没有数据要发送」并且「开启了 TCP 延迟确认机制」（默认开启），那么第二和第三次挥手就会合并传输，这样就出现了三次挥手。</strong></p>
+<blockquote>
+<p>什么是 TCP 延迟确认机制？</p>
+</blockquote>
+<ul>
+<li>当有响应数据要发送时，ACK 会随着响应数据一起立刻发送给对方</li>
+<li>当没有响应数据要发送时，ACK 将会延迟一段时间，以等待是否有响应数据可以一起发送</li>
+<li>如果在延迟等待发送 ACK 期间，对方的第二个数据报文又到达了，这时就会立刻发送 ACK</li>
+</ul>
+<p><img src="/../../pic/33f3d2d54a924b0a80f565038327e0e4.png" alt="img"></p>
+<h3 id="TCP-序列号和确认号是如何变化的？"><a href="#TCP-序列号和确认号是如何变化的？" class="headerlink" title="TCP 序列号和确认号是如何变化的？"></a>TCP 序列号和确认号是如何变化的？</h3><ul>
+<li><strong>公式一：序列号 = 上一次发送的序列号 + len（数据长度）。特殊情况，如果上一次发送的报文是 SYN 报文或者 FIN 报文，则改为 上一次发送的序列号 + 1。</strong></li>
+<li><strong>公式二：确认号 = 上一次收到的报文中的序列号 + len（数据长度）。特殊情况，如果收到的是 SYN 报文或者 FIN 报文，则改为上一次收到的报文中的序列号 + 1。</strong></li>
+</ul>
+<h3 id="TCP-Keepalive-和-HTTP-Keep-Alive-是一个东西吗？"><a href="#TCP-Keepalive-和-HTTP-Keep-Alive-是一个东西吗？" class="headerlink" title="TCP Keepalive 和 HTTP Keep-Alive 是一个东西吗？"></a>TCP Keepalive 和 HTTP Keep-Alive 是一个东西吗？</h3><p>HTTP 的 Keep-Alive 也叫 HTTP 长连接，该功能是由「应用程序」实现的，可以使得用同一个 TCP 连接来发送和接收多个 HTTP 请求/应答，减少了 HTTP 短连接带来的多次 TCP 连接建立和释放的开销。</p>
+<p>TCP 的 Keepalive 也叫 TCP 保活机制，该功能是由「内核」实现的，当客户端和服务端长达一定时间没有进行数据交互时，内核为了确保该连接是否还有效，就会发送探测报文，来检测对方是否还在线，然后来决定是否要关闭该连接。</p>
+<h2 id="ARP-协议详解-网络层"><a href="#ARP-协议详解-网络层" class="headerlink" title="ARP 协议详解(网络层)"></a>ARP 协议详解(网络层)</h2><p>ARP 协议工作时有一个大前提，那就是 <strong>ARP 表</strong>。</p>
+<p>在一个局域网内，每个网络设备都自己维护了一个 ARP 表，ARP 表记录了某些其他网络设备的 IP 地址-MAC 地址映射关系，该映射关系以 <code>&lt;IP, MAC, TTL&gt;</code> 三元组的形式存储。</p>
+<p>ARP 的工作原理将分两种场景讨论：</p>
+<ol>
+<li><p><strong>同一局域网内的 MAC 寻址</strong>；</p>
+<p><img src="/../../pic/arp_same_lan-D4FvX3An.png" alt="img"></p>
+</li>
+<li><p><strong>从一个局域网到另一个局域网中的网络设备的寻址</strong>。</p>
+<p><img src="/../../pic/arp_different_lan-C1P6UFkF.png" alt="img"></p>
+</li>
+</ol>
+<p>工作原理：<strong>ARP 表、广播问询、单播响应</strong></p>
+<h2 id="cookie-session"><a href="#cookie-session" class="headerlink" title="cookie&amp;session"></a>cookie&amp;session</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol>
+<li>cookie数据存放在客户的浏览器上，session数据放在服务器上</li>
+<li>cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗,如果主要考虑到安全应当使用session</li>
+<li>session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能，如果主要考虑到减轻服务器性能方面，应当使用COOKIE</li>
+<li>单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能3K。</li>
+<li>所以：将登陆信息等重要信息存放为SESSION;其他信息如果需要保留，可以放在COOKIE中</li>
+</ol>
+<h3 id="session-共享"><a href="#session-共享" class="headerlink" title="session 共享"></a>session 共享</h3><ol>
+<li><p>session 复制</p>
+<p>服务器将自己的session数据传送给其他服务器，使得每个服务器都拥有全量的数据。</p>
+<p>优点：tomcat原生支持，只需要修改配置文件即可</p>
+<p>缺点：网络传输、服务器空间占有</p>
+</li>
+<li><p>客户端 cookie 保存</p>
+<p>用户的信息不再保存在服务器中，而是保存在客户端(浏览器)中。</p>
+<p>优点：节省服务器资源</p>
+<p>缺点：网络带宽、长度限制、安全隐患</p>
+</li>
+<li><p>hash一致性</p>
+<p>nginx负载均衡的时候采用ip-hash策略，这样同一个客户端每次的请求都会被同一个服务器处理</p>
+<p>优点：只需要修改nginx配置，不需要修改应用程序代码；可以支持web-server水平扩展</p>
+<p>缺点：web-server重启可能导致部分session丢失，影响业务；如果web-server水平扩展，rehash后session重新分布，会有一部分用户路由不到正确session。</p>
+</li>
+<li><p>统一存储</p>
+<p>将用户的信息存储在第三方中间件上，做到统一存储，如<strong>redis</strong>中，所有的服务都到redis中获取用户信息，从而实现session共享。</p>
+<p>优点：</p>
+<ul>
+<li>没有安全隐患</li>
+<li>可以水平扩展</li>
+<li>服务器重启或扩容都不会造成session的丢失</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>增加了一次网络调用，速度有所下降</li>
+<li>代码修改。getSession 变成从 redis 中 get，可以用 Spring Session框架</li>
+</ul>
+</li>
+</ol>
+<h2 id="反向代理是起什么作用的？"><a href="#反向代理是起什么作用的？" class="headerlink" title="反向代理是起什么作用的？"></a>反向代理是起什么作用的？</h2><p>反向代理是一种位于客户端和后端服务器之间的代理服务器模型，它接收来自客户端的请求，并将其转发到后端服务器，然后将响应返回给客户端。反向代理在多个方面发挥着重要的作用：</p>
+<ol>
+<li><strong>负载均衡</strong>：反向代理通过将请求分发到多个后端服务器，平衡负载，从而减少单个服务器的负担，提高系统的可伸缩性。对于流量较高的网站，这种分发机制可以确保服务器容量得到充分利用，以处理大量请求。如果某台服务器过载并出现故障，反向代理还可以将流量重定向至其他在线服务器，确保服务的连续性和稳定性。</li>
+<li><strong>安全性和访问控制</strong>：反向代理通过实现身份验证、授权和防火墙功能，增强了系统的安全性。它可以拦截所有传入请求，为后端服务器提供更高层级的保护。通过阻止来自特定IP地址的可疑流量，反向代理有助于防止恶意访问者滥用网页服务器。此外，反向代理还可以隐藏后端服务器的真实地址，进一步提高系统的安全性。</li>
+<li><strong>缓存数据</strong>：反向代理可以缓存经常请求的数据，减少对后端服务器的访问次数，提高系统的性能。对于需要存储大量信息流数据的大型用户，缓存机制可以有效降低网站服务器的负载，提高网站的响应速度和用户体验。</li>
+<li><strong>服务治理</strong>：通过反向代理，管理员可以监控和管理后端服务器的状态，包括健康检查、服务降级等，确保系统的稳定性和可靠性。</li>
+</ol>
+</body></html></div><div class="article-licensing box"><div class="licensing-title"><p>计算机网络</p><p><a href="https://jerryzhu1229.github.io/2024/03/11/cs/计算机网络/">https://jerryzhu1229.github.io/2024/03/11/cs/计算机网络/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-03-11</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-08-17</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/03/12/java/Java%E5%9F%BA%E7%A1%80/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Java基础</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/03/11/%E9%9D%A2%E7%BB%8F/"><span class="level-item">面经</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#OSI七层和作用-✨"><span class="level-left"><span class="level-item">1</span><span class="level-item">OSI七层和作用 ✨</span></span></a></li><li><a class="level is-mobile" href="#访问网页全过程-✨"><span class="level-left"><span class="level-item">2</span><span class="level-item">访问网页全过程 ✨</span></span></a></li><li><a class="level is-mobile" href="#应用层-HTTP"><span class="level-left"><span class="level-item">3</span><span class="level-item">应用层-HTTP</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#HTTP-报文格式"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">HTTP 报文格式</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#请求报文"><span class="level-left"><span class="level-item">3.1.1</span><span class="level-item">请求报文</span></span></a></li><li><a class="level is-mobile" href="#响应报文"><span class="level-left"><span class="level-item">3.1.2</span><span class="level-item">响应报文</span></span></a></li></ul></li><li><a class="level is-mobile" href="#HTTP-请求类型"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">HTTP 请求类型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#PUT和POST区别"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">PUT和POST区别</span></span></a></li><li><a class="level is-mobile" href="#GET和POST区别"><span class="level-left"><span class="level-item">3.2.2</span><span class="level-item">GET和POST区别</span></span></a></li></ul></li><li><a class="level is-mobile" href="#HTTP-常见状态码-✨"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">HTTP 常见状态码 ✨</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#301和302-区别"><span class="level-left"><span class="level-item">3.3.1</span><span class="level-item">301和302 区别</span></span></a></li><li><a class="level is-mobile" href="#502-和-504-区别"><span class="level-left"><span class="level-item">3.3.2</span><span class="level-item">502 和 504 区别</span></span></a></li></ul></li><li><a class="level is-mobile" href="#HTTP与HTTPS✨"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">HTTP与HTTPS✨</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#HTTP为什么不安全"><span class="level-left"><span class="level-item">3.4.1</span><span class="level-item">HTTP为什么不安全</span></span></a></li><li><a class="level is-mobile" href="#HTTP-与-HTTPS的区别✨"><span class="level-left"><span class="level-item">3.4.2</span><span class="level-item">HTTP 与 HTTPS的区别✨</span></span></a></li></ul></li><li><a class="level is-mobile" href="#SSL-TLS"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">SSL/TLS</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#基于-RSA-的握手流程-✨"><span class="level-left"><span class="level-item">3.5.1</span><span class="level-item">基于 RSA 的握手流程 ✨</span></span></a></li><li><a class="level is-mobile" href="#基于-ECDHE-的握手流程"><span class="level-left"><span class="level-item">3.5.2</span><span class="level-item">基于 ECDHE 的握手流程</span></span></a></li><li><a class="level is-mobile" href="#数字证书"><span class="level-left"><span class="level-item">3.5.3</span><span class="level-item">数字证书</span></span></a></li></ul></li><li><a class="level is-mobile" href="#HTTP、Socket-、TCP、RPC"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">HTTP、Socket 、TCP、RPC</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#HTTP-为什么基于-TCP-协议"><span class="level-left"><span class="level-item">3.6.1</span><span class="level-item">HTTP 为什么基于 TCP 协议</span></span></a></li><li><a class="level is-mobile" href="#HTTP-进行-TCP-连接后，在什么情况下会中断"><span class="level-left"><span class="level-item">3.6.2</span><span class="level-item">HTTP 进行 TCP 连接后，在什么情况下会中断</span></span></a></li><li><a class="level is-mobile" href="#HTTP-和-RPC-有什么区别"><span class="level-left"><span class="level-item">3.6.3</span><span class="level-item">HTTP 和 RPC 有什么区别</span></span></a></li><li><a class="level is-mobile" href="#HTTP、SOCKET和TCP的区别"><span class="level-left"><span class="level-item">3.6.4</span><span class="level-item">HTTP、SOCKET和TCP的区别</span></span></a></li></ul></li><li><a class="level is-mobile" href="#HTTP1-0、1-1、2-0、3-0✨"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">HTTP1.0、1.1、2.0、3.0✨</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#HTTP-1-1-的优化"><span class="level-left"><span class="level-item">3.7.1</span><span class="level-item">HTTP/1.1 的优化</span></span></a></li><li><a class="level is-mobile" href="#HTTP-2-的优化"><span class="level-left"><span class="level-item">3.7.2</span><span class="level-item">HTTP/2 的优化</span></span></a></li><li><a class="level is-mobile" href="#HTTP-1-1-vs-HTTP-2"><span class="level-left"><span class="level-item">3.7.3</span><span class="level-item">HTTP/1.1 vs HTTP/2</span></span></a></li><li><a class="level is-mobile" href="#HTTP-3-的优化"><span class="level-left"><span class="level-item">3.7.4</span><span class="level-item">HTTP/3 的优化</span></span></a></li></ul></li><li><a class="level is-mobile" href="#QUIC-协议"><span class="level-left"><span class="level-item">3.8</span><span class="level-item">QUIC 协议</span></span></a></li><li><a class="level is-mobile" href="#RPC"><span class="level-left"><span class="level-item">3.9</span><span class="level-item">RPC</span></span></a></li><li><a class="level is-mobile" href="#WebSocket-HTTP-SSE"><span class="level-left"><span class="level-item">3.10</span><span class="level-item">WebSocket&amp;HTTP&amp;SSE</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#WebSocket"><span class="level-left"><span class="level-item">3.10.1</span><span class="level-item">WebSocket</span></span></a></li><li><a class="level is-mobile" href="#SSE"><span class="level-left"><span class="level-item">3.10.2</span><span class="level-item">SSE</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#TCP"><span class="level-left"><span class="level-item">4</span><span class="level-item">TCP</span></span></a><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#TCP-基础"><span class="level-left"><span class="level-item">4.1.1</span><span class="level-item">TCP 基础</span></span></a></li><li><a class="level is-mobile" href="#TCP连接-断开"><span class="level-left"><span class="level-item">4.1.2</span><span class="level-item">**TCP连接/断开</span></span></a></li><li><a class="level is-mobile" href="#TCP-如何保证传输的可靠性？"><span class="level-left"><span class="level-item">4.1.3</span><span class="level-item">**TCP 如何保证传输的可靠性？</span></span></a></li><li><a class="level is-mobile" href="#如何理解是-TCP-面向字节流协议？"><span class="level-left"><span class="level-item">4.1.4</span><span class="level-item">如何理解是 TCP 面向字节流协议？</span></span></a></li><li><a class="level is-mobile" href="#TCP-协议有什么缺陷？"><span class="level-left"><span class="level-item">4.1.5</span><span class="level-item">TCP 协议有什么缺陷？</span></span></a></li><li><a class="level is-mobile" href="#如何基于-UDP-协议实现可靠传输？"><span class="level-left"><span class="level-item">4.1.6</span><span class="level-item">如何基于 UDP 协议实现可靠传输？</span></span></a></li><li><a class="level is-mobile" href="#TCP-四次挥手，可以变成三次吗？"><span class="level-left"><span class="level-item">4.1.7</span><span class="level-item">TCP 四次挥手，可以变成三次吗？</span></span></a></li><li><a class="level is-mobile" href="#TCP-序列号和确认号是如何变化的？"><span class="level-left"><span class="level-item">4.1.8</span><span class="level-item">TCP 序列号和确认号是如何变化的？</span></span></a></li><li><a class="level is-mobile" href="#TCP-Keepalive-和-HTTP-Keep-Alive-是一个东西吗？"><span class="level-left"><span class="level-item">4.1.9</span><span class="level-item">TCP Keepalive 和 HTTP Keep-Alive 是一个东西吗？</span></span></a></li></ul><li><a class="level is-mobile" href="#ARP-协议详解-网络层"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">ARP 协议详解(网络层)</span></span></a></li><li><a class="level is-mobile" href="#cookie-session"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">cookie&amp;session</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#区别"><span class="level-left"><span class="level-item">4.3.1</span><span class="level-item">区别</span></span></a></li><li><a class="level is-mobile" href="#session-共享"><span class="level-left"><span class="level-item">4.3.2</span><span class="level-item">session 共享</span></span></a></li></ul></li><li><a class="level is-mobile" href="#反向代理是起什么作用的？"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">反向代理是起什么作用的？</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="level-start"><span class="level-item">中间件</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">前端技术</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="level-start"><span class="level-item">运维</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

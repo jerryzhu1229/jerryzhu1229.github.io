@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>HttpServletRequest流数据不可重复读 - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/06/12/Spring/HttpServletReque%E6%B5%81%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/img/og_image.png"><meta property="article:published_time" content="2024-06-12T02:47:34.000Z"><meta property="article:modified_time" content="2024-08-17T03:29:44.510Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="单测"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/06/12/Spring/HttpServletReque%E6%B5%81%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB/"},"headline":"HttpServletRequest流数据不可重复读","image":["https://jerryzhu1229.github.io/img/og_image.png"],"datePublished":"2024-06-12T02:47:34.000Z","dateModified":"2024-08-17T03:29:44.510Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/06/12/Spring/HttpServletReque%E6%B5%81%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-06-12T02:47:34.000Z" title="2024/6/12 10:47:34">2024-06-12</time>发表</span><span class="level-item"><time dateTime="2024-08-17T03:29:44.510Z" title="2024/8/17 11:29:44">2024-08-17</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Spring/">Spring</a></span><span class="level-item">6 分钟读完 (大约967个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">HttpServletRequest流数据不可重复读</h1><div class="content"><html><head></head><body><h1 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h1><p>项目需求中，需要多次读取 Http 请求中的参数，比如前置的 API 身份校验。常规方式是在拦截器中实现该逻辑，但如果在拦截器中通过<code>getInputStream()</code>读取<code>HttpServletRequest</code>中的参数后，之后的 controller 就无法重复读取了，并抛出异常：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HttpMessageNotReadableException:</span> <span class="string">Required</span> <span class="string">request</span> <span class="string">body</span> <span class="string">is</span> <span class="string">missing</span></span><br><span class="line"><span class="attr">IllegalStateException:</span> <span class="string">getInputStream()</span> <span class="string">can't</span> <span class="string">be</span> <span class="string">called</span> <span class="string">after</span> <span class="string">getReader()</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>解决思路是将请求的数据用包装类缓存起来。</p>
+<h1 id="前置原理"><a href="#前置原理" class="headerlink" title="前置原理"></a>前置原理</h1><p>Controller 接受 HTTP 请求参数时，基本是通过 SpringMVC 封装：</p>
+<ol>
+<li><p>POST 发送的<code>multipart/form-data</code> 格式的数据</p>
+<p>对于这类数据，SpringMVC 在 DispatchServlet 的 <code>doDispatch()</code> 方法中就会进行处理。</p>
+<p>在 controller 中用<code>@PathParam</code>获取参数，或者手动用<code>request.getParameter()</code>获取</p>
+</li>
+<li><p>POST 发送的<code>application/x-www-form-urlencoded</code> 格式的数据</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非 form-data 的数据，会存储在 HttpServletRequest 的 InputStream 中。</span></span><br><span class="line"><span class="comment">// 在第一次调用 getParameterNames() 或 getParameter() 时,</span></span><br><span class="line"><span class="comment">// 会调用 parseParameters() 方法对参数进行封装，从 InputStream 中读取数据，并封装到 Map 中。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//org.apache.catalina.connector.Request.java</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getParameter</span><span class="params">(String name)</span> {</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>.parametersParsed) {</span><br><span class="line">        <span class="built_in">this</span>.parseParameters();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.coyoteRequest.getParameters().getParameter(name);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>POST 发送的<code>application/json</code> 格式的数据</p>
+<p>数据会直接会存储在 HttpServletRequest 的 InputStream 中，通过<code>@RequestBody</code>或<code>request.getInputStream()</code>获取。</p>
+</li>
+</ol>
+<h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>如果要在拦截器中和 Controller 中重复读取参数时，会出现 request body 找不到的情况，这是由于 InputStream 这个流数据的特殊性，在 Java 中读取 InputStream 数据时，内部是通过一个指针的移动来读取一个一个的字节数据的，当读完一遍后，这个指针并不会 reset，因此第二遍读的时候就会出现问题了。而之前讲了，HTTP 请求的参数也是封装在 Request 对象中的 InputStream 里，所以当第二次调用 <code>getInputStream()</code> 时会抛出上述异常。</p>
+<p>具体问题根据三中不同的格式分成不同情况：</p>
+<ol>
+<li><strong>请求方式为 <code>multipart/form-data</code>，在拦截器中手动调用 <code>request.getInputStream()</code></strong></li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 上文讲了在 doDispatch() 时就会进行处理，因此这里会取不到值</span></span><br><span class="line">log.info(<span class="string">"input stream content: {}"</span>, <span class="keyword">new</span> <span class="title class_">String</span>(StreamUtils.copyToByteArray(request.getInputStream())));</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li><strong>请求方式为 <code>application/x-www-form-urlencoded</code>，在拦截器中手动调用 <code>request.getInputStream()</code></strong></li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第 1 次可以取到值</span></span><br><span class="line">log.info(<span class="string">"input stream content: {}"</span>, <span class="keyword">new</span> <span class="title class_">String</span>(StreamUtils.copyToByteArray(request.getInputStream())));</span><br><span class="line"><span class="comment">// 第一次执行 getParameter() 会调用 parseParameters()，parseParameters 进一步调用 getInputStream()</span></span><br><span class="line"><span class="comment">// 这里就取不到值了</span></span><br><span class="line">log.info(<span class="string">"form-data param: {}"</span>, request.getParameter(<span class="string">"a"</span>));</span><br><span class="line">log.info(<span class="string">"form-data param: {}"</span>, request.getParameter(<span class="string">"b"</span>));</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li><strong>请求方式为 <code>application/json</code>，在拦截器中手动调用 <code>request.getInputStream()</code></strong></li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第 1 次可以取到值</span></span><br><span class="line">log.info(<span class="string">"input stream content: {}"</span>, <span class="keyword">new</span> <span class="title class_">String</span>(StreamUtils.copyToByteArray(request.getInputStream())));</span><br><span class="line"><span class="comment">// 之后再任何地方再调用 getInputStream() 都取不到值，会抛出异常</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>为了能够多次获取到 HTTP 请求的参数，我们需要将 InputStream 流中的数据缓存起来。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>一、配置过滤器，对HttpServletRequest 进行包装，读取body信息存放到包装类中，后续都从包装类中读取</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/BLACKLOVE7/article/details/130704948">https://blog.csdn.net/BLACKLOVE7/article/details/130704948</a></p>
+<p>二、springframework 自己就有相应的 wrapper 来解决这个问题，在 <code>org.springframework.web.util</code> 包下有一个 <code>ContentCachingRequestWrapper</code> 的类。这个类的作用就是将 InputStream 缓存到 <code>ByteArrayOutputStream</code> 中，通过调用 ``getContentAsByteArray()` 实现流数据的可重复读取。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Sinte-Beuve/p/13260249.html#%E6%9C%80%E4%BD%B3%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">https://www.cnblogs.com/Sinte-Beuve/p/13260249.html#%E6%9C%80%E4%BD%B3%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>不管是第一种自己实现 Wrapper 的方案还是使用第二种 Spring 提供的 Wrapper，在过滤器中需要判断<code>Method</code>是否是<code>Post</code>，同时也要判断<code>Content-Type</code>不是<code>multipart/form-data</code>， 因为该类型 SpringMVC 会在 <code>doDispatch()</code>中处理，若在过滤器中先读取了，后续就读取不到了。</p>
+</body></html></div><div class="article-licensing box"><div class="licensing-title"><p>HttpServletRequest流数据不可重复读</p><p><a href="https://jerryzhu1229.github.io/2024/06/12/Spring/HttpServletReque流数据不可重复读/">https://jerryzhu1229.github.io/2024/06/12/Spring/HttpServletReque流数据不可重复读/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-06-12</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-08-17</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%8D%95%E6%B5%8B/">单测</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/08/02/%E7%AE%97%E6%B3%95/%E6%A8%A1%E6%8B%9F/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">模拟</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/06/12/Spring/Mockito%E4%BD%BF%E7%94%A8/"><span class="level-item">Mockito使用</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#问题背景"><span class="level-left"><span class="level-item">1</span><span class="level-item">问题背景</span></span></a></li><li><a class="level is-mobile" href="#前置原理"><span class="level-left"><span class="level-item">2</span><span class="level-item">前置原理</span></span></a></li><li><a class="level is-mobile" href="#问题原因"><span class="level-left"><span class="level-item">3</span><span class="level-item">问题原因</span></span></a></li><li><a class="level is-mobile" href="#解决方案"><span class="level-left"><span class="level-item">4</span><span class="level-item">解决方案</span></span></a></li><li><a class="level is-mobile" href="#总结"><span class="level-left"><span class="level-item">5</span><span class="level-item">总结</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="level-start"><span class="level-item">中间件</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">前端技术</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="level-start"><span class="level-item">运维</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
