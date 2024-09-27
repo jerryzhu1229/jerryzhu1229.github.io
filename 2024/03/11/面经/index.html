@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>面经 - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/03/11/%E9%9D%A2%E7%BB%8F/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-0d2bf9d8ed0d7ee5e9d3f75a40bc54c7_1440w.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/1&amp;amp;e=1717171199&amp;amp;s=tvjmjmtmtjvvmyy&amp;amp;token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:Pqb4eOr7xJ6nD-gR32NSnyNCk-M=.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/message-queue20210507200944439.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/1460000037747258.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/kafka-offset.jpg"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1MDc2MTgw,size_16,color_FFFFFF,t_70.png"><meta property="article:published_time" content="2024-03-11T12:54:34.000Z"><meta property="article:modified_time" content="2024-08-17T03:29:43.120Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="面经"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/v2-0d2bf9d8ed0d7ee5e9d3f75a40bc54c7_1440w.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/03/11/%E9%9D%A2%E7%BB%8F/"},"headline":"面经","image":["https://jerryzhu1229.github.io/pic/v2-0d2bf9d8ed0d7ee5e9d3f75a40bc54c7_1440w.jpg","https://jerryzhu1229.github.io/pic/1&amp;e=1717171199&amp;s=tvjmjmtmtjvvmyy&amp;token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:Pqb4eOr7xJ6nD-gR32NSnyNCk-M=.png","https://jerryzhu1229.github.io/pic/message-queue20210507200944439.png","https://jerryzhu1229.github.io/pic/1460000037747258.png","https://jerryzhu1229.github.io/pic/kafka-offset.jpg","https://jerryzhu1229.github.io/pic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1MDc2MTgw,size_16,color_FFFFFF,t_70.png"],"datePublished":"2024-03-11T12:54:34.000Z","dateModified":"2024-08-17T03:29:43.120Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/03/11/%E9%9D%A2%E7%BB%8F/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>面经 - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/03/11/%E9%9D%A2%E7%BB%8F/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-0d2bf9d8ed0d7ee5e9d3f75a40bc54c7_1440w.jpg"><meta property="article:published_time" content="2024-03-11T12:54:34.000Z"><meta property="article:modified_time" content="2024-09-27T04:30:08.000Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="面经"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/v2-0d2bf9d8ed0d7ee5e9d3f75a40bc54c7_1440w.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/03/11/%E9%9D%A2%E7%BB%8F/"},"headline":"面经","image":["https://jerryzhu1229.github.io/pic/v2-0d2bf9d8ed0d7ee5e9d3f75a40bc54c7_1440w.jpg"],"datePublished":"2024-03-11T12:54:34.000Z","dateModified":"2024-09-27T04:30:08.000Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/03/11/%E9%9D%A2%E7%BB%8F/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -29,7 +29,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-03-11T12:54:34.000Z" title="2024/3/11 20:54:34">2024-03-11</time>发表</span><span class="level-item"><time dateTime="2024-08-17T03:29:43.120Z" title="2024/8/17 11:29:43">2024-08-17</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/java/">java</a></span><span class="level-item">1 小时读完 (大约9131个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">面经</h1><div class="content"><html><head></head><body><h1 id="3-13-芒星面经"><a href="#3-13-芒星面经" class="headerlink" title="3/13 芒星面经"></a>3/13 芒星面经</h1><ol>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-03-11T12:54:34.000Z" title="2024/3/11 20:54:34">2024-03-11</time>发表</span><span class="level-item"><time dateTime="2024-09-27T04:30:08.000Z" title="2024/9/27 12:30:08">2024-09-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/java/">java</a></span><span class="level-item">10 分钟读完 (大约1467个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">面经</h1><div class="content"><html><head></head><body><h1 id="3-13-芒星面经"><a href="#3-13-芒星面经" class="headerlink" title="3/13 芒星面经"></a>3/13 芒星面经</h1><ol>
 <li>策略模式跟状态模式的区别</li>
 <li>黑盒测试、白盒测试</li>
 <li>一个项目的研发过程</li>
@@ -52,263 +52,15 @@
 
 
 
-
-
+<h1 id="9-25-中冶赛迪-二面"><a href="#9-25-中冶赛迪-二面" class="headerlink" title="9/25 中冶赛迪 二面"></a>9/25 中冶赛迪 二面</h1><ol>
+<li>软件开发流程（需求评审～～～）</li>
+<li>如何进行一个软件开发的统筹</li>
+<li>锁的类型</li>
+<li>kafka 和 rabbitmq 的区别</li>
+<li>rpc 定义</li>
+<li>规则引擎如何实现，库表设计</li>
+</ol>
 <h1 id="接口优化方案"><a href="#接口优化方案" class="headerlink" title="接口优化方案"></a>接口优化方案</h1><p><img src="/../pic/v2-0d2bf9d8ed0d7ee5e9d3f75a40bc54c7_1440w.jpg" alt="img"></p>
-<h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h2 id="滑块锁"><a href="#滑块锁" class="headerlink" title="滑块锁"></a>滑块锁</h2><p>为什么 incr 之后要用滑块锁，incr 就具备原子性了</p>
-<p>在 redis 集群模式下【以我们的场景为例】，incr 请求操作也可能在请求时发生网络抖动超时返回。这个时候incr有可能成功，也有可能失败。</p>
-<p>如果redis宕机了，扣减的库存和生成的分布式锁的数据还没同步到从节点，那 Redis 恢复的时候会导致库存重复扣减超卖。 这里加分布式锁可以防止：扣减库存成功后→Redis 宕机导致扣减的那个库存丢失→Redis 恢复正常→加分布式锁成功（加锁的是正常的库存数量）的情况。</p>
-<p><img src="/../pic/1&amp;e=1717171199&amp;s=tvjmjmtmtjvvmyy&amp;token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:Pqb4eOr7xJ6nD-gR32NSnyNCk-M=.png" alt="img"></p>
-<h2 id="规则引擎"><a href="#规则引擎" class="headerlink" title="规则引擎"></a>规则引擎</h2><ol>
-<li><p>筛选的标签是什么，根据什么来过滤呢？</p>
-<p>年龄、性别、首单金额、消费总额、忠诚度、点击、搜索、喜好、状态等。这些数据主要根据运营活动策略的配置而进行开发和使用。</p>
-</li>
-<li><p>那有没有可能你制定的这些标签，数据传进来的时候是丢失的，用户没有某个路径上的数据，是不是就到不了叶子节点了，按你说的就没法领取活动了？</p>
-<p>任何一款决策树在没有标签的数据的前提下，都会影响最终的决策结果。就像风控模型，我本来判断你是黑产，但标签丢失，我就没法准确判断。所以这种情况通常是进行兜底，风险不可评估，<strong>走兜底策略决策结果</strong>。</p>
-</li>
-<li><p>既然你的这些规则都是确定的，为什么要用决策树？决策树和布尔检索有什么区别知道吗？</p>
-<p>规则是确定的还有可能新开发的，每个玩法活动应对的场景不同标签也会随之改变。所以决策树规则引擎的目的是尽可能简化通用场景的开发成本，提高研发能效，快速响应业务需求。</p>
-</li>
-<li><p>量化规则引擎是一个组件，如果有一个新的业务进来，如何复用? 它的复用性体现在哪?能否支持风控可A/Btest需求?</p>
-<p>没有把业务逻辑和和具体的功能性服务进行捆绑，只需要在量化规则的库表中加入决策树的配置信息，包括树根、树茎、子叶、果实。在具体的逻辑实现中需要通过子叶判断走哪个树茎最终筛选出一个果实来。这样就可以被新的业务场景使用。因为他是规则引擎结构设计，灵活性高，复用性好。 </p>
-<p>A/B Test 本身就可以做为决策树中的子叶果实来配置，对AB用户发放不同的策略结果。所以结合风控提供的数据，作为一个逻辑节点使用也是可以的。</p>
-</li>
-<li><p>规则引擎如何扩容</p>
-<p>实际上是对决策树的一个调整，具体到实际的操作就是对规则引擎的库表信息进行增加条件，比如增加新的子叶节点代表加入的新的规则标签，相应要加入树茎代表决策的路径。</p>
-</li>
-<li><p>规则引擎的设计目的</p>
-<p>降低重复编码和提高可维护性的</p>
-<p>主要解决抽奖业务场景中对个性化运营诉求，如人群身份标签、活动资格等规则的可配置化的交叉使用。</p>
-<p>此规则引擎的设计是一个二叉树判断，具体用到了组合模式，工厂模式。为了便于维护和使用，进行了库表对二叉树的抽象设计，树根、树茎、子叶、果实，映射为二叉树编码的相关属性信息。</p>
-</li>
-</ol>
-<blockquote>
-<p>​		组合模式是一种结构型设计模式，它允许你将对象组合成树形结构以表示“部分-整体”的层次结构。组合模式使得客户端能够统一对待单个对象和对象组合，从而使得系统中的每个对象都可以被一致地处理。</p>
-</blockquote>
-<ol start="7">
-<li><p>规则引擎中，如果有两个同类型的节点怎么办？比如说规则树中有两个节点代表的同一类型的条件，比如考虑一个年龄大于10，一个岁数大于25，位于不同的规则树节点中，在高并发的情况下，通过rpc调用接口，对于用户的年龄数据查询会查两遍，但是实际上查一次就可以，但是调用端相当于耗费了两次的查询，应该怎么解决？</p>
-<p>对查询的数据加缓存</p>
-</li>
-</ol>
-<h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><ol>
-<li><p>如何扩展：数据迁移</p>
-<p><strong>常规方案</strong></p>
-<p>如果增加的节点数和扩容操作没有规划，那么绝大部分数据所属的分片都有变化，需要在分片间迁移：</p>
-<ul>
-<li>预估迁移耗时，发布停服公告；</li>
-<li>停服(用户无法使用服务)，使用事先准备的迁移脚本，进行数据迁移；</li>
-<li>修改为新的分片规则；</li>
-<li>启动服务器。</li>
-</ul>
-<p><strong>免迁移扩容</strong></p>
-<p>采用双倍扩容策略，避免数据迁移。扩容前每个节点的数据，有一半要迁移至一个新增节点中，对应关系比较简单。<br>具体操作如下(假设已有 2 个节点 A/B，要双倍扩容至 A/A2/B/B2 这 4 个节点)：</p>
-<ul>
-<li>无需停止应用服务器；</li>
-<li>新增两个数据库 A2/B2 作为从库，设置主从同步关系为：A=&gt;A2、B=&gt;B2，直至主从数据同步完毕(早期数据可手工同步)；</li>
-<li>调整分片规则并使之生效：<br>原 ID%2=0 =&gt; A 改为 ID%4=0 =&gt; A, ID%4=2 =&gt; A2；<br>原 ID%2=1 =&gt; B 改为 ID%4=1 =&gt; B, ID%4=3 =&gt; B2。</li>
-<li>解除数据库实例的主从同步关系，并使之生效；</li>
-</ul>
-<p>此时，四个节点的数据都已完整，只是有冗余(多存了和自己配对的节点的那部分数据)，择机清除即可(过后随时进行，不影响业务)。</p>
-</li>
-</ol>
-<h2 id="Redis分布式锁"><a href="#Redis分布式锁" class="headerlink" title="Redis分布式锁"></a>Redis分布式锁</h2><ol>
-<li><p>如果redis作为分布式锁的时候，主节点挂掉了，但是数据还没有同步到从节点，这种情况怎么办？</p>
-<p>通常这种情况也就是说主节点挂了，切换到从节点也不能正常工作。那么最要保障的就是不要发生过多的客诉，所以会紧急上挡板，下线活动，提醒用户：“商品售空，运营正在紧急补货中，稍后上架”。待Redis等服务恢复后，再进行上线。</p>
-<blockquote>
-<p>Redis 挡板的实现原理：Redis 挡板的实现原理是通过使用 Redis 的键值对存储来实现的。Redis 挡板的实现步骤如下： 1. 首先，在 Redis 中创建一个键值对，其中键为挡板的名称，值为挡板的值； 2. 然后，在应用程序中，使用 Redis 的 get 方法来获取挡板的值； 3. 如果挡板的值为 true，则表示挡板已经启用，应用程序将不会执行相应的操作； 4. 如果挡板的值为 false，则表示挡板未启用，应用程序将会执行相应的操作。 通过使用 Redis 挡板，可以实现动态控制应用程序的行为，而无需重新部署应用程序。 我理解这个操作相当于一个开关。</p>
-</blockquote>
-</li>
-<li><p>Redis的分段锁是如何实现的</p>
-<p>首先需要明确为什么要使用分段锁，在抽奖业务里，要保证活动的奖品不超发，就需要对活动库存扣减上锁，一般是使用数据库行级锁或者直接用 redis对活动 id 上锁，这两种都是独占锁，在并发场景下，性能太低。那么基于redis的分段锁是对用户参与的活动库存上锁，具体是先在redis 中对每个活动参与次数进行预热，每一次的活动参与都会 incr redis 中的活动参与次数，假如活动参与次数大于活动库存就会返回活动库存不足，假如可以参与就将活动 id + incr 得到的参数次数 使用setnx上锁，这就是分段锁。</p>
-<p>分段锁的核心是去竞态，避免独占影响系统的响应性能。假如一个活动库存只有 100，有 200 个请求参与，那么就只有 100 个请求能申请到分段锁，其余的将会被拒绝，以防止超发。不能保障奖品都发放完全。</p>
-</li>
-<li><p>为什么滑块锁，incr 后还要加一个 setNx </p>
-<p>集群模式下，incr 可能会出现失败，加 setNx 是一个保障</p>
-<p>加锁是兜底，你不知道什么时候会出现 incr 不对的情况。如；集群模式下 incr 失败、出现redis问题，需要恢复库存。如果没有锁，可能会超卖。</p>
-<p>setNx 是非独占锁，key 可以不释放，那么就解决了独占锁把握不好释放时机，释放早了流程可能还没有结束，释放晚了可能用户都走了。</p>
-</li>
-<li><p>分布式锁有哪些实现方式？为什么使用Redis实现分布式锁</p>
-<p><strong>基于数据库的实现</strong>，使用数据库的事务和唯一约束（如唯一索引或唯一约束）来实现分布式锁。</p>
-<p><strong>基于ZooKeeper的实现</strong>：使用 ZooKeeper 的临时节点（ephemeral node）来实现分布式锁。</p>
-<p><strong>基于Redis的实现</strong>：通过 SETNX 命令（或 SET 指令的 NX 选项）尝试设置键值对，成功则表示获取锁，失败则表示锁已被其他客户端持有。</p>
-<p><strong>性能高、原子操作、支持过期时间、简单易用</strong></p>
-</li>
-<li><p>Redis 是单机的吗，如果单机的话 Redis 分布式锁有没有什么问题</p>
-<p>redis 高可用问题，单机宕机后，服务就崩溃了</p>
-</li>
-</ol>
-<h2 id="Kafka-消息队列"><a href="#Kafka-消息队列" class="headerlink" title="Kafka-消息队列"></a>Kafka-消息队列</h2><ol>
-<li><p>保证活动库存最终一致性</p>
-<p>发送 mq 消息异步更新数据库的库存</p>
-</li>
-<li><p>项目中哪些地方使用了MQ</p>
-<p>保存库存最终一致性；抽奖完成后异步调用发奖流程</p>
-</li>
-<li><p>说说MQ解耦发奖流程，为什么要解耦</p>
-<p>在抽奖流程完成后，实际上已经得到了返回给用户的信息，抽奖成功与否，抽中的奖品是什么等等。而发奖流程的时效性并不强，那么通过解耦，可以将业务流程拆分，降低系统的压力提高用户的体验</p>
-</li>
-<li><p>MQ 解耦发奖后的具体流程</p>
-</li>
-<li><p>kafka业务方面其实很少用，主要在大数据方面，存在消息丢失的场景，kafka丢消息的话 不会造成客诉吗？</p>
-<p>使用 xxl-job 设置定时任务，按期去扫发奖单，假如发现发奖单中的发奖状态是未发奖，那么就重新发送 mq 消息去执行发奖流程，确保奖品发放，提高系统的可靠性。</p>
-</li>
-<li><p>为什么选择xxl-job执行定时任务，了解其他任务调度组件吗</p>
-<p>功能丰富、易于使用、高可靠性、社区活跃</p>
-<p>Quartz 是一个功能强大的开源任务调度框架，支持丰富的调度功能和灵活的配置，但需要用户自行处理分布式部署和集群环境下的任务调度问题。</p>
-<p>Elastic Job 是一个分布式任务调度框架，提供了灵活的分片策略和强大的扩展性，适用于大规模分布式任务调度场景。</p>
-</li>
-</ol>
-<h2 id="表的设计"><a href="#表的设计" class="headerlink" title="表的设计"></a>表的设计</h2><p>先介绍业务</p>
-<p>后阐述领域</p>
-<p>引入表设计；根据领域驱动中对各个模块的定义，设计数据库表，也就对应了活动表、抽奖策略配置表、准入规则引擎表、用户抽奖单记录表、以及配合这些表数据结构运行的其他表，如：记录用户的参与次数等。</p>
-<h2 id="系统的瓶颈在哪里"><a href="#系统的瓶颈在哪里" class="headerlink" title="系统的瓶颈在哪里"></a>系统的瓶颈在哪里</h2><p>瓶颈都包括哪些，一般有</p>
-<p>1.1 资源竞争 - 也就是库存的扣减，它是一种独占的资源。所以优化为更细颗粒度的分段锁了。</p>
-<p>1.2 业务流程 - 从参与抽奖、规则判断、扣减库存、抽奖算法、记录结果、发送奖品，全部都在一个事务下，那么这个事务会非常大也很耗时，耗时就代表这会更长时间的占用数据库连接资源。所以要用 MQ 进行解耦，避免做过大的事务处理。 </p>
-<p>1.3 业务数据 - 对于数据库个人行为的数据，包括个人记录数据时的事务，和查询数据。如果都是一个库的一个表，那么对这个库表的压力就会非常大，所以要分库分表处理这种瞬时业务量很高的场景。之后还就是数据量过多对数据库的存储压力问题。</p>
-<h2 id="抽奖项目里边-接口间的幂等性是如何保证的"><a href="#抽奖项目里边-接口间的幂等性是如何保证的" class="headerlink" title="抽奖项目里边 接口间的幂等性是如何保证的"></a>抽奖项目里边 接口间的幂等性是如何保证的</h2><p>数据库里边设置防重字段+唯一索引实现幂等性，保证一个用户参加一次活动只会一次中奖，而且中奖之后也不会多次发奖。</p>
-<p>并做了一层 Redis 控制，避免都打到库上带来压力</p>
-<h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p>跨库的事务处理，一种是分布式事务，另外一种就是基于MQ+任务调度补偿的方式，完成最终一致性。</p>
-<p>那么鉴于抽奖系统的实时性要求，从<strong>用户流程体验上，希望更加流畅，支撑更大的并发量</strong>，而不是对整个流程添加过多的事务，降低性能。<strong>因为事务来说，是一种集中化的竞态</strong>，所以这部分设计上采用最终一致性的方式进行处理，而不是直接添加大块的事务。</p>
-<h2 id="抽奖系统mq重发的时候是怎么保证幂等性"><a href="#抽奖系统mq重发的时候是怎么保证幂等性" class="headerlink" title="抽奖系统mq重发的时候是怎么保证幂等性"></a>抽奖系统mq重发的时候是怎么保证幂等性</h2><p>抽奖系统mq重发的时候是怎么保证幂等性的，因为可能上条消息实际被消费了，但由于某些原因导致了重发，导致实际消费了2遍</p>
-<p>最终重要的，一般对于金融、订单、支付等场景，必须使用数据库防重字段做强一致性拦截处理，避免重复消费造成资损和客诉。</p>
-<h2 id="部署情况-qps、rt、并发数"><a href="#部署情况-qps、rt、并发数" class="headerlink" title="部署情况 qps、rt、并发数"></a>部署情况 qps、rt、并发数</h2><ol>
-<li>两台机器配置为 4核8G，接口的响应时间 rt 为 200ms，每秒可以扛住 300 个请求，qps=300/0.2=1500,</li>
-</ol>
-<p>pv=10w</p>
-<p>QPS=100000x0.8/（86400*0.2）=80000/17280=5</p>
-<p>Rt = 200ms</p>
-<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><h2 id="kafka-是什么"><a href="#kafka-是什么" class="headerlink" title="kafka 是什么"></a>kafka 是什么</h2><p>分布式流处理平台，常用于企业级消息引擎</p>
-<h2 id="kafka-高性能原理"><a href="#kafka-高性能原理" class="headerlink" title="kafka 高性能原理"></a>kafka 高性能原理</h2><p>使用 <strong>page cache</strong>，不依赖 jvm 内存，如果使用 jvm 内存，会增加 gc 负担，增加延迟，创建对象的开销也比较高。</p>
-<h2 id="kafka的架构"><a href="#kafka的架构" class="headerlink" title="kafka的架构"></a>kafka的架构</h2><p>高吞吐量、低延迟、持久性、可扩展性和容错性等特点</p>
-<p>Kafka 的架构主要由以下几个核心组件组成：</p>
-<ol>
-<li><strong>Producer（生产者）</strong> : 产生消息的一方。</li>
-<li><strong>Consumer（消费者）</strong> : 消费消息的一方。</li>
-<li><strong>Broker（代理）</strong> : 可以看作是一个独立的 Kafka 实例。多个 Kafka Broker 组成一个 Kafka Cluster。</li>
-<li><strong>Topic（主题）</strong> : Producer 将消息发送到特定的主题，Consumer 通过订阅特定的 Topic(主题) 来消费消息。</li>
-<li><strong>Partition（分区）</strong> : Partition 属于 Topic 的一部分。一个 Topic 可以有多个 Partition ，并且同一 Topic 下的 Partition 可以分布在不同的 Broker 。</li>
-<li><strong>Zookeeper</strong>：Kafka 使用 Zookeeper 来管理集群的元数据、进行 Leader 选举和协调 Broker 节点。</li>
-<li><strong>AR(Assigned Replicas)</strong>: AR 是主题被创建后，分区创建时被分配的副本集合，副本个数由副本因子决定。</li>
-<li><strong>ISR(In-Sync Replicas)</strong>: Kafka 中特别重要的概念，指代的是 AR 中那些与 Leader 保持同步的副本集合。在 AR 中的副本可能不在 ISR 中，但 Leader 副本天然就包含在 ISR 中。</li>
-</ol>
-<p><img src="/../pic/message-queue20210507200944439.png" alt="img"></p>
-<p>在 Kafka 的架构中，Producer 将消息发布到 Topic 中，Broker 存储并处理消息，并且通过 Partition 将 Topic 分割成多个部分，消费者通过 Consumer Group 消费消息。整个架构通过 Zookeeper 进行管理和协调，保证了系统的可靠性和稳定性。</p>
-<h2 id="什么是消费组"><a href="#什么是消费组" class="headerlink" title="什么是消费组"></a>什么是消费组</h2><p><strong>消费者组是 Kafka 提供的可扩展且具有容错性的消费者机制</strong></p>
-<ol>
-<li>可扩展：</li>
-</ol>
-<p>当生产者向 Topic 写入消息的速度超过了现有消费者的处理速度，此时需要对消费者进行横向伸缩，用多个消费者从同一个主题读取消息，对消息进行分流。<strong>同一个分区不能被一个组中的多个 consumer 消费。</strong></p>
-<p><img src="/../pic/1460000037747258.png" alt="two"></p>
-<ol start="2">
-<li>容错性</li>
-</ol>
-<p><strong>在消费者组中，多个实例共同订阅若干个主题，实现共同消费。当某个实例挂掉的时候，其他实例会自动地承担起它负责消费的分区。</strong></p>
-<h2 id="Kafka-的多副本机制了解吗？带来了什么好处？"><a href="#Kafka-的多副本机制了解吗？带来了什么好处？" class="headerlink" title="Kafka 的多副本机制了解吗？带来了什么好处？"></a>Kafka 的多副本机制了解吗？带来了什么好处？</h2><p>分区（Partition）中的多个副本之间会有一个 leader ，其他副本称为 follower。发送的消息会被发送到 leader 副本，然后 follower 副本才能从 leader 副本中拉取消息进行同步。</p>
-<p><strong>Kafka 的多分区（Partition）以及多副本（Replica）机制有什么好处呢？</strong></p>
-<p>多分区——一个 topic 可以指定多个 分布在不同 broker 的partition，<strong>提高并发能力（负载均衡）</strong>。</p>
-<p>多副本——<strong>提高容灾能力</strong>，提高了消息存储的安全性</p>
-<h2 id="zookeeper-的作用"><a href="#zookeeper-的作用" class="headerlink" title="zookeeper 的作用"></a>zookeeper 的作用</h2><ol>
-<li>注册 broker</li>
-<li>注册 topic</li>
-<li>负载均衡</li>
-</ol>
-<h2 id="位移-offset-的作用"><a href="#位移-offset-的作用" class="headerlink" title="位移 offset 的作用"></a>位移 offset 的作用</h2><p><strong>在 Kafka 中，每个主题分区下的每条消息都被赋予了一个唯一的 ID 数值，用于标识它在分区中的位置。这个 ID 数值，就被称为位移，或者叫偏移量。一旦消息被写入到分区日志，它的位移值将不能被修改。</strong></p>
-<h2 id="保证消费顺序"><a href="#保证消费顺序" class="headerlink" title="保证消费顺序"></a>保证消费顺序</h2><p>总结一下，对于如何保证 Kafka 中消息消费的顺序，有了下面两种方法：</p>
-<ol>
-<li>1 个 Topic 只对应一个 Partition。</li>
-<li>（推荐）发送消息的时候指定 key/Partition。</li>
-</ol>
-<h2 id="保证消息不丢失"><a href="#保证消息不丢失" class="headerlink" title="保证消息不丢失"></a>保证消息不丢失</h2><h3 id="生产者丢失消息情况"><a href="#生产者丢失消息情况" class="headerlink" title="生产者丢失消息情况"></a>生产者丢失消息情况</h3><p>生产者(Producer) 调用<code>send</code>方法发送消息之后，消息可能因为网络问题并没有发送过去。</p>
-<p>所以，我们不能默认在调用<code>send</code>方法发送消息之后消息发送成功了。为了确定消息是发送成功，我们要判断消息发送的结果。</p>
-<ol>
-<li><p>回调机制：send()后添加回调函数</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ListenableFuture&lt;SendResult&lt;String, Object&gt;&gt; future = kafkaTemplate.send(topic, o);</span><br><span class="line">future.addCallback(result -&gt; logger.info(<span class="string">"生产者成功发送消息到topic:{} partition:{}的消息"</span>, result.getRecordMetadata().topic(), result.getRecordMetadata().partition()),</span><br><span class="line">        ex -&gt; logger.error(<span class="string">"生产者发送消失败，原因：{}"</span>, ex.getMessage()));</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>重试机制。通过配置重试次数和重试间隔，可以确保消息在发生失败时有机会重新发送</p>
-</li>
-<li><p>消息确认机制。</p>
-<ol>
-<li><strong>acks=0</strong>：生产者不会等待任何确认，直接发送下一条消息。</li>
-<li><strong>acks=1</strong>：生产者会等待 leader 副本确认消息后再发送下一条消息。</li>
-<li><strong>acks=all</strong>：生产者会等待所有 ISR（In-Sync Replicas，同步副本）确认消息后再发送下一条消息。</li>
-</ol>
-</li>
-</ol>
-<h3 id="消费者丢失消息情况"><a href="#消费者丢失消息情况" class="headerlink" title="消费者丢失消息情况"></a>消费者丢失消息情况</h3><p>消息在被追加到 Partition(分区)的时候都会分配一个特定的偏移量（offset）。偏移量（offset)表示 Consumer 当前消费到的 Partition(分区)的所在的位置。Kafka 通过偏移量（offset）可以保证消息在分区内的顺序性。</p>
-<p><img src="/../pic/kafka-offset.jpg" alt="kafka offset"></p>
-<p>当消费者拉取到了分区的某个消息之后，消费者会自动提交了 offset。自动提交的话会有一个问题，试想一下，当消费者刚拿到这个消息准备进行真正消费的时候，突然挂掉了，消息实际上并没有被消费，但是 offset 却被自动提交了。</p>
-<p>解决办法也比较粗暴，我们手动关闭自动提交 offset，每次在真正消费完消息之后再自己<strong>手动提交 offset</strong> 。 但是，细心的朋友一定会发现，这样会带来消息被重新消费的问题。比如你刚刚消费完消息之后，还没提交 offset，结果自己挂掉了，那么这个消息理论上就会被消费两次。</p>
-<h3 id="Kafka-Broker-丢失消息情况"><a href="#Kafka-Broker-丢失消息情况" class="headerlink" title="Kafka Broker 丢失消息情况"></a>Kafka Broker 丢失消息情况</h3><p>假如 leader 副本所在的 broker 突然挂掉，那么就要从 follower 副本重新选出一个 leader ，但是 leader 的数据还有一些没有被 follower 副本的同步的话，就会造成消息丢失。</p>
-<p>解决办法就是我们设置 <strong>acks = all</strong>。acks 是 Kafka 生产者(Producer) 很重要的一个参数。当我们配置 <strong>acks = all</strong> 表示只有所有 ISR 列表的副本全部收到消息时，生产者才会接收到来自服务器的响应。</p>
-<h2 id="保证消息不重复消费"><a href="#保证消息不重复消费" class="headerlink" title="保证消息不重复消费"></a>保证消息不重复消费</h2><p>服务端侧已经消费的数据没有成功提交 offset（根本原因）。</p>
-<p>解决方案：</p>
-<ol>
-<li>做幂等校验，Redis 的 set，mysql 的主键</li>
-<li>拉取到消息即提交：会有消息丢失的风险。允许消息延时的场景，一般会采用这种方式。然后，通过定时任务在业务不繁忙（比如凌晨）的时候做数据兜底。</li>
-</ol>
-<h2 id="重试机制"><a href="#重试机制" class="headerlink" title="重试机制"></a>重试机制</h2><p>Kafka 消费者在默认配置下会进行最多 10 次 的重试，每次重试的时间间隔为 0，即立即进行重试。如果在 10 次重试后仍然无法成功消费消息，则不再进行重试，消息将被视为消费失败。</p>
-<h3 id="重试失败后的数据如何再次处理？"><a href="#重试失败后的数据如何再次处理？" class="headerlink" title="重试失败后的数据如何再次处理？"></a>重试失败后的数据如何再次处理？</h3><p>当达到最大重试次数后，数据会直接被跳过，继续向后进行。当代码修复后，如何重新消费这些重试失败的数据呢？</p>
-<p><strong>死信队列（Dead Letter Queue，简称 DLQ）</strong> 是消息中间件中的一种特殊队列。它主要用于处理无法被消费者正确处理的消息，通常是因为消息格式错误、处理失败、消费超时等情况导致的消息被”丢弃”或”死亡”的情况。当消息进入队列后，消费者会尝试处理它。如果处理失败，或者超过一定的重试次数仍无法被成功处理，消息可以发送到死信队列中，而不是被永久性地丢弃。在死信队列中，可以进一步分析、处理这些无法正常消费的消息，以便定位问题、修复错误，并采取适当的措施。</p>
-<p><code>@RetryableTopic</code> 是 Spring Kafka 中的一个注解,它用于配置某个 Topic 支持消息重试，更推荐使用这个注解来完成重试。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 重试 5 次，重试间隔 100 毫秒,最大间隔 1 秒</span></span><br><span class="line"><span class="meta">@RetryableTopic(</span></span><br><span class="line"><span class="meta">        attempts = "5",</span></span><br><span class="line"><span class="meta">        backoff = @Backoff(delay = 100, maxDelay = 1000)</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="meta">@KafkaListener(topics = {KafkaConst.TEST_TOPIC}, groupId = "apple")</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">customer</span><span class="params">(String message)</span> {</span><br><span class="line">    log.info(<span class="string">"kafka customer:{}"</span>, message);</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">n</span> <span class="operator">=</span> Integer.parseInt(message);</span><br><span class="line">    <span class="keyword">if</span> (n % <span class="number">5</span> == <span class="number">0</span>) {</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>();</span><br><span class="line">    }</span><br><span class="line">    System.out.println(n);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>当达到最大重试次数后，如果仍然无法成功处理消息，消息会被发送到对应的死信队列中。对于死信队列的处理，既可以用 <code>@DltHandler</code> 处理，也可以使用 <code>@KafkaListener</code> 重新消费。</p>
-<h2 id="消息积压"><a href="#消息积压" class="headerlink" title="消息积压"></a>消息积压</h2><p><strong>线上有时因为发送方发送消息速度过快，或者消费方处理消息过慢，可能会导致broker积压大量未消费消息</strong></p>
-<p>解决方案：此种情况如果积压了上百万未消费消息需要紧急处理，可以修改消费端程序，让其将收到的消息快速转发到其他topic(可以设置很多分区)，然后再启动多个消费者同时消费新主题的不同分区。如图所示：</p>
-<p><img src="/../pic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1MDc2MTgw,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述"></p>
-<p><strong>由于消息数据格式变动或消费者程序有bug，导致消费者一直消费不成功，也可能导致broker积压大量未消费消息。</strong><br>解决方案：此种情况可以将这些消费不成功的消息转发到其它队列里去(类似死信队列)，后面再慢慢分析死信队列里的消息处理问题。这个死信队列，kafka并没有提供，需要整合第三方插件！</p>
-<h2 id="设置-Kafka-能接收的最大消息的大小？"><a href="#设置-Kafka-能接收的最大消息的大小？" class="headerlink" title="设置 Kafka 能接收的最大消息的大小？"></a><strong>设置 Kafka 能接收的最大消息的大小？</strong></h2><ul>
-<li><p>Broker 端参数: <code>message.max.bytes</code>,</p>
-</li>
-<li><p>Consumer 端参数: <code>fetch.message.max.bytes</code></p>
-</li>
-</ul>
-<h3 id="监控-Kafka-的框架都有哪些？"><a href="#监控-Kafka-的框架都有哪些？" class="headerlink" title="监控 Kafka 的框架都有哪些？"></a><strong>监控 Kafka 的框架都有哪些？</strong></h3><ul>
-<li><p><strong>JMX 监控</strong>: 由于 Kafka 提供的监控指标都是基于 JMX 的</p>
-</li>
-<li><p><strong>Kafka Manager</strong></p>
-</li>
-<li><p><strong>Kafka Monitor</strong></p>
-</li>
-</ul>
-<h2 id="Broker-的-Heap-Size-如何设置？"><a href="#Broker-的-Heap-Size-如何设置？" class="headerlink" title="Broker 的 Heap Size 如何设置？"></a><strong>Broker 的 Heap Size 如何设置？</strong></h2><p><strong>任何 Java 进程 JVM 堆大小的设置都需要仔细地进行考量和测试。一个常见的做法是，以默认的初始 JVM 堆大小运行程序，当系统达到稳定状态后，手动触发一次 Full GC，然后通过 JVM 工具查看 GC 后的存活对象大小。之后，将堆大小设置成存活对象总大小的 1.5~2 倍。对于 Kafka 而言，这个方法也是适用的。不过，业界有个最佳实践，那就是将 Broker 的 Heap Size 固定为 6GB。经过很多公司的验证，这个大小是足够且良好的。</strong></p>
-<h2 id="Kafka-能手动删除消息吗？"><a href="#Kafka-能手动删除消息吗？" class="headerlink" title="Kafka 能手动删除消息吗？"></a><strong>Kafka 能手动删除消息吗？</strong></h2><p>Kafka 不需要用户手动删除消息。它本身提供了留存策略，能够自动删除过期消息。当然，它是支持手动删除消息的。</p>
-<p>使用 kafka-delete-records 命令，通过将分区 Log Start Offset 值抬高的方式间接删除消息。</p>
-<h2 id="consumer-offsets-是做什么用的？"><a href="#consumer-offsets-是做什么用的？" class="headerlink" title="__consumer_offsets 是做什么用的？"></a><strong>__consumer_offsets 是做什么用的？</strong></h2><p>这是一个内部主题，主要用于存储消费者的偏移量，以及消费者的元数据信息 (<code>消费者实例，消费者id</code> 等等)</p>
-<h2 id="分区-Leader-选举策略有几种？"><a href="#分区-Leader-选举策略有几种？" class="headerlink" title="分区 Leader 选举策略有几种？"></a><strong>分区 Leader 选举策略有几种？</strong></h2><ol>
-<li><strong>OfflinePartition Leader 选举</strong>: 每当有分区上线时，就需要执行 Leader 选举。</li>
-<li><strong>ReassignPartition Leader 选举</strong>: 当你手动运行 kafka-reassign-partitions 命令，或者是调用 Admin 的 alterPartitionReassignments 方法执行分区副本重分配时，可能触发此类选举。</li>
-<li><strong>PreferredReplicaPartition Leader 选举</strong>: 当你手动运行 kafka-preferred-replica-election 命令，或自动触发了 Preferred Leader 选举时，该类策略被激活</li>
-<li><strong>ControlledShutdownPartition Leader 选举</strong>: 当 Broker 正常关闭时，该 Broker 上的所有 Leader 副本都会下线，因此，需要为受影响的分区执行相应的 Leader 选举。</li>
-</ol>
-<p>从 AR 中挑选首个在 ISR 中的副本，作为新 Leader。</p>
-<h2 id="Kafka-的哪些场景中使用了零拷贝（Zero-Copy）"><a href="#Kafka-的哪些场景中使用了零拷贝（Zero-Copy）" class="headerlink" title="Kafka 的哪些场景中使用了零拷贝（Zero Copy）"></a><strong>Kafka 的哪些场景中使用了零拷贝（Zero Copy）</strong></h2><ol>
-<li><strong>基于 mmap 的索引</strong></li>
-<li><strong>日志文件读写所用的 TransportLayer</strong></li>
-</ol>
-<h2 id="Kafka-为什么不支持读写分离？"><a href="#Kafka-为什么不支持读写分离？" class="headerlink" title="Kafka 为什么不支持读写分离？"></a><strong>Kafka 为什么不支持读写分离？</strong></h2><p>Leader/Follower 模型并没有规定 Follower 副本不可以对外提供读服务。很多框架都是允许这么做的，只是 Kafka 最初为了避免不一致性的问题，而采用了让 Leader 统一提供服务的方式。</p>
-<p>不过，<strong>自 Kafka 2.4 之后，Kafka 提供了有限度的读写分离，也就是说，Follower 副本能够对外提供读服务</strong>。</p>
-<h2 id="如何调优-Kafka？"><a href="#如何调优-Kafka？" class="headerlink" title="如何调优 Kafka？"></a><strong>如何调优 Kafka？</strong></h2><ul>
-<li><strong>Producer 端</strong>:启用压缩，关闭重试</li>
-<li><strong>Broker 端</strong>：避免 Broker Full GC </li>
-<li><strong>Consumer</strong>: 增加fetch.min.bytes</li>
-</ul>
-<h2 id="为什么-redis-Pub-Sub-比-kafka-更快一些？二者如何选取"><a href="#为什么-redis-Pub-Sub-比-kafka-更快一些？二者如何选取" class="headerlink" title="为什么 redis Pub/Sub 比 kafka 更快一些？二者如何选取"></a>为什么 redis Pub/Sub 比 kafka 更快一些？二者如何选取</h2><p>Redis是一个内存数据库，其Pub/Sub功能将消息保存在内存中。由于内存访问速度通常远快于磁盘访问速度，因此Redis在处理实时性较高的消息推送时具有优势；Redis的Pub/Sub模型相对简单，使得它在处理发布和订阅操作时的开销较小。</p>
-<p>Kafka是一个完整的系统，提供了高吞吐量、分布式的提交日志。它旨在处理大规模数据流，具有强大的持久化能力和容错性。Kafka的分布式架构和分区机制使得它能够在多个消费者之间实现负载均衡，从而提高整体处理能力。</p>
-<p><strong>Redis PUB/SUB使用场景：</strong></p>
-<ol>
-<li>消息持久性需求不高</li>
-<li>吞吐量要求不高</li>
-<li>可以忍受数据丢失</li>
-<li>数据量不大</li>
-</ol>
-<p><strong>Kafka使用场景：</strong>(上面以外的其他场景)</p>
-<ol>
-<li>高可靠性</li>
-<li>高吞吐量</li>
-<li>持久性高</li>
-<li>多样化的消费处理模型</li>
-</ol>
 <h1 id="XXL-JOb"><a href="#XXL-JOb" class="headerlink" title="XXL-JOb"></a>XXL-JOb</h1><h2 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h2><p>admin：任务管理后台，用于配置和管理任务。</p>
 <p>executor：任务执行器，用于执行任务。可以有多个Executor节点，实现任务的分布式执行。</p>
 <p>jobcore：任务核心配置，包括任务的执行时间、执行器、调度策略等。</p>
@@ -330,7 +82,7 @@
 <p>如果任务执行异常，可以考虑增加报警规则，及时发现和处理异常任务。</p>
 <h2 id="XXL-Job如何处理分片任务的失败和重试？"><a href="#XXL-Job如何处理分片任务的失败和重试？" class="headerlink" title="XXL-Job如何处理分片任务的失败和重试？"></a>XXL-Job如何处理分片任务的失败和重试？</h2><p>XXL-Job对分片任务的失败和重试提供了支持。如果分片任务的某个分片执行失败，XXL-Job会自动进行重试，直到达到最大重试次数或任务成功执行为止。开发人员可以配置分片任务的最大重试次数和重试策略。</p>
 <h2 id="XXL-Job的任务调度器是如何实现的？"><a href="#XXL-Job的任务调度器是如何实现的？" class="headerlink" title="XXL-Job的任务调度器是如何实现的？"></a>XXL-Job的任务调度器是如何实现的？</h2><p>XXL-Job的任务调度器基于Quartz Scheduler实现。Quartz是一个开源的任务调度框架，提供了丰富的调度功能，XXL-Job在其基础上进行了定制化的扩展。</p>
-</body></html></div><div class="article-licensing box"><div class="licensing-title"><p>面经</p><p><a href="https://jerryzhu1229.github.io/2024/03/11/面经/">https://jerryzhu1229.github.io/2024/03/11/面经/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-03-11</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-08-17</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/03/11/cs/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">计算机网络</span></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#3-13-芒星面经"><span class="level-left"><span class="level-item">1</span><span class="level-item">3/13 芒星面经</span></span></a></li><li><a class="level is-mobile" href="#3-20-腾讯-pcg-一面"><span class="level-left"><span class="level-item">2</span><span class="level-item">3/20 腾讯 pcg 一面</span></span></a></li><li><a class="level is-mobile" href="#接口优化方案"><span class="level-left"><span class="level-item">3</span><span class="level-item">接口优化方案</span></span></a></li><li><a class="level is-mobile" href="#项目"><span class="level-left"><span class="level-item">4</span><span class="level-item">项目</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#滑块锁"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">滑块锁</span></span></a></li><li><a class="level is-mobile" href="#规则引擎"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">规则引擎</span></span></a></li><li><a class="level is-mobile" href="#分库分表"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">分库分表</span></span></a></li><li><a class="level is-mobile" href="#Redis分布式锁"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">Redis分布式锁</span></span></a></li><li><a class="level is-mobile" href="#Kafka-消息队列"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">Kafka-消息队列</span></span></a></li><li><a class="level is-mobile" href="#表的设计"><span class="level-left"><span class="level-item">4.6</span><span class="level-item">表的设计</span></span></a></li><li><a class="level is-mobile" href="#系统的瓶颈在哪里"><span class="level-left"><span class="level-item">4.7</span><span class="level-item">系统的瓶颈在哪里</span></span></a></li><li><a class="level is-mobile" href="#抽奖项目里边-接口间的幂等性是如何保证的"><span class="level-left"><span class="level-item">4.8</span><span class="level-item">抽奖项目里边 接口间的幂等性是如何保证的</span></span></a></li><li><a class="level is-mobile" href="#分布式事务"><span class="level-left"><span class="level-item">4.9</span><span class="level-item">分布式事务</span></span></a></li><li><a class="level is-mobile" href="#抽奖系统mq重发的时候是怎么保证幂等性"><span class="level-left"><span class="level-item">4.10</span><span class="level-item">抽奖系统mq重发的时候是怎么保证幂等性</span></span></a></li><li><a class="level is-mobile" href="#部署情况-qps、rt、并发数"><span class="level-left"><span class="level-item">4.11</span><span class="level-item">部署情况 qps、rt、并发数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Kafka"><span class="level-left"><span class="level-item">5</span><span class="level-item">Kafka</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#kafka-是什么"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">kafka 是什么</span></span></a></li><li><a class="level is-mobile" href="#kafka-高性能原理"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">kafka 高性能原理</span></span></a></li><li><a class="level is-mobile" href="#kafka的架构"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">kafka的架构</span></span></a></li><li><a class="level is-mobile" href="#什么是消费组"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">什么是消费组</span></span></a></li><li><a class="level is-mobile" href="#Kafka-的多副本机制了解吗？带来了什么好处？"><span class="level-left"><span class="level-item">5.5</span><span class="level-item">Kafka 的多副本机制了解吗？带来了什么好处？</span></span></a></li><li><a class="level is-mobile" href="#zookeeper-的作用"><span class="level-left"><span class="level-item">5.6</span><span class="level-item">zookeeper 的作用</span></span></a></li><li><a class="level is-mobile" href="#位移-offset-的作用"><span class="level-left"><span class="level-item">5.7</span><span class="level-item">位移 offset 的作用</span></span></a></li><li><a class="level is-mobile" href="#保证消费顺序"><span class="level-left"><span class="level-item">5.8</span><span class="level-item">保证消费顺序</span></span></a></li><li><a class="level is-mobile" href="#保证消息不丢失"><span class="level-left"><span class="level-item">5.9</span><span class="level-item">保证消息不丢失</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#生产者丢失消息情况"><span class="level-left"><span class="level-item">5.9.1</span><span class="level-item">生产者丢失消息情况</span></span></a></li><li><a class="level is-mobile" href="#消费者丢失消息情况"><span class="level-left"><span class="level-item">5.9.2</span><span class="level-item">消费者丢失消息情况</span></span></a></li><li><a class="level is-mobile" href="#Kafka-Broker-丢失消息情况"><span class="level-left"><span class="level-item">5.9.3</span><span class="level-item">Kafka Broker 丢失消息情况</span></span></a></li></ul></li><li><a class="level is-mobile" href="#保证消息不重复消费"><span class="level-left"><span class="level-item">5.10</span><span class="level-item">保证消息不重复消费</span></span></a></li><li><a class="level is-mobile" href="#重试机制"><span class="level-left"><span class="level-item">5.11</span><span class="level-item">重试机制</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#重试失败后的数据如何再次处理？"><span class="level-left"><span class="level-item">5.11.1</span><span class="level-item">重试失败后的数据如何再次处理？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#消息积压"><span class="level-left"><span class="level-item">5.12</span><span class="level-item">消息积压</span></span></a></li><li><a class="level is-mobile" href="#设置-Kafka-能接收的最大消息的大小？"><span class="level-left"><span class="level-item">5.13</span><span class="level-item">设置 Kafka 能接收的最大消息的大小？</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#监控-Kafka-的框架都有哪些？"><span class="level-left"><span class="level-item">5.13.1</span><span class="level-item">监控 Kafka 的框架都有哪些？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Broker-的-Heap-Size-如何设置？"><span class="level-left"><span class="level-item">5.14</span><span class="level-item">Broker 的 Heap Size 如何设置？</span></span></a></li><li><a class="level is-mobile" href="#Kafka-能手动删除消息吗？"><span class="level-left"><span class="level-item">5.15</span><span class="level-item">Kafka 能手动删除消息吗？</span></span></a></li><li><a class="level is-mobile" href="#consumer-offsets-是做什么用的？"><span class="level-left"><span class="level-item">5.16</span><span class="level-item">__consumer_offsets 是做什么用的？</span></span></a></li><li><a class="level is-mobile" href="#分区-Leader-选举策略有几种？"><span class="level-left"><span class="level-item">5.17</span><span class="level-item">分区 Leader 选举策略有几种？</span></span></a></li><li><a class="level is-mobile" href="#Kafka-的哪些场景中使用了零拷贝（Zero-Copy）"><span class="level-left"><span class="level-item">5.18</span><span class="level-item">Kafka 的哪些场景中使用了零拷贝（Zero Copy）</span></span></a></li><li><a class="level is-mobile" href="#Kafka-为什么不支持读写分离？"><span class="level-left"><span class="level-item">5.19</span><span class="level-item">Kafka 为什么不支持读写分离？</span></span></a></li><li><a class="level is-mobile" href="#如何调优-Kafka？"><span class="level-left"><span class="level-item">5.20</span><span class="level-item">如何调优 Kafka？</span></span></a></li><li><a class="level is-mobile" href="#为什么-redis-Pub-Sub-比-kafka-更快一些？二者如何选取"><span class="level-left"><span class="level-item">5.21</span><span class="level-item">为什么 redis Pub/Sub 比 kafka 更快一些？二者如何选取</span></span></a></li></ul></li><li><a class="level is-mobile" href="#XXL-JOb"><span class="level-left"><span class="level-item">6</span><span class="level-item">XXL-JOb</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#核心组件"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">核心组件</span></span></a></li><li><a class="level is-mobile" href="#任务调度原理"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">任务调度原理</span></span></a></li><li><a class="level is-mobile" href="#如何进行分片处理"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">如何进行分片处理</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job的定时任务和周期性任务有何区别"><span class="level-left"><span class="level-item">6.4</span><span class="level-item">XXL-Job的定时任务和周期性任务有何区别</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job如何保证任务的高可用性"><span class="level-left"><span class="level-item">6.5</span><span class="level-item">XXL-Job如何保证任务的高可用性</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job的任务执行失败了，如何排查和处理？"><span class="level-left"><span class="level-item">6.6</span><span class="level-item">XXL-Job的任务执行失败了，如何排查和处理？</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job如何处理分片任务的失败和重试？"><span class="level-left"><span class="level-item">6.7</span><span class="level-item">XXL-Job如何处理分片任务的失败和重试？</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job的任务调度器是如何实现的？"><span class="level-left"><span class="level-item">6.8</span><span class="level-item">XXL-Job的任务调度器是如何实现的？</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="level-start"><span class="level-item">中间件</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">前端技术</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="level-start"><span class="level-item">运维</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</body></html></div><div class="article-licensing box"><div class="licensing-title"><p>面经</p><p><a href="https://jerryzhu1229.github.io/2024/03/11/面经/">https://jerryzhu1229.github.io/2024/03/11/面经/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-03-11</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-09-27</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/03/11/cs/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">计算机网络</span></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#3-13-芒星面经"><span class="level-left"><span class="level-item">1</span><span class="level-item">3/13 芒星面经</span></span></a></li><li><a class="level is-mobile" href="#3-20-腾讯-pcg-一面"><span class="level-left"><span class="level-item">2</span><span class="level-item">3/20 腾讯 pcg 一面</span></span></a></li><li><a class="level is-mobile" href="#9-25-中冶赛迪-二面"><span class="level-left"><span class="level-item">3</span><span class="level-item">9/25 中冶赛迪 二面</span></span></a></li><li><a class="level is-mobile" href="#接口优化方案"><span class="level-left"><span class="level-item">4</span><span class="level-item">接口优化方案</span></span></a></li><li><a class="level is-mobile" href="#XXL-JOb"><span class="level-left"><span class="level-item">5</span><span class="level-item">XXL-JOb</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#核心组件"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">核心组件</span></span></a></li><li><a class="level is-mobile" href="#任务调度原理"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">任务调度原理</span></span></a></li><li><a class="level is-mobile" href="#如何进行分片处理"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">如何进行分片处理</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job的定时任务和周期性任务有何区别"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">XXL-Job的定时任务和周期性任务有何区别</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job如何保证任务的高可用性"><span class="level-left"><span class="level-item">5.5</span><span class="level-item">XXL-Job如何保证任务的高可用性</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job的任务执行失败了，如何排查和处理？"><span class="level-left"><span class="level-item">5.6</span><span class="level-item">XXL-Job的任务执行失败了，如何排查和处理？</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job如何处理分片任务的失败和重试？"><span class="level-left"><span class="level-item">5.7</span><span class="level-item">XXL-Job如何处理分片任务的失败和重试？</span></span></a></li><li><a class="level is-mobile" href="#XXL-Job的任务调度器是如何实现的？"><span class="level-left"><span class="level-item">5.8</span><span class="level-item">XXL-Job的任务调度器是如何实现的？</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="level-start"><span class="level-item">中间件</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">前端技术</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="level-start"><span class="level-item">运维</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,

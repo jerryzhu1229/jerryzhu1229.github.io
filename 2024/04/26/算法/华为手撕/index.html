@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>华为手撕 - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/04/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"><meta property="article:published_time" content="2024-04-25T16:33:05.000Z"><meta property="article:modified_time" content="2024-08-26T11:39:48.800Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="算法"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/04/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"},"headline":"华为手撕","image":["https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"],"datePublished":"2024-04-25T16:33:05.000Z","dateModified":"2024-08-26T11:39:48.800Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/04/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>华为手撕 - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/04/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"><meta property="article:published_time" content="2024-04-25T16:33:05.000Z"><meta property="article:modified_time" content="2024-09-26T10:23:05.440Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="算法"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/04/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"},"headline":"华为手撕","image":["https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"],"datePublished":"2024-04-25T16:33:05.000Z","dateModified":"2024-09-26T10:23:05.440Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/04/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -29,7 +29,743 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-04-25T16:33:05.000Z" title="2024/4/26 00:33:05">2024-04-26</time>发表</span><span class="level-item"><time dateTime="2024-08-26T11:39:48.800Z" title="2024/8/26 19:39:48">2024-08-26</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span><span class="level-item">30 分钟读完 (大约4531个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">华为手撕</h1><div class="content"><html><head></head><body><h1 id="数学题"><a href="#数学题" class="headerlink" title="数学题"></a>数学题</h1><h2 id="1-多个数求最小公倍数"><a href="#1-多个数求最小公倍数" class="headerlink" title="1. 多个数求最小公倍数"></a>1. 多个数求最小公倍数</h2><h3 id="求两个数的最小公倍数"><a href="#求两个数的最小公倍数" class="headerlink" title="求两个数的最小公倍数"></a>求两个数的最小公倍数</h3><blockquote>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-04-25T16:33:05.000Z" title="2024/4/26 00:33:05">2024-04-26</time>发表</span><span class="level-item"><time dateTime="2024-09-26T10:23:05.440Z" title="2024/9/26 18:23:05">2024-09-26</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span><span class="level-item">38 分钟读完 (大约5655个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">华为手撕</h1><div class="content"><html><head></head><body><h1 id="题库目录"><a href="#题库目录" class="headerlink" title="题库目录"></a>题库目录</h1><table>
+<thead>
+<tr>
+<th>题目</th>
+<th>难度</th>
+<th>类型</th>
+<th>掌握程度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>45. 跳跃游戏 II</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1190. 反转每对括号间的子串</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>781. 森林中的兔子</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>739. 每日温度</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 无重复字符的最长子串</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>46. 全排列</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>475. 供暖器</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>20. 有效的括号</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>394. 字符串解码</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>179. 最大数</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LCP 09. 最小跳跃次数</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>135. 分发糖果</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>面试题 17.24. 最大子矩阵</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1. 两数之和</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. 两数相加</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>42. 接雨水</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>22. 括号生成</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>554. 砖墙</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>547. 省份数量</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>55. 跳跃游戏</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>621. 任务调度器</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1047. 删除字符串中的所有相邻重复项</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>514. 自由之路</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5. 最长回文子串</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>14. 最长公共前缀</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300. 最长递增子序列</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>56. 合并区间</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>200. 岛屿数量</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11. 盛最多水的容器</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>799. 香槟塔</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>316. 去除重复字母</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>392. 判断子序列</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>85. 最大矩形</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>206. 反转链表</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>221. 最大正方形</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>32. 最长有效括号</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>62. 不同路径</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>146. LRU 缓存</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>130. 被围绕的区域</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>679. 24 点游戏</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>70. 爬楼梯</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>17. 电话号码的字母组合</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>19. 删除链表的倒数第 N 个结点</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15. 三数之和</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>151. 翻转字符串里的单词</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>957. N 天后的牢房</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>518. 零钱兑换 II</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>139. 单词拆分</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>179. 最大数</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>410. 分割数组的最大值</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>47. 全排列 II</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>860. 柠檬水找零</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>90. 子集 II</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>980. 不同路径 III</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>471. 编码最短长度的字符串</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>93. 复原 IP 地址</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>224. 基本计算器</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4. 寻找两个正序数组的中位数</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>88. 合并两个有序数组</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>692. 前K个高频单词</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>38. 外观数列</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>64. 最小路径和</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>30. 串联所有单词的子串</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>735. 行星碰撞</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>165. 比较版本号</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>354. 俄罗斯套娃信封问题</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1160. 拼写单词</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>678. 有效的括号字符串</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>102. 二叉树的层序遍历</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>287. 寻找重复数</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>16. 最接近的三数之和</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>264. 丑数 II</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>1293. 网格中的最短路径</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>剑指 Offer 38. 字符串的排列</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>40. 组合总和 II</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>746. 使用最小花费爬楼梯</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>974. 和可被 K 整除的子数组</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>685. 冗余连接 II</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>260. 只出现一次的数字 III</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>37. 解数独</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>72. 编辑距离</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>695. 岛屿的最大面积</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>36. 有效的数独</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>84. 柱状图中最大的矩形</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>148. 排序链表</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>199. 二叉树的右视图</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>121. 买卖股票的最佳时机</td>
+<td>简单</td>
+<td>dp</td>
+<td></td>
+</tr>
+<tr>
+<td>322. 零钱兑换</td>
+<td>中等</td>
+<td>dp</td>
+<td></td>
+</tr>
+<tr>
+<td>741. 摘樱桃</td>
+<td>困难</td>
+<td>[记忆化搜索](<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cherry-pickup/solutions/2766975/jiao-ni-yi-bu-bu-si-kao-dpcong-ji-yi-hua-ruue/">741. 摘樱桃 - 力扣（LeetCode）</a>)</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>214. 最短回文串</td>
+<td>困难</td>
+<td>kmp</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>406. 根据身高重建队列</td>
+<td>中等</td>
+<td>贪心</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>1162. 地图分析</td>
+<td>中等</td>
+<td>bfs</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>402. 移掉 K 位数字</td>
+<td>中等</td>
+<td>单调栈</td>
+<td></td>
+</tr>
+<tr>
+<td>343. 整数拆分</td>
+<td>中等</td>
+<td>dp</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>617. 合并二叉树</td>
+<td>简单</td>
+<td>dfs</td>
+<td></td>
+</tr>
+<tr>
+<td>387. 字符串中的第一个唯一字符</td>
+<td>简单</td>
+<td>哈希表、数组</td>
+<td></td>
+</tr>
+<tr>
+<td>76. 最小覆盖子串</td>
+<td>困难</td>
+<td>滑动窗口</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>34. 在排序数组中查找元素的第一个和最后一个位置</td>
+<td>中等</td>
+<td>二分</td>
+<td></td>
+</tr>
+<tr>
+<td>29. 两数相除</td>
+<td>中等</td>
+<td>位运算</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>105. 从前序与中序遍历序列构造二叉树</td>
+<td>中等</td>
+<td>分治</td>
+<td></td>
+</tr>
+<tr>
+<td>451. 根据字符出现频率排序</td>
+<td>中等</td>
+<td>哈希表+优先队列</td>
+<td></td>
+</tr>
+<tr>
+<td>1109. 航班预订统计</td>
+<td>中等</td>
+<td>差分</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>166. 分数到小数</td>
+<td>中等</td>
+<td>模拟</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>278. 第一个错误的版本</td>
+<td>简单</td>
+<td>二分</td>
+<td></td>
+</tr>
+<tr>
+<td>207. 课程表</td>
+<td>中等</td>
+<td>bfs</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>875. 爱吃香蕉的珂珂</td>
+<td>中等</td>
+<td>二分</td>
+<td></td>
+</tr>
+<tr>
+<td>134. 加油站</td>
+<td>中等</td>
+<td>后缀和</td>
+<td></td>
+</tr>
+<tr>
+<td>剑指 Offer 22. 链表中倒数第k个节点</td>
+<td>简单</td>
+<td>双指针</td>
+<td></td>
+</tr>
+<tr>
+<td>611. 有效三角形的个数</td>
+<td>中等</td>
+<td>双指针</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>LCR 182. 动态口令</td>
+<td>简单</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>面试题 02.05. 链表求和</td>
+<td>中等</td>
+<td>正向——栈</td>
+<td></td>
+</tr>
+<tr>
+<td>面试题 01.06. 字符串压缩</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>239. 滑动窗口的最大值</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>155. 最小栈</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>剑指 Offer 03. 数组中重复的数字</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>面试题 08.11. 硬币</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>剑指 Offer 50. 第一个只出现一次的字符</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>994. 腐烂的橘子</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>剑指 Offer 10- II. 青蛙跳台阶问题</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>剑指 Offer 13. 机器人的运动范围</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1004. 最大连续1的个数 III</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="数学题"><a href="#数学题" class="headerlink" title="数学题"></a>数学题</h1><h2 id="1-多个数求最小公倍数"><a href="#1-多个数求最小公倍数" class="headerlink" title="1. 多个数求最小公倍数"></a>1. 多个数求最小公倍数</h2><h3 id="求两个数的最小公倍数"><a href="#求两个数的最小公倍数" class="headerlink" title="求两个数的最小公倍数"></a>求两个数的最小公倍数</h3><blockquote>
 <p>既然想算最小公倍数，首先要清楚最小公倍数的求法，还有<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0&amp;spm=1001.2101.3001.7020">最大公约数</a>的求法:</p>
 <p>​									<strong>最小公倍数*最大公约数=两数乘积</strong></p>
 <p> 只要有最大公约数就可以求出最小公倍数,方法:</p>
@@ -293,7 +1029,7 @@
 </blockquote>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findRadius</span><span class="params">(<span class="type">int</span>[] houses, <span class="type">int</span>[] heaters)</span> {</span><br><span class="line">        <span class="comment">// 对于一个房子, 要么用前面的暖气, 要么用后面的, 二者取近的</span></span><br><span class="line">        <span class="comment">// 可以使用双指针</span></span><br><span class="line">        <span class="comment">// 先对两个数组做 sort </span></span><br><span class="line">        <span class="comment">// 对于每一个房子house, 从 heaters 中找第一个位置大于 house 的, -1 就是第一个位置小于 house</span></span><br><span class="line">        <span class="comment">// 然后有三种情况, 第一个heater 就满足; 最后一个 heater 也不满足; 中间的 heater 满足,那么就需要比较前后的距离</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        Arrays.sort(heaters);</span><br><span class="line">        Arrays.sort(houses);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>; i&lt;houses.length; ++i) {</span><br><span class="line">            <span class="keyword">while</span> (j &lt; heaters.length &amp;&amp; houses[i] &gt; heaters[j]) j++;</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">0</span>) {</span><br><span class="line">                ans = Math.max(ans, heaters[j] - houses[i]);</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (j == heaters.length) {</span><br><span class="line">                ans = Math.max(ans, houses[i] - heaters[j-<span class="number">1</span>]);</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                ans = Math.max(ans, Math.min(houses[i]-heaters[j-<span class="number">1</span>], heaters[j]-houses[i]));</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
-</body></html></div><div class="article-licensing box"><div class="licensing-title"><p>华为手撕</p><p><a href="https://jerryzhu1229.github.io/2024/04/26/算法/华为手撕/">https://jerryzhu1229.github.io/2024/04/26/算法/华为手撕/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-04-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-08-26</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/04/27/%E4%B8%AD%E9%97%B4%E4%BB%B6/git/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">git</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/03/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/"><span class="level-item">Redis</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#数学题"><span class="level-left"><span class="level-item">1</span><span class="level-item">数学题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-多个数求最小公倍数"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">1. 多个数求最小公倍数</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#求两个数的最小公倍数"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">求两个数的最小公倍数</span></span></a></li><li><a class="level is-mobile" href="#求多个数的最小公倍数"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">求多个数的最小公倍数</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#模拟题"><span class="level-left"><span class="level-item">2</span><span class="level-item">模拟题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-验证IP地址"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">1. 验证IP地址</span></span></a></li><li><a class="level is-mobile" href="#592-分数加减运算"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">592. 分数加减运算</span></span></a></li></ul></li><li><a class="level is-mobile" href="#数组题"><span class="level-left"><span class="level-item">3</span><span class="level-item">数组题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#48-旋转图像"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">48. 旋转图像</span></span></a></li><li><a class="level is-mobile" href="#134-加油站"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">134. 加油站</span></span></a></li><li><a class="level is-mobile" href="#135-分发糖果"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">135.分发糖果</span></span></a></li></ul></li><li><a class="level is-mobile" href="#回溯"><span class="level-left"><span class="level-item">4</span><span class="level-item">回溯</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-字符串的排列"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">1.字符串的排列</span></span></a></li><li><a class="level is-mobile" href="#46-全排列"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">46. 全排列</span></span></a></li></ul></li><li><a class="level is-mobile" href="#字符串"><span class="level-left"><span class="level-item">5</span><span class="level-item">字符串</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#3-无重复字符的最长子串"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">3. 无重复字符的最长子串</span></span></a></li><li><a class="level is-mobile" href="#443-压缩字符串"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">443. 压缩字符串</span></span></a></li><li><a class="level is-mobile" href="#1190-反转每对括号间的子串"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">1190. 反转每对括号间的子串</span></span></a></li><li><a class="level is-mobile" href="#2243-计算字符串的数字和"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">2243. 计算字符串的数字和</span></span></a></li><li><a class="level is-mobile" href="#394-字符串解码"><span class="level-left"><span class="level-item">5.5</span><span class="level-item">394. 字符串解码</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#栈"><span class="level-left"><span class="level-item">5.5.1</span><span class="level-item">栈</span></span></a></li><li><a class="level is-mobile" href="#dfs"><span class="level-left"><span class="level-item">5.5.2</span><span class="level-item">dfs</span></span></a></li></ul></li><li><a class="level is-mobile" href="#179-最大数"><span class="level-left"><span class="level-item">5.6</span><span class="level-item">179. 最大数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#动态规划"><span class="level-left"><span class="level-item">6</span><span class="level-item">动态规划</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#322-零钱兑换"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">322. 零钱兑换</span></span></a></li><li><a class="level is-mobile" href="#139-单词拆分"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">139. 单词拆分</span></span></a></li></ul></li><li><a class="level is-mobile" href="#滑动窗口"><span class="level-left"><span class="level-item">7</span><span class="level-item">滑动窗口</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1004-最大连续1的个数"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">1004.最大连续1的个数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#二叉树"><span class="level-left"><span class="level-item">8</span><span class="level-item">二叉树</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#124-二叉树中的最大路径和"><span class="level-left"><span class="level-item">8.1</span><span class="level-item">124. 二叉树中的最大路径和</span></span></a></li></ul></li><li><a class="level is-mobile" href="#双指针"><span class="level-left"><span class="level-item">9</span><span class="level-item">双指针</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#475-供暖器"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">475. 供暖器</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="level-start"><span class="level-item">中间件</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">前端技术</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="level-start"><span class="level-item">运维</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+</body></html></div><div class="article-licensing box"><div class="licensing-title"><p>华为手撕</p><p><a href="https://jerryzhu1229.github.io/2024/04/26/算法/华为手撕/">https://jerryzhu1229.github.io/2024/04/26/算法/华为手撕/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-04-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-09-26</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/04/27/%E4%B8%AD%E9%97%B4%E4%BB%B6/git/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">git</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/03/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/"><span class="level-item">Redis</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#题库目录"><span class="level-left"><span class="level-item">1</span><span class="level-item">题库目录</span></span></a></li><li><a class="level is-mobile" href="#数学题"><span class="level-left"><span class="level-item">2</span><span class="level-item">数学题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-多个数求最小公倍数"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">1. 多个数求最小公倍数</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#求两个数的最小公倍数"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">求两个数的最小公倍数</span></span></a></li><li><a class="level is-mobile" href="#求多个数的最小公倍数"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">求多个数的最小公倍数</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#模拟题"><span class="level-left"><span class="level-item">3</span><span class="level-item">模拟题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-验证IP地址"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">1. 验证IP地址</span></span></a></li><li><a class="level is-mobile" href="#592-分数加减运算"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">592. 分数加减运算</span></span></a></li></ul></li><li><a class="level is-mobile" href="#数组题"><span class="level-left"><span class="level-item">4</span><span class="level-item">数组题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#48-旋转图像"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">48. 旋转图像</span></span></a></li><li><a class="level is-mobile" href="#134-加油站"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">134. 加油站</span></span></a></li><li><a class="level is-mobile" href="#135-分发糖果"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">135.分发糖果</span></span></a></li></ul></li><li><a class="level is-mobile" href="#回溯"><span class="level-left"><span class="level-item">5</span><span class="level-item">回溯</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-字符串的排列"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">1.字符串的排列</span></span></a></li><li><a class="level is-mobile" href="#46-全排列"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">46. 全排列</span></span></a></li></ul></li><li><a class="level is-mobile" href="#字符串"><span class="level-left"><span class="level-item">6</span><span class="level-item">字符串</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#3-无重复字符的最长子串"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">3. 无重复字符的最长子串</span></span></a></li><li><a class="level is-mobile" href="#443-压缩字符串"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">443. 压缩字符串</span></span></a></li><li><a class="level is-mobile" href="#1190-反转每对括号间的子串"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">1190. 反转每对括号间的子串</span></span></a></li><li><a class="level is-mobile" href="#2243-计算字符串的数字和"><span class="level-left"><span class="level-item">6.4</span><span class="level-item">2243. 计算字符串的数字和</span></span></a></li><li><a class="level is-mobile" href="#394-字符串解码"><span class="level-left"><span class="level-item">6.5</span><span class="level-item">394. 字符串解码</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#栈"><span class="level-left"><span class="level-item">6.5.1</span><span class="level-item">栈</span></span></a></li><li><a class="level is-mobile" href="#dfs"><span class="level-left"><span class="level-item">6.5.2</span><span class="level-item">dfs</span></span></a></li></ul></li><li><a class="level is-mobile" href="#179-最大数"><span class="level-left"><span class="level-item">6.6</span><span class="level-item">179. 最大数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#动态规划"><span class="level-left"><span class="level-item">7</span><span class="level-item">动态规划</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#322-零钱兑换"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">322. 零钱兑换</span></span></a></li><li><a class="level is-mobile" href="#139-单词拆分"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">139. 单词拆分</span></span></a></li></ul></li><li><a class="level is-mobile" href="#滑动窗口"><span class="level-left"><span class="level-item">8</span><span class="level-item">滑动窗口</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1004-最大连续1的个数"><span class="level-left"><span class="level-item">8.1</span><span class="level-item">1004.最大连续1的个数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#二叉树"><span class="level-left"><span class="level-item">9</span><span class="level-item">二叉树</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#124-二叉树中的最大路径和"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">124. 二叉树中的最大路径和</span></span></a></li></ul></li><li><a class="level is-mobile" href="#双指针"><span class="level-left"><span class="level-item">10</span><span class="level-item">双指针</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#475-供暖器"><span class="level-left"><span class="level-item">10.1</span><span class="level-item">475. 供暖器</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="level-start"><span class="level-item">中间件</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">前端技术</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="level-start"><span class="level-item">运维</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
