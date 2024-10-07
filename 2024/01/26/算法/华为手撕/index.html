@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>华为手撕 - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/01/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"><meta property="article:published_time" content="2024-01-25T16:33:05.000Z"><meta property="article:modified_time" content="2024-10-04T03:04:20.000Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="算法"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/01/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"},"headline":"华为手撕","image":["https://jerryzhu1229.github.io/pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png"],"datePublished":"2024-01-25T16:33:05.000Z","dateModified":"2024-10-04T03:04:20.000Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/01/26/%E7%AE%97%E6%B3%95/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%92%95/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-01-25T16:33:05.000Z" title="2024/1/26 00:33:05">2024-01-26</time>发表</span><span class="level-item"><time dateTime="2024-10-04T03:04:20.000Z" title="2024/10/4 11:04:20">2024-10-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span><span class="level-item">40 分钟读完 (大约6013个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">华为手撕</h1><div class="content"><html><head></head><body><h1 id="题库目录"><a href="#题库目录" class="headerlink" title="题库目录"></a>题库目录</h1><table>
+<thead>
+<tr>
+<th>题目</th>
+<th>难度</th>
+<th>类型</th>
+<th>掌握程度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>45. 跳跃游戏 II</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1190. 反转每对括号间的子串</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>781. 森林中的兔子</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>739. 每日温度</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 无重复字符的最长子串</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>46. 全排列</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>475. 供暖器</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>20. 有效的括号</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>394. 字符串解码</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>179. 最大数</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LCP 09. 最小跳跃次数</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>135. 分发糖果</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>面试题 17.24. 最大子矩阵</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1. 两数之和</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. 两数相加</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>42. 接雨水</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>22. 括号生成</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>554. 砖墙</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>547. 省份数量</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>55. 跳跃游戏</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>621. 任务调度器</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1047. 删除字符串中的所有相邻重复项</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>514. 自由之路</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5. 最长回文子串</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>14. 最长公共前缀</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300. 最长递增子序列</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>56. 合并区间</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>200. 岛屿数量</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11. 盛最多水的容器</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>799. 香槟塔</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>316. 去除重复字母</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>392. 判断子序列</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>85. 最大矩形</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>206. 反转链表</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>221. 最大正方形</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>32. 最长有效括号</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>62. 不同路径</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>146. LRU 缓存</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>130. 被围绕的区域</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>679. 24 点游戏</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>70. 爬楼梯</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>17. 电话号码的字母组合</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>19. 删除链表的倒数第 N 个结点</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15. 三数之和</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>151. 翻转字符串里的单词</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>957. N 天后的牢房</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>518. 零钱兑换 II</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>139. 单词拆分</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>179. 最大数</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>410. 分割数组的最大值</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>47. 全排列 II</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>860. 柠檬水找零</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>90. 子集 II</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>980. 不同路径 III</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>471. 编码最短长度的字符串</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>93. 复原 IP 地址</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>224. 基本计算器</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4. 寻找两个正序数组的中位数</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>88. 合并两个有序数组</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>692. 前K个高频单词</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>38. 外观数列</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>64. 最小路径和</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>30. 串联所有单词的子串</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>735. 行星碰撞</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>165. 比较版本号</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>354. 俄罗斯套娃信封问题</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1160. 拼写单词</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>678. 有效的括号字符串</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>102. 二叉树的层序遍历</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>287. 寻找重复数</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>16. 最接近的三数之和</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>264. 丑数 II</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>1293. 网格中的最短路径</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>剑指 Offer 38. 字符串的排列</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>40. 组合总和 II</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>746. 使用最小花费爬楼梯</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>974. 和可被 K 整除的子数组</td>
+<td>中等</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>685. 冗余连接 II</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>260. 只出现一次的数字 III</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>37. 解数独</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>72. 编辑距离</td>
+<td>困难</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>695. 岛屿的最大面积</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>36. 有效的数独</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>84. 柱状图中最大的矩形</td>
+<td>困难</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>148. 排序链表</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>199. 二叉树的右视图</td>
+<td>中等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>121. 买卖股票的最佳时机</td>
+<td>简单</td>
+<td>dp</td>
+<td></td>
+</tr>
+<tr>
+<td>322. 零钱兑换</td>
+<td>中等</td>
+<td>dp</td>
+<td></td>
+</tr>
+<tr>
+<td>741. 摘樱桃</td>
+<td>困难</td>
+<td>[记忆化搜索](<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cherry-pickup/solutions/2766975/jiao-ni-yi-bu-bu-si-kao-dpcong-ji-yi-hua-ruue/">741. 摘樱桃 - 力扣（LeetCode）</a>)</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>214. 最短回文串</td>
+<td>困难</td>
+<td>kmp</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>406. 根据身高重建队列</td>
+<td>中等</td>
+<td>贪心</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>1162. 地图分析</td>
+<td>中等</td>
+<td>bfs</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>402. 移掉 K 位数字</td>
+<td>中等</td>
+<td>单调栈</td>
+<td></td>
+</tr>
+<tr>
+<td>343. 整数拆分</td>
+<td>中等</td>
+<td>dp</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>617. 合并二叉树</td>
+<td>简单</td>
+<td>dfs</td>
+<td></td>
+</tr>
+<tr>
+<td>387. 字符串中的第一个唯一字符</td>
+<td>简单</td>
+<td>哈希表、数组</td>
+<td></td>
+</tr>
+<tr>
+<td>76. 最小覆盖子串</td>
+<td>困难</td>
+<td>滑动窗口</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>34. 在排序数组中查找元素的第一个和最后一个位置</td>
+<td>中等</td>
+<td>二分</td>
+<td></td>
+</tr>
+<tr>
+<td>29. 两数相除</td>
+<td>中等</td>
+<td>位运算</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>105. 从前序与中序遍历序列构造二叉树</td>
+<td>中等</td>
+<td>分治</td>
+<td></td>
+</tr>
+<tr>
+<td>451. 根据字符出现频率排序</td>
+<td>中等</td>
+<td>哈希表+优先队列</td>
+<td></td>
+</tr>
+<tr>
+<td>1109. 航班预订统计</td>
+<td>中等</td>
+<td>差分</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>166. 分数到小数</td>
+<td>中等</td>
+<td>模拟</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>278. 第一个错误的版本</td>
+<td>简单</td>
+<td>二分</td>
+<td></td>
+</tr>
+<tr>
+<td>207. 课程表</td>
+<td>中等</td>
+<td>bfs</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>875. 爱吃香蕉的珂珂</td>
+<td>中等</td>
+<td>二分</td>
+<td></td>
+</tr>
+<tr>
+<td>134. 加油站</td>
+<td>中等</td>
+<td>后缀和</td>
+<td></td>
+</tr>
+<tr>
+<td>剑指 Offer 22. 链表中倒数第k个节点</td>
+<td>简单</td>
+<td>双指针</td>
+<td></td>
+</tr>
+<tr>
+<td>611. 有效三角形的个数</td>
+<td>中等</td>
+<td>双指针</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>LCR 182. 动态口令</td>
+<td>简单</td>
+<td></td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>面试题 02.05. 链表求和</td>
+<td>中等</td>
+<td>正向——栈</td>
+<td></td>
+</tr>
+<tr>
+<td>面试题 01.06. 字符串压缩</td>
+<td>简单</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>239. 滑动窗口的最大值</td>
+<td>困难</td>
+<td>优先队列</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>155. 最小栈</td>
+<td>中等</td>
+<td>栈</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">LCR 120. 寻找文件副本</a></td>
+<td>简单</td>
+<td>初级：哈希表 进阶：原地交换</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/coin-lcci/">面试题 08.11. 硬币</a></td>
+<td>中等</td>
+<td>完全0-1背包问题</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>剑指 Offer 50. 第一个只出现一次的字符</td>
+<td>简单</td>
+<td>哈希</td>
+<td></td>
+</tr>
+<tr>
+<td>994. 腐烂的橘子</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>剑指 Offer 10- II. 青蛙跳台阶问题</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>剑指 Offer 13. 机器人的运动范围</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1004. 最大连续1的个数 III</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="数学题"><a href="#数学题" class="headerlink" title="数学题"></a>数学题</h1><h2 id="1-多个数求最小公倍数"><a href="#1-多个数求最小公倍数" class="headerlink" title="1. 多个数求最小公倍数"></a>1. 多个数求最小公倍数</h2><h3 id="求两个数的最小公倍数"><a href="#求两个数的最小公倍数" class="headerlink" title="求两个数的最小公倍数"></a>求两个数的最小公倍数</h3><blockquote>
+<p>既然想算最小公倍数，首先要清楚最小公倍数的求法，还有<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0&amp;spm=1001.2101.3001.7020">最大公约数</a>的求法:</p>
+<p>​									<strong>最小公倍数*最大公约数=两数乘积</strong></p>
+<p> 只要有最大公约数就可以求出最小公倍数,方法:</p>
+<p> ​													<strong>辗转相除法</strong></p>
+<p>用较大数除以较小数，再用出现的余数（第一余数）去除除数，再用出现的余数（第二余数）去除第一余数，如此反复，直到最后余数是0为止。如果是求两个数的最大公约数，那么最后的除数就是这两个数的最大公约数。</p>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 最大公因数 greatest common divisor </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">gcd</span> <span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> {</span><br><span class="line">	<span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b, a % b);</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 最小公倍数 least common multiple</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">lcm</span> <span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> {</span><br><span class="line">  <span class="keyword">return</span> a * b / gcd(a, b);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="求多个数的最小公倍数"><a href="#求多个数的最小公倍数" class="headerlink" title="求多个数的最小公倍数"></a>求多个数的最小公倍数</h3><p>先求前两个数的最小公倍，再用这个最小公倍数与下一个数求最小公倍数</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">lc1979</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">        <span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">            nums[i] = scanner.nextInt();</span><br><span class="line">        }</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) {</span><br><span class="line">            ans = ans * nums[i] / gcd(ans, nums[i]);</span><br><span class="line">        }</span><br><span class="line">        System.out.println(ans);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> {</span><br><span class="line">        <span class="keyword">while</span>(b&gt;<span class="number">0</span>){</span><br><span class="line">            <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> a % b;</span><br><span class="line">            a = b;</span><br><span class="line">            b = t;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h1 id="模拟题"><a href="#模拟题" class="headerlink" title="模拟题"></a>模拟题</h1><h2 id="1-验证IP地址"><a href="#1-验证IP地址" class="headerlink" title="1. 验证IP地址"></a>1. <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-ip-address/">验证IP地址</a></h2><p><strong>s.split(regex s, int limit)</strong></p>
+<ul>
+<li>分割”.”需要用”\\.“</li>
+<li>limit有三种情况<ul>
+<li>limit&gt;0,分割limit-1次</li>
+<li>limit=0,不限分割次数,但会把末尾的空结果删去</li>
+<li>limit&lt;0,不限分割次数,不会把末尾的空结果删去</li>
+</ul>
+</li>
+<li>假如没有设置limit,默认是0</li>
+</ul>
+<p><strong>s.isEmpty的实现为s.length()==0</strong></p>
+<p><strong>Character.isDigit(char c)</strong></p>
+<p><strong>Character.toLowerCase(char c)</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">validIPAddress</span><span class="params">(String queryIP)</span> {</span><br><span class="line">        <span class="keyword">if</span>(queryIP.indexOf(<span class="string">'.'</span>) &gt; <span class="number">0</span>){</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.validIPv4(queryIP) ? <span class="string">"IPv4"</span> : <span class="string">"Neither"</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span>(queryIP.indexOf(<span class="string">':'</span>) &gt; <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.validIPv6(queryIP) ? <span class="string">"IPv6"</span> : <span class="string">"Neither"</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Neither"</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">validIPv6</span><span class="params">(String queryIP)</span> {</span><br><span class="line">        <span class="comment">//  分割查询IP，根据冒号分隔，不限制分隔的数量。</span></span><br><span class="line">        String[] split = queryIP.split(<span class="string">":"</span>, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(split.length != <span class="number">8</span>){</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span>(String s:split) {</span><br><span class="line">            <span class="keyword">if</span> (s.isEmpty() || s.length() &gt; <span class="number">4</span>) {</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) {</span><br><span class="line">                <span class="keyword">if</span>(!Character.isDigit(s.charAt(i)) &amp;&amp; !(Character.toLowerCase(s.charAt(i)) &gt;= <span class="string">'a'</span> &amp;&amp; Character.toLowerCase(s.charAt(i)) &lt;= <span class="string">'f'</span>)){</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">validIPv4</span><span class="params">(String queryIP)</span> {</span><br><span class="line">        String[] split = queryIP.split(<span class="string">"\\."</span>, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(split.length != <span class="number">4</span>){</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span>(String s:split){</span><br><span class="line">            <span class="keyword">if</span>(s.isEmpty() || s.length() &gt; <span class="number">3</span>){</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(s.length() &gt; <span class="number">1</span> &amp;&amp; s.charAt(<span class="number">0</span>) == <span class="string">'0'</span>){</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) {</span><br><span class="line">                <span class="keyword">if</span>(!Character.isDigit(s.charAt(i))){</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> Integer.parseInt(s);</span><br><span class="line">            <span class="keyword">if</span>(num &lt; <span class="number">0</span> || num &gt; <span class="number">255</span>){</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="592-分数加减运算"><a href="#592-分数加减运算" class="headerlink" title="592. 分数加减运算"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fraction-addition-and-subtraction/">592. 分数加减运算</a></h2><blockquote>
+<p>给定一个表示分数加减运算的字符串 <code>expression</code> ，你需要返回一个字符串形式的计算结果。 </p>
+<p>这个结果应该是不可约分的分数，即<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0">最简分数</a>。 如果最终结果是一个整数，例如 <code>2</code>，你需要将它转换成分数形式，其分母为 <code>1</code>。所以在上述例子中, <code>2</code> 应该被转换为 <code>2/1</code>。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: expression = "-1/2+1/2"</span><br><span class="line">输出: "0/1"</span><br></pre></td></tr></tbody></table></figure>
+
+<p> <strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: expression = "-1/2+1/2+1/3"</span><br><span class="line">输出: "1/3"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: expression = "1/3-1/2"</span><br><span class="line">输出: "-1/6"</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="comment">// 1.计算 分母最小公倍数</span></span><br><span class="line">    <span class="comment">// 2.逐个变换分子分母</span></span><br><span class="line">    <span class="comment">// 3.将 2 中计算的分子相加</span></span><br><span class="line">    <span class="comment">// 4.计算相加的分子分母的最大公约数</span></span><br><span class="line">    <span class="comment">// 5.用 4 计算的最大公约数 处理分子分母  </span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">fractionAddition</span><span class="params">(String expression)</span> {</span><br><span class="line">        <span class="keyword">if</span> (expression == <span class="literal">null</span> || expression.length() == <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"0/1"</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="type">char</span>[] cs = expression.toCharArray();</span><br><span class="line">        <span class="type">int</span> <span class="variable">pre</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">cur</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        List&lt;Integer&gt; nums1 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; nums2 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (cur&lt;cs.length) {</span><br><span class="line">            <span class="comment">// 判断正负</span></span><br><span class="line">            <span class="keyword">if</span> (cs[cur] == <span class="string">'-'</span>) {</span><br><span class="line">                pre = -<span class="number">1</span>;</span><br><span class="line">                cur++;</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (cs[cur] == <span class="string">'+'</span>) {</span><br><span class="line">                pre = <span class="number">1</span>;</span><br><span class="line">                cur++;</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">// 取数</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">n1</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">n2</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (cur &lt; cs.length &amp;&amp; cs[cur] != <span class="string">'/'</span> ) {</span><br><span class="line">                n1 = n1 * <span class="number">10</span> + (cs[cur] - <span class="string">'0'</span>);</span><br><span class="line">                cur++;</span><br><span class="line">            }</span><br><span class="line">            cur++;</span><br><span class="line">            <span class="keyword">while</span> (cur &lt; cs.length &amp;&amp; cs[cur] != <span class="string">'+'</span> &amp;&amp; cs[cur] != <span class="string">'-'</span>) {</span><br><span class="line">                n2 = n2 * <span class="number">10</span> + (cs[cur] - <span class="string">'0'</span>);</span><br><span class="line">                cur++;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 存数</span></span><br><span class="line">            nums1.add(pre * n1);</span><br><span class="line">            nums2.add(n2);</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 计算 分母 最小公倍数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">nums2LCM</span> <span class="operator">=</span> nums1.get(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> n2 : nums2) {</span><br><span class="line">            nums2LCM = lcm(nums2LCM, n2);</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 逐个变换分子并相加</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">nums1Sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;nums1.size(); ++i) {</span><br><span class="line">            nums1Sum += (nums2LCM / nums2.get(i)) * nums1.get(i);</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 计算相加的分子分母的最大公约数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">tGcd</span> <span class="operator">=</span> gcd(Math.abs(nums1Sum), nums2LCM);</span><br><span class="line">        <span class="comment">// 用 4 计算的最大公约数 处理分子分母</span></span><br><span class="line">        <span class="keyword">return</span> nums1Sum/tGcd + <span class="string">"/"</span> + nums2LCM/tGcd;</span><br><span class="line">    }</span><br><span class="line">    <span class="type">int</span> <span class="title function_">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> {</span><br><span class="line">        <span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b, a%b);</span><br><span class="line">    }</span><br><span class="line">    <span class="type">int</span> <span class="title function_">lcm</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> {</span><br><span class="line">        <span class="keyword">return</span> a * b / gcd(a, b);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>详细个人题解：</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fraction-addition-and-subtraction/solutions/2870964/mo-ni-by-nanase-6-e9it">https://leetcode.cn/problems/fraction-addition-and-subtraction/solutions/2870964/mo-ni-by-nanase-6-e9it</a></p>
+<h1 id="数组题"><a href="#数组题" class="headerlink" title="数组题"></a>数组题</h1><h2 id="48-旋转图像"><a href="#48-旋转图像" class="headerlink" title="48. 旋转图像"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rotate-image/">48. 旋转图像</a></h2><p>顺时针旋转90度——主对称轴交换,左右对称轴交换</p>
+<p>逆时针旋转90度——主对称轴交换,上下对称轴交换</p>
+<p>顺时针旋转180度——顺时针90度x2</p>
+<p>……</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">rotate</span><span class="params">(<span class="type">int</span>[][] matrix)</span> {</span><br><span class="line">        <span class="keyword">if</span>(matrix == <span class="literal">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">col</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="comment">// 主对角线交换</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;row; ++i){</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=i+<span class="number">1</span>; j&lt; col; ++j){</span><br><span class="line">                swap(matrix, i, j, j, i);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 左右交换</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;row; ++i){</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>; j&lt; col/<span class="number">2</span>; ++j){</span><br><span class="line">                swap(matrix, i, j, i, col-j-<span class="number">1</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[][] matrix, <span class="type">int</span> i1, <span class="type">int</span> j1, <span class="type">int</span> i2, <span class="type">int</span> j2)</span>{</span><br><span class="line">        <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> matrix[i1][j1];</span><br><span class="line">        matrix[i1][j1] = matrix[i2][j2];</span><br><span class="line">        matrix[i2][j2] = t;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="134-加油站"><a href="#134-加油站" class="headerlink" title="134. 加油站"></a>134. 加油站</h2><blockquote>
+<p>在一条环路上有 <code>n</code> 个加油站，其中第 <code>i</code> 个加油站有汽油 <code>gas[i]</code> 升。</p>
+<p>你有一辆油箱容量无限的的汽车，从第 <code>i</code> 个加油站开往第 <code>i+1</code> 个加油站需要消耗汽油 <code>cost[i]</code> 升。你从其中的一个加油站出发，开始时油箱为空。</p>
+<p>给定两个整数数组 <code>gas</code> 和 <code>cost</code> ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 <code>-1</code> 。如果存在解，则 <strong>保证</strong> 它是 <strong>唯一</strong> 的。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入: gas = [1,2,3,4,5], cost = [3,4,5,1,2]</span><br><span class="line">输出: 3</span><br><span class="line">解释:</span><br><span class="line">从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0 + 4 = 4 升汽油</span><br><span class="line">开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油</span><br><span class="line">开往 0 号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油</span><br><span class="line">开往 1 号加油站，此时油箱有 7 - 3 + 2 = 6 升汽油</span><br><span class="line">开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油</span><br><span class="line">开往 3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。</span><br><span class="line">因此，3 可为起始索引。</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">canCompleteCircuit</span><span class="params">(<span class="type">int</span>[] gas, <span class="type">int</span>[] cost)</span> {</span><br><span class="line">        <span class="comment">// 1 2 3 4 5</span></span><br><span class="line">        <span class="comment">// 3 4 5 1 2</span></span><br><span class="line">        <span class="comment">// x        -2 -2 -2 3 3</span></span><br><span class="line">        <span class="comment">// totalSum -2 -4 -6 -3 0</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">curSum</span> <span class="operator">=</span> <span class="number">0</span>, totalSum = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;gas.length; ++i) {</span><br><span class="line">            <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> gas[i] - cost[i];</span><br><span class="line">            curSum += x;</span><br><span class="line">            totalSum += x;</span><br><span class="line">            <span class="comment">// 总结：如果x到不了y+1（但能到y），那么从x到y的任一点出发都不可能到达y+1。因为从其中任一点出发的话，相当于从0开始加油，而如果从x出发到该点则不一定是从0开始加油，可能还有剩余的油。既然不从0开始都到不了y+1，那么从0开始就更不可能到达y+1了...</span></span><br><span class="line">            <span class="keyword">if</span> (curSum &lt; <span class="number">0</span>) {</span><br><span class="line">                ans = i+<span class="number">1</span>;</span><br><span class="line">                curSum = <span class="number">0</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> totalSum &gt;= <span class="number">0</span> ? ans : -<span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="135-分发糖果"><a href="#135-分发糖果" class="headerlink" title="135.分发糖果"></a>135.分发糖果</h2><blockquote>
+<p><code>n</code> 个孩子站成一排。给你一个整数数组 <code>ratings</code> 表示每个孩子的评分。</p>
+<p>你需要按照以下要求，给这些孩子分发糖果：</p>
+<ul>
+<li>每个孩子至少分配到 <code>1</code> 个糖果。</li>
+<li>相邻两个孩子评分更高的孩子会获得更多的糖果。</li>
+</ul>
+<p>请你给每个孩子分发糖果，计算并返回需要准备的 <strong>最少糖果数目</strong> 。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：ratings = [1,0,2]</span><br><span class="line">输出：5</span><br><span class="line">解释：你可以分别给第一个、第二个、第三个孩子分发 2、1、2 颗糖果。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：ratings = [1,2,2]</span><br><span class="line">输出：4</span><br><span class="line">解释：你可以分别给第一个、第二个、第三个孩子分发 1、2、1 颗糖果。</span><br><span class="line">     第三个孩子只得到 1 颗糖果，这满足题面中的两个条件。</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<p>思路:</p>
+<p>假设A、B相邻, A在B左侧</p>
+<p>定义规则:</p>
+<ul>
+<li>左规则: 当RB&gt;RA时, B的糖果要比A多 [定A, 变B]</li>
+<li>右规则: 当RA&gt;RB时, A的糖果要比B多 [定B, 变A]</li>
+</ul>
+<p>流程: 从左到右遍历,满足左规则; 从右到左遍历,满足右规则; 最后取max</p>
+<blockquote>
+<p>left和right的项只能增大或不变。然后取最大值合并后是可以同时满足left和right，这个要分类讨论，不过这里不难。关键在于合并后是否就是最优，这里合并后相对left来说是某些项增大某些不变，要优化肯定涉及到某些项的减小，那只能减小相对left来说增大的项，而这些项相对right来说又是原来的项，不能动，否则破坏right的条件，因此合并后的项不能再优化了，它就是最优解。</p>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">candy</span><span class="params">(<span class="type">int</span>[] ratings)</span> {</span><br><span class="line">        <span class="type">int</span>[] left = <span class="keyword">new</span> <span class="title class_">int</span>[ratings.length];</span><br><span class="line">        <span class="type">int</span>[] right = <span class="keyword">new</span> <span class="title class_">int</span>[ratings.length];</span><br><span class="line">        Arrays.fill(left, <span class="number">1</span>);</span><br><span class="line">        Arrays.fill(right, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; ratings.length; i++)</span><br><span class="line">            <span class="keyword">if</span>(ratings[i] &gt; ratings[i - <span class="number">1</span>]) left[i] = left[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> left[ratings.length - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> ratings.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) {</span><br><span class="line">            <span class="keyword">if</span>(ratings[i] &gt; ratings[i + <span class="number">1</span>]) right[i] = right[i + <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            count += Math.max(left[i], right[i]);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h1 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h1><h2 id="1-字符串的排列"><a href="#1-字符串的排列" class="headerlink" title="1.字符串的排列"></a>1.字符串的排列</h2><p>排列组合问题,且不能重复</p>
+<p>总结:</p>
+<ul>
+<li>set-&gt;array        <code>x.toArray(new T[0])</code></li>
+</ul>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    Set&lt;String&gt; ans = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br><span class="line">    <span class="keyword">public</span> String[] goodsOrder(String goods) {</span><br><span class="line">        <span class="type">char</span>[] cList = goods.toCharArray();</span><br><span class="line">        <span class="type">boolean</span>[] isVisit = <span class="keyword">new</span> <span class="title class_">boolean</span>[goods.length()];</span><br><span class="line"></span><br><span class="line">        dfs(cList, isVisit, <span class="keyword">new</span> <span class="title class_">StringBuffer</span>());</span><br><span class="line">        <span class="keyword">return</span> ans.toArray(<span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">0</span>]);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">char</span>[] cList, <span class="type">boolean</span>[] isVisit, StringBuffer sb)</span>{</span><br><span class="line">        <span class="keyword">if</span>(sb.length() == cList.length){</span><br><span class="line">            ans.add(sb.toString());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;cList.length; ++i){</span><br><span class="line">            <span class="keyword">if</span>(isVisit[i]){</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line">            isVisit[i] = <span class="literal">true</span>;</span><br><span class="line">            sb.append(cList[i]);</span><br><span class="line">            dfs(cList, isVisit, sb);</span><br><span class="line">            sb.deleteCharAt(sb.length()-<span class="number">1</span>);</span><br><span class="line">            isVisit[i] = <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations/">46. 全排列</a></h2><blockquote>
+<p>给定一个不含重复数字的数组 <code>nums</code> ，返回其 <em>所有可能的全排列</em> 。你可以 <strong>按任意顺序</strong> 返回答案。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,3]</span><br><span class="line">输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,1]</span><br><span class="line">输出：[[0,1],[1,0]]</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1]</span><br><span class="line">输出：[[1]]</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">permute</span><span class="params">(<span class="type">int</span>[] nums)</span> {</span><br><span class="line">        <span class="type">boolean</span>[] visit = <span class="keyword">new</span> <span class="title class_">boolean</span>[nums.length];</span><br><span class="line">        dfs(nums, visit);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">boolean</span>[] visit)</span> {</span><br><span class="line">        <span class="keyword">if</span> (list.size() == nums.length) {</span><br><span class="line">            ans.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>(list));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;nums.length; ++i) {</span><br><span class="line">            <span class="keyword">if</span> (visit[i]) {</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line">            list.add(nums[i]);</span><br><span class="line">            visit[i]= <span class="literal">true</span>;</span><br><span class="line">            dfs(nums, visit);</span><br><span class="line">            visit[i]= <span class="literal">false</span>;</span><br><span class="line">            list.remove(Integer.valueOf(nums[i]));</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="/../pic/0bf18f9b86a2542d1f6aa8db6cc45475fce5aa329a07ca02a9357c2ead81eec1-image.png" alt="image.png"></p>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="3-无重复字符的最长子串"><a href="#3-无重复字符的最长子串" class="headerlink" title="3. 无重复字符的最长子串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h2><p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长 子串</strong> 的长度。</p>
+<p>思路: 滑动窗口——有左右指针控制窗口 [left, right]</p>
+<p>实际解决: 在右指针自增时候,  移动左指针保持窗口内不含有重复字符</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">lengthOfLongestSubstring</span><span class="params">(String s)</span> {</span><br><span class="line">        <span class="keyword">if</span>(s == <span class="literal">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        Map&lt;Character,Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="type">char</span>[] cList = s.toCharArray();</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;s.length(); ++i){</span><br><span class="line">          	<span class="comment">// 滑动窗口，存在重复字母的区间需要移动左边界，不存在时不用</span></span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(cList[i])){</span><br><span class="line">                left = Math.max(left, map.get(cList[i])+<span class="number">1</span>);</span><br><span class="line">            }</span><br><span class="line">            map.put(cList[i], i);</span><br><span class="line">            ans = Math.max(ans, i-left+<span class="number">1</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="443-压缩字符串"><a href="#443-压缩字符串" class="headerlink" title="443. 压缩字符串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/string-compression/">443. 压缩字符串</a></h2><p>aabbbccc -&gt; a2b2c3</p>
+<p>a -&gt; a</p>
+<p>abbbbbbbbbbbbbb -&gt; ab14</p>
+<p>思路: </p>
+<ul>
+<li>最简单的是开辟一个StringBuffer去存, 采用双指针去控制窗口边界,一个存右边界,一个存左边界</li>
+<li>要求原地修改, 则需要多一个write指针,控制修改的位置</li>
+</ul>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compress</span><span class="params">(<span class="type">char</span>[] chars)</span> {</span><br><span class="line">        <span class="keyword">if</span>(chars == <span class="literal">null</span> || chars.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> write=<span class="number">0</span>, read=<span class="number">0</span>, left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (read &lt; chars.length) {</span><br><span class="line">            <span class="keyword">if</span>(read == chars.length-<span class="number">1</span> || chars[read] != chars[read+<span class="number">1</span>]){</span><br><span class="line">                chars[write++] = chars[read];</span><br><span class="line">                <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> read - left + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(num &gt; <span class="number">1</span>){</span><br><span class="line">                    <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> write;</span><br><span class="line">                    <span class="keyword">while</span>(num &gt; <span class="number">0</span>){</span><br><span class="line">                        chars[write++] = (<span class="type">char</span>)(num % <span class="number">10</span> +<span class="string">'0'</span>);</span><br><span class="line">                        num /= <span class="number">10</span>;</span><br><span class="line">                    } </span><br><span class="line">                    reverse(chars, t, write-<span class="number">1</span>);</span><br><span class="line">                }</span><br><span class="line">                left = read + <span class="number">1</span>;</span><br><span class="line">            }</span><br><span class="line">            read++;</span><br><span class="line">            </span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> write;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">reverse</span><span class="params">(<span class="type">char</span>[] chars, <span class="type">int</span> left, <span class="type">int</span> right)</span>{</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right){</span><br><span class="line">            <span class="type">char</span> <span class="variable">t</span> <span class="operator">=</span> chars[left];</span><br><span class="line">            chars[left] = chars[right];</span><br><span class="line">            chars[right] = t;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="1190-反转每对括号间的子串"><a href="#1190-反转每对括号间的子串" class="headerlink" title="1190. 反转每对括号间的子串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-substrings-between-each-pair-of-parentheses/">1190. 反转每对括号间的子串</a></h2><p>给出一个字符串 <code>s</code>（仅含有小写英文字母和括号）。</p>
+<p>请你按照从括号内到外的顺序，逐层反转每对匹配括号中的字符串，并返回最终的结果。</p>
+<p>思路: 栈+StringBuffer</p>
+<p>遇到右括号时才进行字符串处理，这样可以保证我们是按照从括号内到外的顺序处理字符串。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">reverseParentheses</span><span class="params">(String s)</span> {</span><br><span class="line">        <span class="comment">// 0. 定义一个 StringBuilder</span></span><br><span class="line">        <span class="comment">// 1. 遇到'('将当前 String 加到 stack, 重置 sb</span></span><br><span class="line">        <span class="comment">// 2. 遇到')'将当前 String1 翻转，取出栈内 String2 加在当前 String1 前</span></span><br><span class="line">        <span class="comment">// 3. 假如为 char 直接 sb.append()</span></span><br><span class="line">        <span class="type">char</span>[] cs = s.toCharArray();</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        Deque&lt;String&gt; stack = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c : cs) {</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">'('</span>) {</span><br><span class="line">                stack.offerLast(sb.toString());</span><br><span class="line">                sb.setLength(<span class="number">0</span>);</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">')'</span>) {</span><br><span class="line">                sb.reverse();</span><br><span class="line">                sb.insert(<span class="number">0</span>, stack.pollLast());</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                sb.append(c);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>递归: 需要一个全局idx</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">idx</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">reverseParentheses</span><span class="params">(String s)</span> {</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> traversal(s).toString();</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> StringBuffer <span class="title function_">traversal</span><span class="params">(String s)</span> {</span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">        <span class="keyword">while</span> (idx &lt; s.length()) {</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(idx) == <span class="string">'('</span>) {</span><br><span class="line">                idx++;</span><br><span class="line">                sb.append(traversal(s).reverse());</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(idx) == <span class="string">')'</span>) {</span><br><span class="line">                idx++;</span><br><span class="line">                <span class="keyword">return</span> sb;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                sb.append(s.charAt(idx));</span><br><span class="line">                idx++;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> sb;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="2243-计算字符串的数字和"><a href="#2243-计算字符串的数字和" class="headerlink" title="2243. 计算字符串的数字和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/calculate-digit-sum-of-a-string/">2243. 计算字符串的数字和</a></h2><p>思路: 递归</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">digitSum</span><span class="params">(String s, <span class="type">int</span> k)</span> {</span><br><span class="line">        <span class="keyword">if</span> (s.length() &lt;= k) {</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> <span class="variable">curNum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">char</span>[] list = s.toCharArray();</span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;list.length; ++i) {</span><br><span class="line">            curNum += list[i] - <span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span> (i == s.length()-<span class="number">1</span> || (i+<span class="number">1</span>) % k == <span class="number">0</span>) {</span><br><span class="line">                sb.append(Integer.toString(curNum));</span><br><span class="line">                curNum = <span class="number">0</span>;</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> digitSum(sb.toString(), k);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="394-字符串解码"><a href="#394-字符串解码" class="headerlink" title="394. 字符串解码"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/decode-string/">394. 字符串解码</a></h2><blockquote>
+<p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
+<p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。</p>
+<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
+<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = "3[a]2[bc]"</span><br><span class="line">输出："aaabcbc"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = "3[a2[c]]"</span><br><span class="line">输出："accaccacc"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = "2[abc]3[cd]ef"</span><br><span class="line">输出："abcabccdcdcdef"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = "abc3[cd]xyz"</span><br><span class="line">输出："abccdcdcdxyz"</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">decodeString</span><span class="params">(String s)</span> {</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">cur</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="type">char</span>[] cs = s.toCharArray();</span><br><span class="line">        Deque&lt;String&gt; sstack = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        Deque&lt;Integer&gt; nstack = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;cs.length; ++i) {</span><br><span class="line">            <span class="keyword">if</span> (Character.isDigit(cs[i])) {</span><br><span class="line">                num = num * <span class="number">10</span> + (cs[i] - <span class="string">'0'</span>);</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span>(cs[i] == <span class="string">'['</span>) {</span><br><span class="line">                <span class="comment">// 开启新的[]拼接 需要将同层的已经确定的字符串 存起来</span></span><br><span class="line">                nstack.offerLast(num);</span><br><span class="line">                num = <span class="number">0</span>;</span><br><span class="line">                sstack.offerLast(cur.toString());</span><br><span class="line">                cur.setLength(<span class="number">0</span>);</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span>(cs[i] == <span class="string">']'</span>) {</span><br><span class="line">                <span class="comment">// 结束当前[]拼接 计算重复次数,然后连接同一层的已经确定的字符串</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">dn</span> <span class="operator">=</span> nstack.pollLast();</span><br><span class="line">                <span class="type">String</span> <span class="variable">oldCur</span> <span class="operator">=</span> cur.toString();</span><br><span class="line">                <span class="keyword">while</span> (dn &gt; <span class="number">1</span>) {</span><br><span class="line">                    cur.append(oldCur);</span><br><span class="line">                    dn--;</span><br><span class="line">                }</span><br><span class="line">                cur.insert(<span class="number">0</span>, sstack.pollLast());</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                cur.append(cs[i]);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> cur.toString();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>算法流程：</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/decode-string/solutions/19447/decode-string-fu-zhu-zhan-fa-di-gui-fa-by-jyd">https://leetcode.cn/problems/decode-string/solutions/19447/decode-string-fu-zhu-zhan-fa-di-gui-fa-by-jyd</a></p>
+<h3 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">    <span class="type">int</span> <span class="variable">idx</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">decodeString</span><span class="params">(String s)</span> {</span><br><span class="line">        <span class="type">char</span>[] cs = s.toCharArray();</span><br><span class="line">        <span class="keyword">return</span> dfs(cs, <span class="number">0</span>, cs.length-<span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line">    String <span class="title function_">dfs</span><span class="params">(<span class="type">char</span>[] cs, <span class="type">int</span> l, <span class="type">int</span> r)</span> {</span><br><span class="line">        <span class="comment">// 确定[]内的 string</span></span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=l; i&lt;=r; ++i) {</span><br><span class="line">            <span class="keyword">if</span> (Character.isLetter(cs[i])) {</span><br><span class="line">                ans.append(cs[i]);</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span> (Character.isDigit(cs[i])) {</span><br><span class="line">                    num = num * <span class="number">10</span> + (cs[i++] - <span class="string">'0'</span>);</span><br><span class="line">                }</span><br><span class="line">                <span class="type">int</span> <span class="variable">old</span> <span class="operator">=</span> i+<span class="number">1</span>;</span><br><span class="line">                <span class="type">int</span> <span class="variable">fnum</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (fnum &gt; <span class="number">0</span>) {</span><br><span class="line">                    i++;</span><br><span class="line">                    <span class="keyword">if</span> (cs[i] == <span class="string">'['</span>) fnum++;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (cs[i] == <span class="string">']'</span>) fnum--;</span><br><span class="line">                }</span><br><span class="line">                <span class="type">String</span> <span class="variable">sub</span> <span class="operator">=</span> dfs(cs, old, i-<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">while</span> (num-- &gt; <span class="number">0</span>) {</span><br><span class="line">                    ans.append(sub);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans.toString();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h2 id="179-最大数"><a href="#179-最大数" class="headerlink" title="179. 最大数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/largest-number/">179. 最大数</a></h2><blockquote>
+<p>给定一组非负整数 <code>nums</code>，重新排列每个数的顺序（每个数不可拆分）使之组成一个最大的整数。</p>
+<p><strong>注意：</strong>输出结果可能非常大，所以你需要返回一个字符串而不是整数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [10,2]</span><br><span class="line">输出："210"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,30,34,5,9]</span><br><span class="line">输出："9534330"</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">largestNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> {</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">// s1.compareTo(s2) 理解为 s1-s2  负数则 s1 小  前提是长度一样</span></span><br><span class="line">        <span class="comment">// pq 里面的比较关系 s1,s2 后面的值为 - 则 s1 在前</span></span><br><span class="line">        <span class="comment">// 要让 s1 在前 需要 s1+s2&gt;s2+s1 记 (s2+s1).compareTo(s1+s2) 为 -</span></span><br><span class="line">        PriorityQueue&lt;String&gt; pq = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;String&gt;((s1,s2)-&gt;(s2+s1).compareTo(s1+s2));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> n : nums) {</span><br><span class="line">            pq.offer(Integer.toString(n));</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 特殊情况处理</span></span><br><span class="line">        <span class="keyword">if</span> (pq.peek().equals(<span class="string">"0"</span>)) {</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> n : nums) {</span><br><span class="line">            <span class="type">String</span> <span class="variable">t</span> <span class="operator">=</span> pq.poll();</span><br><span class="line">            sb.append(t);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>知识点:</p>
+<p>在 <code>PriorityQueue</code> 中使用自定义的 <code>Comparator</code> 来排序元素时，<code>Comparator</code> 的 <code>compare</code> 方法返回的值决定了两个元素的顺序。</p>
+<ul>
+<li><strong>返回负数</strong> (<code>&lt; 0</code>)：表示第一个参数（<code>s1</code>）应该排在第二个参数（<code>s2</code>）之前。</li>
+<li><strong>返回正数</strong> (<code>&gt; 0</code>)：表示第一个参数（<code>s1</code>）应该排在第二个参数（<code>s2</code>）之后。</li>
+<li><strong>返回零</strong> (<code>0</code>)：表示两个参数顺序相同（即不交换位置）。</li>
+</ul>
+<p>如果 <code>s1.compareTo(s2)</code> 返回负数（意味着 <code>s1</code> 在字典顺序上小于 <code>s2</code>），则 <code>s1</code> 应该排在 <code>s2</code> 前面。</p>
+<p>如果 <code>s1.compareTo(s2)</code> 返回正数（意味着 <code>s1</code> 在字典顺序上大于 <code>s2</code>），则 <code>s1</code> 应该排在 <code>s2</code> 后面。</p>
+<p>如果 <code>s1.compareTo(s2)</code> 返回 0，表示 <code>s1</code> 和 <code>s2</code> 相等，保持当前顺序。</p>
+<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h2 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322. 零钱兑换"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/coin-change/">322. 零钱兑换</a></h2><p>完全背包问题</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">coinChange</span><span class="params">(<span class="type">int</span>[] coins, <span class="type">int</span> amount)</span> {</span><br><span class="line">        <span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[amount+<span class="number">1</span>];</span><br><span class="line">      	<span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> amount + <span class="number">1</span>;</span><br><span class="line">        Arrays.fill(dp, max);</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=amount; ++i){</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> c:coins){</span><br><span class="line">                <span class="keyword">if</span>(i &gt;= c){</span><br><span class="line">                    dp[i] = Math.min(dp[i], dp[i-c]+<span class="number">1</span>);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> dp[amount] &gt; amount ? -<span class="number">1</span> : dp[amount];</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="139-单词拆分"><a href="#139-单词拆分" class="headerlink" title="139. 单词拆分"></a>139. 单词拆分</h2><blockquote>
+<p>给你一个字符串 <code>s</code> 和一个字符串列表 <code>wordDict</code> 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 <code>s</code> 则返回 <code>true</code>。</p>
+<p><strong>注意：</strong>不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: s = "leetcode", wordDict = ["leet", "code"]</span><br><span class="line">输出: true</span><br><span class="line">解释: 返回 true 因为 "leetcode" 可以由 "leet" 和 "code" 拼接成。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: s = "applepenapple", wordDict = ["apple", "pen"]</span><br><span class="line">输出: true</span><br><span class="line">解释: 返回 true 因为 "applepenapple" 可以由 "apple" "pen" "apple" 拼接成。</span><br><span class="line">     注意，你可以重复使用字典中的单词。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]</span><br><span class="line">输出: false</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<p>思路：</p>
+<p>dp[i] 前 i 个字母能否由字典拼出</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">wordBreak</span><span class="params">(String s, List&lt;String&gt; wordDict)</span> {</span><br><span class="line">        <span class="type">boolean</span>[] dp = <span class="keyword">new</span> <span class="title class_">boolean</span>[s.length()+<span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=s.length(); ++i) {</span><br><span class="line">            <span class="keyword">for</span> (String word : wordDict) {</span><br><span class="line">                <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> i-word.length();</span><br><span class="line">                <span class="keyword">if</span> (start &lt; <span class="number">0</span>) {</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                }</span><br><span class="line">                <span class="type">String</span> <span class="variable">sub</span> <span class="operator">=</span> s.substring(start,i);</span><br><span class="line">                <span class="keyword">if</span> (sub.equals(word) &amp;&amp; dp[start]) {</span><br><span class="line">                    dp[i] = <span class="literal">true</span>;</span><br><span class="line">                } </span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> dp[s.length()];</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="面试题-08-11-硬币"><a href="#面试题-08-11-硬币" class="headerlink" title="面试题 08.11. 硬币"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/coin-lcci/">面试题 08.11. 硬币</a></h2><blockquote>
+<p>硬币。给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)</p>
+<p><strong>示例1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> 输入: n = 5</span><br><span class="line"> 输出：2</span><br><span class="line"> 解释: 有两种方式可以凑成总金额:</span><br><span class="line">5=5</span><br><span class="line">5=1+1+1+1+1</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> 输入: n = 10</span><br><span class="line"> 输出：4</span><br><span class="line"> 解释: 有四种方式可以凑成总金额:</span><br><span class="line">10=10</span><br><span class="line">10=5+5</span><br><span class="line">10=5+1+1+1+1+1</span><br><span class="line">10=1+1+1+1+1+1+1+1+1+1</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<p>不同于爬楼梯 取硬币 1 5 和 5 1是一样的</p>
+<p>为了保证使用第二个硬币尝试的时候，dp中 只有 第一个硬币 尝试的结果，需要将coin循环放在外层</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">waysToChange</span><span class="params">(<span class="type">int</span> n)</span> {</span><br><span class="line">        <span class="comment">// dp[i] n分有几种表示法</span></span><br><span class="line">        <span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span>[] coins = <span class="keyword">new</span> <span class="title class_">int</span>[]{<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>};</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> coin : coins) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; ++i) {</span><br><span class="line">                <span class="comment">//于是我们先遍历硬币，保证在考虑一枚硬币的情况时，没有较大的硬币影响，这样，我们最终每种组合情况，都是以硬币的面额大小非递减组合。保证了同样的情况，调换顺序后重复计算的情况。</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (coin &lt;=i) {</span><br><span class="line">                    dp[i] = (dp[i] + dp[i-coin]) % <span class="number">1000000007</span>;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h1 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h1><h2 id="1004-最大连续1的个数"><a href="#1004-最大连续1的个数" class="headerlink" title="1004.最大连续1的个数"></a>1004.最大连续1的个数</h2><p>给定一个二进制数组 <code>nums</code> 和一个整数 <code>k</code>，如果可以翻转最多 <code>k</code> 个 <code>0</code> ，则返回 <em>数组中连续 <code>1</code> 的最大个数</em> 。</p>
+<blockquote>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,1,1,0,0,0,1,1,1,1,0], K = 2</span><br><span class="line">输出：6</span><br><span class="line">解释：[1,1,1,0,0,1,1,1,1,1,1]</span><br><span class="line">粗体数字从 0 翻转到 1，最长的子数组长度为 6。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], K = 3</span><br><span class="line">输出：10</span><br><span class="line">解释：[0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]</span><br><span class="line">粗体数字从 0 翻转到 1，最长的子数组长度为 10。</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<p>代码思路：</p>
+<p>使用 left和 right两个指针，分别指向滑动窗口的左右边界。<br>right主动右移：right 指针每次移动一步。当 A[right]为 0，说明滑动窗口内增加了一个 0；<br>left 被动右移：判断此时窗口内 0 的个数，如果超过了 K，则 left 指针被迫右移，直至窗口内的 0 的个数小于等于 K 为止。<br>滑动窗口长度的最大值就是所求。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">longestOnes</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> {</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = <span class="number">0</span>, ans = <span class="number">0</span>, cur = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) {</span><br><span class="line">            <span class="keyword">if</span> (nums[right] == <span class="number">0</span>) {</span><br><span class="line">                cur++;</span><br><span class="line">            } </span><br><span class="line">            <span class="keyword">while</span> (cur &gt; k) {</span><br><span class="line">                <span class="keyword">if</span> (nums[left] == <span class="number">0</span>) {</span><br><span class="line">                    cur--;</span><br><span class="line">                }</span><br><span class="line">                left++;</span><br><span class="line">            }</span><br><span class="line">            ans = Math.max(ans, right - left + <span class="number">1</span>);</span><br><span class="line">            right++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="124-二叉树中的最大路径和"><a href="#124-二叉树中的最大路径和" class="headerlink" title="124. 二叉树中的最大路径和"></a>124. 二叉树中的最大路径和</h2><p><strong>路径</strong> 被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。同一个节点在一条路径序列中 <strong>至多出现一次</strong> 。该路径 <strong>至少包含一个</strong> 节点，且不一定经过根节点。</p>
+<p><strong>路径和</strong> 是路径中各节点值的总和。</p>
+<p>给定一个二叉树的根节点 <code>root</code> ，返回其 <strong>最大路径和</strong>，即所有路径上节点值之和的最大值。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxPathSum</span><span class="params">(TreeNode root)</span> {</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">    <span class="type">int</span> <span class="title function_">dfs</span> <span class="params">(TreeNode root)</span> {</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 递归计算左右子节点的最大贡献值</span></span><br><span class="line">        <span class="comment">// 只有在最大贡献值大于 0 时，才会选取对应子节点</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> Math.max(dfs(root.left), <span class="number">0</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> Math.max(dfs(root.right), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 以当前节点为纽带</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> root.val + l + r;</span><br><span class="line"></span><br><span class="line">        ans = Math.max(ans, sum);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 不以当前节点为纽带</span></span><br><span class="line">        <span class="keyword">return</span>  Math.max(l, r) + root.val;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h1 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h1><h2 id="475-供暖器"><a href="#475-供暖器" class="headerlink" title="475. 供暖器"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/heaters/">475. 供暖器</a></h2><blockquote>
+<p>冬季已经来临。 你的任务是设计一个有固定加热半径的供暖器向所有房屋供暖。</p>
+<p>在加热器的加热半径范围内的每个房屋都可以获得供暖。</p>
+<p>现在，给出位于一条水平线上的房屋 <code>houses</code> 和供暖器 <code>heaters</code> 的位置，请你找出并返回可以覆盖所有房屋的最小加热半径。</p>
+<p><strong>注意</strong>：所有供暖器 <code>heaters</code> 都遵循你的半径标准，加热的半径也一样。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: houses = [1,2,3], heaters = [2]</span><br><span class="line">输出: 1</span><br><span class="line">解释: 仅在位置 2 上有一个供暖器。如果我们将加热半径设为 1，那么所有房屋就都能得到供暖。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: houses = [1,2,3,4], heaters = [1,4]</span><br><span class="line">输出: 1</span><br><span class="line">解释: 在位置 1, 4 上有两个供暖器。我们需要将加热半径设为 1，这样所有房屋就都能得到供暖。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：houses = [1,5], heaters = [2]</span><br><span class="line">输出：3</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findRadius</span><span class="params">(<span class="type">int</span>[] houses, <span class="type">int</span>[] heaters)</span> {</span><br><span class="line">        <span class="comment">// 对于一个房子, 要么用前面的暖气, 要么用后面的, 二者取近的</span></span><br><span class="line">        <span class="comment">// 可以使用双指针</span></span><br><span class="line">        <span class="comment">// 先对两个数组做 sort </span></span><br><span class="line">        <span class="comment">// 对于每一个房子house, 从 heaters 中找第一个位置大于 house 的, -1 就是第一个位置小于 house</span></span><br><span class="line">        <span class="comment">// 然后有三种情况, 第一个heater 就满足; 最后一个 heater 也不满足; 中间的 heater 满足,那么就需要比较前后的距离</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        Arrays.sort(heaters);</span><br><span class="line">        Arrays.sort(houses);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>; i&lt;houses.length; ++i) {</span><br><span class="line">            <span class="keyword">while</span> (j &lt; heaters.length &amp;&amp; houses[i] &gt; heaters[j]) j++;</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">0</span>) {</span><br><span class="line">                ans = Math.max(ans, heaters[j] - houses[i]);</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (j == heaters.length) {</span><br><span class="line">                ans = Math.max(ans, houses[i] - heaters[j-<span class="number">1</span>]);</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                ans = Math.max(ans, Math.min(houses[i]-heaters[j-<span class="number">1</span>], heaters[j]-houses[i]));</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+</body></html></div><div class="article-licensing box"><div class="licensing-title"><p>华为手撕</p><p><a href="https://jerryzhu1229.github.io/2024/01/26/算法/华为手撕/">https://jerryzhu1229.github.io/2024/01/26/算法/华为手撕/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-01-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-10-04</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/02/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Redis</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/01/12/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E5%AE%9E%E8%B7%B5/"><span class="level-item">MySQL实践</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#题库目录"><span class="level-left"><span class="level-item">1</span><span class="level-item">题库目录</span></span></a></li><li><a class="level is-mobile" href="#数学题"><span class="level-left"><span class="level-item">2</span><span class="level-item">数学题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-多个数求最小公倍数"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">1. 多个数求最小公倍数</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#求两个数的最小公倍数"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">求两个数的最小公倍数</span></span></a></li><li><a class="level is-mobile" href="#求多个数的最小公倍数"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">求多个数的最小公倍数</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#模拟题"><span class="level-left"><span class="level-item">3</span><span class="level-item">模拟题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-验证IP地址"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">1. 验证IP地址</span></span></a></li><li><a class="level is-mobile" href="#592-分数加减运算"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">592. 分数加减运算</span></span></a></li></ul></li><li><a class="level is-mobile" href="#数组题"><span class="level-left"><span class="level-item">4</span><span class="level-item">数组题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#48-旋转图像"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">48. 旋转图像</span></span></a></li><li><a class="level is-mobile" href="#134-加油站"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">134. 加油站</span></span></a></li><li><a class="level is-mobile" href="#135-分发糖果"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">135.分发糖果</span></span></a></li></ul></li><li><a class="level is-mobile" href="#回溯"><span class="level-left"><span class="level-item">5</span><span class="level-item">回溯</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-字符串的排列"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">1.字符串的排列</span></span></a></li><li><a class="level is-mobile" href="#46-全排列"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">46. 全排列</span></span></a></li></ul></li><li><a class="level is-mobile" href="#字符串"><span class="level-left"><span class="level-item">6</span><span class="level-item">字符串</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#3-无重复字符的最长子串"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">3. 无重复字符的最长子串</span></span></a></li><li><a class="level is-mobile" href="#443-压缩字符串"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">443. 压缩字符串</span></span></a></li><li><a class="level is-mobile" href="#1190-反转每对括号间的子串"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">1190. 反转每对括号间的子串</span></span></a></li><li><a class="level is-mobile" href="#2243-计算字符串的数字和"><span class="level-left"><span class="level-item">6.4</span><span class="level-item">2243. 计算字符串的数字和</span></span></a></li><li><a class="level is-mobile" href="#394-字符串解码"><span class="level-left"><span class="level-item">6.5</span><span class="level-item">394. 字符串解码</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#栈"><span class="level-left"><span class="level-item">6.5.1</span><span class="level-item">栈</span></span></a></li><li><a class="level is-mobile" href="#dfs"><span class="level-left"><span class="level-item">6.5.2</span><span class="level-item">dfs</span></span></a></li></ul></li><li><a class="level is-mobile" href="#179-最大数"><span class="level-left"><span class="level-item">6.6</span><span class="level-item">179. 最大数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#动态规划"><span class="level-left"><span class="level-item">7</span><span class="level-item">动态规划</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#322-零钱兑换"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">322. 零钱兑换</span></span></a></li><li><a class="level is-mobile" href="#139-单词拆分"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">139. 单词拆分</span></span></a></li><li><a class="level is-mobile" href="#面试题-08-11-硬币"><span class="level-left"><span class="level-item">7.3</span><span class="level-item">面试题 08.11. 硬币</span></span></a></li></ul></li><li><a class="level is-mobile" href="#滑动窗口"><span class="level-left"><span class="level-item">8</span><span class="level-item">滑动窗口</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1004-最大连续1的个数"><span class="level-left"><span class="level-item">8.1</span><span class="level-item">1004.最大连续1的个数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#二叉树"><span class="level-left"><span class="level-item">9</span><span class="level-item">二叉树</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#124-二叉树中的最大路径和"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">124. 二叉树中的最大路径和</span></span></a></li></ul></li><li><a class="level is-mobile" href="#双指针"><span class="level-left"><span class="level-item">10</span><span class="level-item">双指针</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#475-供暖器"><span class="level-left"><span class="level-item">10.1</span><span class="level-item">475. 供暖器</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="level-start"><span class="level-item">中间件</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">前端技术</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="level-start"><span class="level-item">运维</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2024 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
