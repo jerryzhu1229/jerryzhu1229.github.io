@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>持久化kv存储-cellar - hao</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="hao"><meta name="msapplication-TileImage" content="/img/2751710164138_.pic.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="hao"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="hao"><meta property="og:url" content="https://jerryzhu1229.github.io/2024/08/03/%E4%B8%AD%E9%97%B4%E4%BB%B6/cellar/"><meta property="og:site_name" content="hao"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/7622fcd2f731d940efdebf99f60da3e9107829.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/v2-cd0f59b8779ed14fa655546391b9b7ec_720w.webp"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/d4b3ee6793337da0e8abf52c17044a09158127.png"><meta property="og:image" content="https://jerryzhu1229.github.io/pic/2b3c788601a77e8983f8ca27c77f2989289020.png"><meta property="article:published_time" content="2024-08-03T04:07:44.000Z"><meta property="article:author" content="Jerry Z"><meta property="article:tag" content="NoSql"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://jerryzhu1229.github.io/pic/7622fcd2f731d940efdebf99f60da3e9107829.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jerryzhu1229.github.io/2024/08/03/%E4%B8%AD%E9%97%B4%E4%BB%B6/cellar/"},"headline":"持久化kv存储-cellar","image":["https://jerryzhu1229.github.io/pic/7622fcd2f731d940efdebf99f60da3e9107829.png","https://jerryzhu1229.github.io/pic/v2-cd0f59b8779ed14fa655546391b9b7ec_720w.webp","https://jerryzhu1229.github.io/pic/d4b3ee6793337da0e8abf52c17044a09158127.png","https://jerryzhu1229.github.io/pic/2b3c788601a77e8983f8ca27c77f2989289020.png"],"datePublished":"2024-08-03T04:07:44.000Z","author":{"@type":"Person","name":"Jerry Z"},"publisher":{"@type":"Organization","name":"hao","logo":{"@type":"ImageObject","url":"https://jerryzhu1229.github.io/img/2751710164138_.pic.jpg"}},"description":""}</script><link rel="canonical" href="https://jerryzhu1229.github.io/2024/08/03/%E4%B8%AD%E9%97%B4%E4%BB%B6/cellar/"><link rel="icon" href="/img/2751710164138_.pic.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/categories/cs">计算机基础</a><a class="navbar-item" href="/categories/java">后端开发</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/jerryzhu1229"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-08-03T04:07:44.000Z" title="2024/8/3 12:07:44">2024-08-03</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></span><span class="level-item">6 分钟读完 (大约915个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">持久化kv存储-cellar</h1><div class="content"><html><head></head><body><h1 id="Tair"><a href="#Tair" class="headerlink" title="Tair"></a>Tair</h1><p>Tair(Taobao Pair)是淘宝开发的分布式Key-Value存储引擎</p>
+<p>Tair采用可插拔存储引擎设计，存储引擎可以很方便的替换：</p>
+<ul>
+<li>非持久化：分布式缓存使用 Memcached（mdb）、Redis（rdb）</li>
+<li>持久化：LevelDB（ldb）</li>
+</ul>
+<p>一个Tair集群主要包括client、Config server和Dataserver 三个不同的应用。</p>
+<ul>
+<li>Client在初始化时，从Config server处获取数据的分布信息，根据分布信息和相应的Data server交互完成用户的请求。</li>
+<li>Config Server通过和Data Server的心跳（HeartBeat）维护集群中可用的节点，并根据可用的节点，构建数据的在集群中的分布信息</li>
+<li>Data server负责数据的存储，并按照Config server的指示完成数据的复制和迁移工作。</li>
+</ul>
+<h1 id="Cellar"><a href="#Cellar" class="headerlink" title="Cellar"></a>Cellar</h1><p><img src="/../../pic/7622fcd2f731d940efdebf99f60da3e9107829.png" alt="Cellar 架构图"></p>
+<p>cellar是美团基于Tair自研的。</p>
+<h2 id="跟Tair的不同"><a href="#跟Tair的不同" class="headerlink" title="跟Tair的不同"></a>跟Tair的不同</h2><ul>
+<li>加入ob，实时与中心节点的 Master 同步最新的路由表，客户端的路由表都是从 OB 去拿。 这样做的好处主要有两点，第一，把大量的业务客户端跟集群的大脑 Master 做了天然的隔离，防止路由表请求影响集群的管理。第二，因为 OB 只供路由表查询，不参与集群的管理，所以它可以进行水平扩展，极大地提升了我们路由表的查询能力。</li>
+<li>引入了 ZooKeeper 做分布式仲裁，解决Master、Slave 在网络分割情况下的“脑裂”问题，并且通过把集群的元数据存储到 ZooKeeper，我们保证了元数据的高可靠。</li>
+</ul>
+<h2 id="采取的存储引擎"><a href="#采取的存储引擎" class="headerlink" title="采取的存储引擎"></a>采取的存储引擎</h2><p><img src="/../../pic/v2-cd0f59b8779ed14fa655546391b9b7ec_720w.webp" alt="LSM Trees类存储引擎"></p>
+<p>快的原因：将随机写变为顺序写</p>
+<p>内存一般使用跳表这种查找和插入都很方便的有序数据结构，数据写入 <code>MemTable</code> 中其实就是往 <code>SkipList</code> 中插入一条数据。需要在内存中将数据进行排序的原因是便于查找以及 compaction 文件时需要进行归并排序，所以需要 <code>sstable</code> 有序。</p>
+<p>读取的话采用暴力二分查找，顺序为memtable-&gt;immemtable-&gt;每一层</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/687294492">存储引擎(三):LSM-tree类存储引擎 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<h2 id="跨地域容灾"><a href="#跨地域容灾" class="headerlink" title="跨地域容灾"></a>跨地域容灾</h2><p><img src="/../../pic/d4b3ee6793337da0e8abf52c17044a09158127.png" alt="跨地域容灾"></p>
+<h2 id="热点-Key"><a href="#热点-Key" class="headerlink" title="热点 Key"></a>热点 Key</h2><p><img src="/../../pic/2b3c788601a77e8983f8ca27c77f2989289020.png" alt="实现热点key"></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>给一些节点加入热点区域</p>
+<p>如果客户端有一个写操作到了 A 节点，A 节点处理完成后，会根据实时的热点统计结果判断写入的 Key 是否为热点。如果这个 Key 是一个热点，那么它会在做集群内复制的同时，还会把这个数据复制有热点区域的节点，也就是图中的 C、D 节点。同时，存储节点在返回结果给客户端时，会告诉客户端，这个 Key 是热点，这时客户端内会缓存这个热点 Key。当客户端有这个 Key 的读请求时，它就会直接去热点区域做数据的读取。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><p>做到只对热点数据做扩容</p>
+</li>
+<li><p>通过这种实时的热点数据复制，我们很好地解决了类似客户端缓存热点 KV 方案造成的一致性问题。</p>
+</li>
+</ul>
+</body></html></div><div class="article-licensing box"><div class="licensing-title"><p>持久化kv存储-cellar</p><p><a href="https://jerryzhu1229.github.io/2024/08/03/中间件/cellar/">https://jerryzhu1229.github.io/2024/08/03/中间件/cellar/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Jerry Z</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-08-03</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/NoSql/">NoSql</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/07/05/%E8%BF%90%E7%BB%B4/linux%E4%B8%8B%E6%8E%92%E6%9F%A5%E5%8D%A0%E7%94%A8CPU%E8%BE%83%E9%AB%98%E7%9A%84%E7%BA%BF%E7%A8%8B%E4%BF%A1%E6%81%AF/"><span class="level-item">linux下排查占用CPU较高的线程信息</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Tair"><span class="level-left"><span class="level-item">1</span><span class="level-item">Tair</span></span></a></li><li><a class="level is-mobile" href="#Cellar"><span class="level-left"><span class="level-item">2</span><span class="level-item">Cellar</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#跟Tair的不同"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">跟Tair的不同</span></span></a></li><li><a class="level is-mobile" href="#采取的存储引擎"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">采取的存储引擎</span></span></a></li><li><a class="level is-mobile" href="#跨地域容灾"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">跨地域容灾</span></span></a></li><li><a class="level is-mobile" href="#热点-Key"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">热点 Key</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#实现"><span class="level-left"><span class="level-item">2.4.1</span><span class="level-item">实现</span></span></a></li><li><a class="level is-mobile" href="#优点"><span class="level-left"><span class="level-item">2.4.2</span><span class="level-item">优点</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/cs/"><span class="level-start"><span class="level-item">cs</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><span class="level-start"><span class="level-item">中间件</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">前端技术</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="level-start"><span class="level-item">运维</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/2751710164138_.pic.jpg" alt="hao" height="28"></a><p class="is-size-7"><span>&copy; 2025 Jerry Z</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
